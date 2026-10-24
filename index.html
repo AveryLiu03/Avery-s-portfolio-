@@ -260,11 +260,14 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
 
 /* Diudiu, chibi pet that lives in the Rednote section */
 .pet-lane { position: relative; height: 150px; margin-top: 40px; border-bottom: 1.5px dashed var(--line); }
-.poop { position: absolute; width: 26px; z-index: 4; cursor: pointer; animation: plop .35s cubic-bezier(.3,1.6,.5,1) both; }
+.poop { position: absolute; width: 26px; z-index: 9; cursor: pointer; touch-action: manipulation; animation: plop .35s cubic-bezier(.3,1.6,.5,1) both; }
 .poop svg { display: block; width: 100%; }
 @keyframes plop { from { transform: translateY(-14px) scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
 .poop.gone { animation: none; transition: opacity .5s ease, transform .5s ease; opacity: 0; transform: scale(.4) translateY(6px); pointer-events: none; }
 .poop:hover { filter: brightness(1.1); }
+.poop::before { content: ""; position: absolute; inset: -14px -12px -6px; }
+.poop::after { content: "Click to clean"; position: absolute; left: 50%; top: -30px; transform: translateX(-50%); white-space: nowrap; font-family: var(--mono); font-size: 0.62rem; letter-spacing: .04em; color: var(--soft); background: var(--card); border: 1px solid var(--line); border-radius: 99px; padding: 2px 7px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.poop:hover::after { opacity: 1; }
 .stink { position: absolute; left: 50%; bottom: 100%; width: 18px; height: 22px; margin-left: -9px; pointer-events: none; }
 .stink path { fill: none; stroke: #9BB49F; stroke-width: 1.6; stroke-linecap: round; animation: stink 1.6s ease-in-out infinite; }
 @keyframes stink { 0%,100% { transform: translateY(2px); opacity: .2; } 50% { transform: translateY(-3px); opacity: .9; } }
@@ -915,7 +918,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
       el.title = 'Clean up';
       el.style.left = (rearX() - 13 + (facing < 0 ? 10 : -10)) + 'px'; el.style.bottom = '6px';
       lane.appendChild(el);
-      el.addEventListener('click', e => { e.stopPropagation(); if (el.classList.contains('gone')) return; el.classList.add('gone'); const r = el.getBoundingClientRect(); burst('heart', r.left + r.width / 2, r.top, 3); setTimeout(() => el.remove(), 550); say('Thanks, human!'); });
+      el.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); if (el.classList.contains('gone')) return; el.classList.add('gone'); const r = el.getBoundingClientRect(); burst('heart', r.left + r.width / 2, r.top, 3); setTimeout(() => el.remove(), 550); say('Thanks, human!'); });
       setTimeout(() => { el.classList.add('gone'); setTimeout(() => el.remove(), 600); }, 14000);
       pet.classList.remove('squat');
       // the classic dachshund side-eye
