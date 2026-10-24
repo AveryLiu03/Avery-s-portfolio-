@@ -360,6 +360,11 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
 .job-note { background: var(--paper); border-radius: 16px; padding: 18px; align-self: start; }
 .job-note p:not(.note) { font-family: var(--display); font-style: italic; font-weight: 300; font-size: 1.15rem; line-height: 1.4; margin: 8px 0 12px; }
 @media (max-width: 820px) { .job-grid { grid-template-columns: 1fr; } }
+
+.job-flow { margin: 10px 0 0; }
+.job-flow li { padding: 10px 0; }
+.tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 22px; }
+.tools .mono { margin-right: 4px; }
 </style>
 
 <!-- reusable drawings -->
@@ -821,18 +826,26 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
       <div class="job-head">
         <div>
           <h4 class="job-title">Assistant Editor</h4>
-          <p class="job-co">Boston Production Inc</p>
+          <p class="job-co"><a href="https://bostonproductions.com" target="_blank" rel="noopener">Boston Production Inc ↗</a></p>
         </div>
         <span class="mono">Sep – Dec 2025</span>
       </div>
       <div class="job-grid">
         <div>
-          <p>I cut complete videos from scripts and script notes, choosing the strongest moments across multiple takes, then refined each cut through Frame.io review rounds with the Chief Editor.</p>
+          <span class="mono">My workflow</span>
+          <ol class="flow job-flow">
+            <li><b>Read the script</b><span>Start from the script and script notes to understand what each scene needs to say.</span></li>
+            <li><b>Pick the takes</b><span>Review multiple takes and select the strongest performance and framing for every moment.</span></li>
+            <li><b>Cut the story</b><span>Assemble complete videos in Premiere Pro, shaping pacing, sound and subtitles.</span></li>
+            <li><b>Review and refine</b><span>Share cuts on Frame.io, work through the Chief Editor's notes, and revise until it's ready.</span></li>
+          </ol>
+          <span class="mono" style="display:block;margin-top:22px">What I worked on</span>
           <ul class="job-list">
             <li><b>Multi-screen immersive pieces.</b> Built the rough-cut framework for split-screen layouts and created subtitles.</li>
             <li><b>A WWII museum film.</b> Researched and sourced aircraft and explosion effects from sound libraries, then layered foreground, background and ambient sound to build the scene.</li>
             <li><b>Promo and institutional videos.</b> Cut a university piece from script and notes, and worked on a promotional video.</li>
           </ul>
+          <div class="tools"><span class="mono">Tools</span><span class="chip">Adobe Premiere Pro</span><span class="chip">Frame.io</span></div>
         </div>
         <aside class="job-note">
           <span class="mono">What it taught me</span>
