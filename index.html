@@ -365,6 +365,13 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
 .job-flow li { padding: 10px 0; }
 .tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 22px; }
 .tools .mono { margin-right: 4px; }
+
+.film-proj { margin-top: 28px; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: clamp(20px, 3vw, 32px); }
+.film-head { display: flex; justify-content: space-between; align-items: end; gap: 18px; flex-wrap: wrap; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.film-title { font-family: var(--display); font-weight: 300; font-size: clamp(1.7rem, 3.4vw, 2.4rem); line-height: 1.05; margin: 6px 0 0; }
+.film-role { text-align: right; } .film-role p { margin: 4px 0 0; font-family: var(--display); font-size: 1.1rem; }
+@media (max-width: 600px) { .film-role { text-align: left; } }
+.film-rail { margin-top: 24px; }
 </style>
 
 <!-- reusable drawings -->
@@ -853,6 +860,41 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
           <p class="note">Project footage isn't shown here because of client confidentiality.</p>
         </aside>
       </div>
+
+    <div class="film-proj reveal">
+      <div class="film-head">
+        <div>
+          <span class="mono">Short film · 钥匙没换</span>
+          <h4 class="film-title">The Lock's Still the Same</h4>
+          <p class="job-co">Written &amp; directed by Kayden Tan</p>
+        </div>
+        <div class="film-role"><span class="mono">My role</span><p>Production Designer, Art Director &amp; Set Dresser</p></div>
+      </div>
+      <div class="job-grid">
+        <div>
+          <p>Ethan returns to the apartment he once shared with his ex, Claire, to collect his things while she packs to move in with her fiancé. The whole film happens in one space, so the room had to carry the relationship: a home halfway through being taken apart.</p>
+          <ul class="job-list">
+            <li><b>Mood board and palette.</b> Set a muted look of deep neutrals and warm lamp light with a single cool teal, built around moving boxes, piled clothes and a wall of old photos.</li>
+            <li><b>Character-driven costumes.</b> Wrote profiles for both characters and styled them from there: Ethan, a photographer with a clean, effortless look, and Claire, an illustrator in soft whites.</li>
+            <li><b>Props on a budget.</b> Tracked more than 20 props by status and cost, borrowing where possible, and spent $105 of a $300 budget.</li>
+            <li><b>Planning the set.</b> Mapped the real apartment's floor plan and modeled the living room and entrance in SketchUp, including where the camera would move, before dressing the location.</li>
+          </ul>
+        </div>
+        <aside class="job-note">
+          <span class="mono">Why it matters for marketing</span>
+          <p>Building a believable world on a tight budget is the same job as producing a campaign: know the audience's feeling first, then make every object earn its place.</p>
+        </aside>
+      </div>
+      <div class="rail-x film-rail" tabindex="0" role="region" aria-label="Production design pages for The Lock's Still the Same">
+          <figure class="shot"><div class="frame"><img src="img/lock-03.jpg" alt="The Lock's Still the Same production design: Mood board · palette and references" loading="lazy" width="1400" height="788"></div><figcaption><span>01</span>Mood board · palette and references</figcaption></figure>
+          <figure class="shot"><div class="frame"><img src="img/lock-04.jpg" alt="The Lock's Still the Same production design: Costume design · Ethan" loading="lazy" width="1400" height="788"></div><figcaption><span>02</span>Costume design · Ethan</figcaption></figure>
+          <figure class="shot"><div class="frame"><img src="img/lock-05.jpg" alt="The Lock's Still the Same production design: Costume design · Claire" loading="lazy" width="1400" height="788"></div><figcaption><span>03</span>Costume design · Claire</figcaption></figure>
+          <figure class="shot"><div class="frame"><img src="img/lock-06.jpg" alt="The Lock's Still the Same production design: Props list and budget" loading="lazy" width="1400" height="788"></div><figcaption><span>04</span>Props list and budget</figcaption></figure>
+          <figure class="shot"><div class="frame"><img src="img/lock-07.jpg" alt="The Lock's Still the Same production design: Location floor plan" loading="lazy" width="1400" height="788"></div><figcaption><span>05</span>Location floor plan</figcaption></figure>
+          <figure class="shot"><div class="frame"><img src="img/lock-08.jpg" alt="The Lock's Still the Same production design: SketchUp set plan with camera movement" loading="lazy" width="1400" height="788"></div><figcaption><span>06</span>SketchUp set plan with camera movement</figcaption></figure>
+          <figure class="shot"><div class="frame"><img src="img/lock-09.jpg" alt="The Lock's Still the Same production design: Before and after set dressing" loading="lazy" width="1400" height="788"></div><figcaption><span>07</span>Before and after set dressing</figcaption></figure>
+      </div>
+    </div>
     </div>
   </div>
 </section>
