@@ -204,6 +204,46 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
   .float, .glow, .reveal { animation: none !important; }
   .frame:hover, a.card:hover { transform: none; }
 }
+
+/* native research visuals */
+.viz { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: clamp(18px, 3vw, 32px); --c1: #2E8556; --c2: #D9708C; }
+.viz-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+.viz-title { font-family: var(--display); font-weight: 300; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.15; margin: 6px 0 0; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.85rem; color: var(--soft); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; }
+.legend .k1, .bar.k1 { background: var(--c1); }
+.legend .k2, .bar.k2 { background: var(--c2); }
+.bars { display: grid; gap: 18px; }
+.bar-row { display: grid; grid-template-columns: minmax(150px, 230px) minmax(0, 1fr); gap: 18px; align-items: center; padding: 6px 0; border-radius: 10px; }
+.theme { font-size: 0.95rem; line-height: 1.3; }
+.theme em { display: block; font-style: normal; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); margin-top: 3px; }
+.bar-row.hot .theme em { color: var(--accent); }
+.pair { display: grid; gap: 2px; }
+.bar { position: relative; display: block; height: 14px; width: calc(var(--v) / 70 * 100%); border-radius: 0 4px 4px 0; transition: filter .3s ease; }
+.bar b { position: absolute; left: calc(100% + 8px); top: 50%; transform: translateY(-50%); font-family: var(--mono); font-weight: 400; font-size: 0.75rem; color: var(--ink); white-space: nowrap; }
+.bar::after { content: attr(data-tip); position: absolute; left: 0; bottom: calc(100% + 6px); background: var(--ink); color: var(--paper); font-size: 0.72rem; padding: 3px 8px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+.bar:hover::after { opacity: 1; }
+.bar:hover { filter: brightness(1.08); }
+@media (max-width: 600px) { .bar-row { grid-template-columns: 1fr; gap: 8px; } .bar { max-width: calc(100% - 44px); } }
+.design { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 16px; margin-top: 28px; }
+@media (max-width: 820px) { .design { grid-template-columns: 1fr; } }
+.design-card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 24px; min-width: 0; }
+.flow { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 0; counter-reset: f; }
+.flow li { counter-increment: f; display: grid; grid-template-columns: 34px minmax(0,1fr); column-gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
+.flow li:last-child { border-bottom: 0; }
+.flow li::before { content: counter(f); grid-row: span 2; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-family: var(--mono); font-size: 0.75rem; background: var(--blush); color: var(--ink); }
+.flow b { font-family: var(--display); font-weight: 400; font-size: 1.15rem; }
+.flow span { color: var(--soft); font-size: 0.88rem; }
+.timeline { display: flex; gap: 3px; margin-top: 18px; min-height: 76px; }
+.timeline span { flex: var(--m) 1 0; min-width: 0; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 8px; font-size: 0.75rem; line-height: 1.25; display: flex; flex-direction: column; justify-content: space-between; overflow-wrap: anywhere; }
+.timeline span.g { background: color-mix(in srgb, var(--accent) 14%, var(--card)); border-color: transparent; }
+.timeline span.p { background: color-mix(in srgb, var(--rose) 20%, var(--card)); border-color: transparent; }
+.timeline i { font-style: normal; font-family: var(--mono); font-size: 0.68rem; color: var(--soft); }
+.timeline i::after { content: " min"; }
+.design-note { margin: 16px 0 0; color: var(--soft); font-size: 0.92rem; }
+@media (max-width: 600px) { .timeline { flex-wrap: wrap; } .timeline span { flex: 1 1 30%; } }
+.materials a { color: var(--ink); text-decoration-color: var(--accent); }
 </style>
 
 <!-- reusable drawings -->
@@ -427,9 +467,25 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
       </div>
     </div>
 
-    <figure class="reveal hero-fig">
-      <div class="frame"><img src="img/kona-finding.jpg" alt="Slide titled 'Guests praise what the brand doesn't sell', comparing the share of Expedia reviews mentioning property, service, dining and amenities at Kona Village and Four Seasons Hualālai." width="1400" height="788"></div>
-      <figcaption>The core finding · share of Expedia reviews mentioning each theme</figcaption>
+    <figure class="reveal hero-fig viz">
+      <div class="viz-head">
+        <div>
+          <span class="mono">What guests mention in reviews</span>
+          <p class="viz-title">Guests praise what the brand doesn't sell</p>
+        </div>
+        <div class="legend" aria-hidden="true"><span><i class="k1"></i>Kona Village</span><span><i class="k2"></i>Four Seasons Hualālai</span></div>
+      </div>
+      <div class="bars" role="table" aria-label="Share of Expedia reviews mentioning each theme">
+        <div class="bar-row" role="row"><span class="theme" role="rowheader">Property, setting &amp; rooms <em>no edge</em></span>
+          <div class="pair" role="cell"><span class="bar k1" style="--v:57" data-tip="Kona Village · 57%"><b>57%</b></span><span class="bar k2" style="--v:58" data-tip="Four Seasons · 58%"><b>58%</b></span></div></div>
+        <div class="bar-row" role="row"><span class="theme" role="rowheader">Service &amp; staff <em>Kona ahead</em></span>
+          <div class="pair" role="cell"><span class="bar k1" style="--v:52" data-tip="Kona Village · 52%"><b>52%</b></span><span class="bar k2" style="--v:46" data-tip="Four Seasons · 46%"><b>46%</b></span></div></div>
+        <div class="bar-row hot" role="row"><span class="theme" role="rowheader">Food &amp; dining <em>Kona well ahead</em></span>
+          <div class="pair" role="cell"><span class="bar k1" style="--v:32" data-tip="Kona Village · 32%"><b>32%</b></span><span class="bar k2" style="--v:19" data-tip="Four Seasons · 19%"><b>19%</b></span></div></div>
+        <div class="bar-row" role="row"><span class="theme" role="rowheader">Amenities &amp; activities <em>Kona behind</em></span>
+          <div class="pair" role="cell"><span class="bar k1" style="--v:24" data-tip="Kona Village · 24%"><b>24%</b></span><span class="bar k2" style="--v:27" data-tip="Four Seasons · 27%"><b>27%</b></span></div></div>
+      </div>
+      <figcaption>Share of reviews mentioning each theme · 100 Expedia reviews per resort · our team's coding</figcaption>
     </figure>
 
     <div class="beats">
@@ -440,10 +496,27 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
       </div>
     </div>
 
-    <div class="trio">
-      <figure class="reveal"><div class="frame"><img src="img/kona-method.jpg" alt="Slide showing the exploratory sequential design: interviews, then survey, then messaging priorities." width="1400" height="788"></div><figcaption>Interviews first, survey second</figcaption></figure>
-      <figure class="reveal"><div class="frame"><img src="img/kona-interview.jpg" alt="Slide showing the 30-minute interview guide structure in timed sections." width="1400" height="788"></div><figcaption>The interview guide I wrote</figcaption></figure>
-      <figure class="reveal"><div class="frame"><img src="img/kona-stimuli.jpg" alt="Slide showing unbranded Resort A vs. Resort B stimuli and two ad concepts." width="1400" height="788"></div><figcaption>Blind stimuli · Resort A vs. Resort B</figcaption></figure>
+    <div class="design reveal">
+      <div class="design-card">
+        <span class="mono">Study design</span>
+        <ol class="flow">
+          <li><b>Depth interviews</b><span>10–15 people · 30 min · weeks 8–9</span></li>
+          <li><b>Online survey</b><span>100–150 people · weeks 11–12</span></li>
+          <li><b>Messaging priorities</b><span>What Kona should lead with · weeks 13–14</span></li>
+        </ol>
+      </div>
+      <div class="design-card">
+        <span class="mono">The interview guide I wrote · 30 minutes</span>
+        <div class="timeline" role="list">
+          <span role="listitem" style="--m:6">Warm-up<i>6</i></span>
+          <span role="listitem" style="--m:4" class="g">Decision journey<i>4</i></span>
+          <span role="listitem" style="--m:5" class="g">What matters<i>5</i></span>
+          <span role="listitem" style="--m:4" class="p">Travel party<i>4</i></span>
+          <span role="listitem" style="--m:5" class="p">Messaging<i>5</i></span>
+          <span role="listitem" style="--m:6">Ranking &amp; close<i>6</i></span>
+        </div>
+        <p class="design-note">Blind by design: Kona Village and Four Seasons are never named. Participants react to unbranded photos, review excerpts and two ad concepts labeled Resort A and Resort B.</p>
+      </div>
     </div>
 
     <div class="split">
@@ -454,7 +527,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
       <div>
         <span class="mono">Research materials</span>
         <ul class="materials">
-          <li><span>Research plan &amp; instruments</span><span>Team</span></li>
+          <li><a href="docs/kona-village-research-plan.pdf" target="_blank" rel="noopener">Research plan &amp; instruments ↗</a><span>Team</span></li>
           <li><span>Interview guide with stimuli</span><span>Written by me</span></li>
           <li><span>Informed consent form</span><span>Written by me</span></li>
         </ul>
