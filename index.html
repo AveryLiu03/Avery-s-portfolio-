@@ -329,6 +329,10 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
 .pet.belly .chibi .leg { animation-duration: .18s !important; }
 .pet.belly .chibi .tail { animation-duration: .14s; }
 .pet.belly .chibi .sh { opacity: .06; }
+
+.paw-print { position: absolute; width: 11px; height: 11px; z-index: 3; pointer-events: none; animation: pawfade 1.8s ease-out forwards; }
+.paw-print svg { display: block; width: 100%; height: 100%; fill: #B88E6A; }
+@keyframes pawfade { 0% { opacity: 0; transform: scale(.6) rotate(var(--r)); } 12% { opacity: .55; transform: scale(1) rotate(var(--r)); } 100% { opacity: 0; transform: scale(1) rotate(var(--r)); } }
 </style>
 
 <!-- reusable drawings -->
@@ -963,6 +967,25 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
     });
   }
 
+
+  const PAW = '<svg viewBox="0 0 20 20" aria-hidden="true"><ellipse cx="10" cy="13.5" rx="5" ry="4.2"/><circle cx="4.2" cy="8" r="2.1"/><circle cx="8" cy="5" r="2.1"/><circle cx="12" cy="5" r="2.1"/><circle cx="15.8" cy="8" r="2.1"/></svg>';
+  let stepDist = 0, stepSide = 0, lastX = null, lastY = null;
+  function footprints() {
+    if (still) return;
+    if (lastX === null) { lastX = x; lastY = y; return; }
+    const mdx = x - lastX, mdy = y - lastY;
+    stepDist += Math.hypot(mdx, mdy); lastX = x; lastY = y;
+    if (mdx || mdy) footprints.ang = Math.atan2(mdy, mdx) * 180 / Math.PI + 90;
+    if (stepDist < 22 || mode === 'belly') return;
+    stepDist = 0; stepSide ^= 1;
+    const el = document.createElement('div'); el.className = 'paw-print'; el.innerHTML = PAW;
+    const front = facing < 0 ? x + W() * 0.4 : x + W() * 0.6;   // front paws
+    const back = facing < 0 ? x + W() * 0.8 : x + W() * 0.2;    // back paws
+    const px = (stepSide ? front : back) - 5, py = feetY() - 6 + (stepSide ? -3 : 2);
+    el.style.left = px + 'px'; el.style.top = py + 'px';
+    el.style.setProperty('--r', (footprints.ang ?? (facing < 0 ? -90 : 90)) + 'deg');
+    lane.appendChild(el); setTimeout(() => el.remove(), 1900);
+  }
   function frame(now) {
     t++;
     const maxX = Math.max(0, LW() - W());
@@ -998,6 +1021,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
     if (!pet.classList.contains('happy') && !pet.classList.contains('belly')) body.style.transform = `translateY(${squat - bob}px) rotate(${tilt}deg) scale(${-facing}, ${breathe - squat / 120})`;
     const flap = moving ? Math.sin(t * 0.3) * 12 : Math.sin(now / 700) * 3;
     earL.style.transform = `rotate(${flap}deg)`; earR.style.transform = `rotate(${-flap}deg)`;
+    if (moving) footprints(); else { lastX = x; lastY = y; }
     look();
     requestAnimationFrame(frame);
   }
