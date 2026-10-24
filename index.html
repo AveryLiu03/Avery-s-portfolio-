@@ -376,6 +376,9 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
 .split-note { margin: 16px 0 0 !important; font-size: 0.9rem; color: var(--soft); }
 .split-note .mono { margin-right: 8px; color: var(--rose); }
 .shot.wide-shot { flex-basis: 100%; }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn.ghost:hover { border-color: var(--accent); background: transparent; color: var(--accent); }
 </style>
 
 <!-- reusable drawings -->
@@ -556,7 +559,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
       <a class="reveal card small" href="#analysis">
         <svg class="art" aria-hidden="true"><use href="#clap"/></svg>
         <h3>Film &amp; TV Analysis</h3>
-        <div class="foot"><span class="mono">Story</span><span class="tag live">2 projects</span></div>
+        <div class="foot"><span class="mono">Story</span><span class="tag live">3 projects</span></div>
       </a>
       <a class="reveal card small" href="#design">
         <svg class="art" aria-hidden="true"><use href="#design"/></svg>
@@ -994,7 +997,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
         <span class="mono">Coursework · Film &amp; TV Analysis</span>
         <h3>Reading what's on screen, <em>and why it's there</em></h3>
       </div>
-      <p class="sum">Two ways of reading the screen. One looks at what a film says about power. The other looks at how a live TV hour is built to hold an audience and sell to it.</p>
+      <p class="sum">Three ways of reading the screen: what a film says about power, what a hit reality show sells beneath its calm, and how a live TV hour is built to hold an audience and sell to it.</p>
     </div>
 
     <div class="film-proj reveal">
@@ -1027,6 +1030,43 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
           </aside>
         </div>
       </div>
+    </div>
+
+    <div class="film-proj reveal">
+      <div class="film-head">
+        <div>
+          <span class="mono">Global TV · Final paper and presentation · Solo</span>
+          <h4 class="film-title"><em>Three Meals a Day</em> as a Compensatory Utopia</h4>
+          <p class="job-co">tvN / CJ ENM, 2014–2020 · the politics of slow-life television</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn" href="docs/three-meals-a-day-paper.pdf" target="_blank" rel="noopener" style="margin-top:0">Read the paper ↗</a>
+          <a class="btn ghost" href="docs/three-meals-a-day-presentation.pdf" target="_blank" rel="noopener" style="margin-top:0">Slides ↗</a>
+        </div>
+      </div>
+      <div class="job-grid">
+        <div>
+          <p>A critical study of one of Korea's most loved healing reality shows, in which celebrities live in the countryside and cook three meals a day from local ingredients. I argued that its calm is carefully built, and that the show turns real anxiety into something people can buy.</p>
+          <ul class="job-list">
+            <li><b>How the calm is made.</b> Broke down the long takes, natural soundscapes, color grading and editing that compress months of farm work into a gentle "sow, harvest, dinner" loop, while leaving out aging villages, debt and broken machinery.</li>
+            <li><b>Why audiences want it.</b> Linked the show's success to Korea's long working hours, housing costs and "ppalli ppalli" fast culture, and read it through Fredric Jameson's idea of compensatory utopia and Mark Fisher's capitalist realism.</li>
+            <li><b>Korea as an export.</b> Showed how regional ingredients, family roles and table etiquette package "Koreanness" for global streaming, feeding national K-Food branding goals.</li>
+            <li><b>The business behind it.</b> Traced how CJ ENM produces the show while its food arm sells ready-made Korean meals, with purchase links following clips onto YouTube.</li>
+          </ul>
+        </div>
+        <aside class="job-note">
+          <span class="mono">Why it matters for marketing</span>
+          <p>A show's mood is a product too. Seeing how a format, a media group and a national brand sell together is how global entertainment marketing actually works.</p>
+        </aside>
+      </div>
+      <div class="rail-x film-rail" tabindex="0" role="region" aria-label="Slides from the Three Meals a Day presentation">
+        <figure class="shot"><div class="frame"><img src="img/tmad-01.jpg" alt="Title slide: Three Meals A Day, Korean reality TV show presentation" loading="lazy" width="1400" height="787"></div><figcaption><span>01</span>Title</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/tmad-02.jpg" alt="Introduction slide about the show, tvN and CJ ENM" loading="lazy" width="1400" height="787"></div><figcaption><span>02</span>The show</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/tmad-03.jpg" alt="Slide on the show's main ideology and politics" loading="lazy" width="1400" height="787"></div><figcaption><span>03</span>Ideology underneath</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/tmad-06.jpg" alt="Slide on utopianism and the politics behind it" loading="lazy" width="1400" height="787"></div><figcaption><span>04</span>Utopianism and politics</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/tmad-09.jpg" alt="Conclusion slide: the show as a social analgesic" loading="lazy" width="1400" height="787"></div><figcaption><span>05</span>Conclusion</figcaption></figure>
+      </div>
+      <p class="note">Student work for a Global TV class. Show images belong to their owners; not for commercial use.</p>
     </div>
 
     <div class="film-proj reveal">
