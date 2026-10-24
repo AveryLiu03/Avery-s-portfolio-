@@ -255,6 +255,45 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
 .rail-x { align-items: center; }
 .shot figcaption span { color: var(--rose); margin-right: 8px; }
 @media (max-width: 600px) { .shot { flex-basis: 88%; } }
+
+
+/* Diudiu, the chibi desktop pet */
+.pet { position: fixed; left: 0; top: 0; width: 112px; z-index: 40; cursor: pointer; will-change: transform; -webkit-tap-highlight-color: transparent; }
+.pet-body { transform-origin: 50% 92%; }
+.chibi { display: block; width: 100%; height: auto; overflow: visible; }
+.chibi .sh { fill: #1E2622; opacity: .12; }
+.chibi .tail { transform-box: view-box; transform-origin: 86px 98px; animation: wag .5s ease-in-out infinite alternate; }
+.pet.excited .chibi .tail { animation-duration: .16s; }
+@keyframes wag { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }
+.chibi .ear { transform-box: view-box; transition: transform .25s ease-out; }
+.chibi .el { transform-origin: 34px 36px; } .chibi .er { transform-origin: 86px 36px; }
+.chibi .pupil { transition: transform .12s ease-out; }
+.chibi .lid { transform: scaleY(0); transition: transform .07s ease-in; }
+.pet.blink .chibi .lid { transform: scaleY(1); }
+.chibi .open, .chibi .tongue { transition: all .12s ease; }
+.pet.chomp .chibi .open { ry: 4.5; }
+.pet.chomp .chibi .tongue { opacity: 0; }
+.pet.happy .pet-body { animation: wiggle .5s ease-in-out 2; }
+@keyframes wiggle { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-9deg) translateY(-6px); } 75% { transform: rotate(9deg) translateY(-6px); } }
+.pet-bubble { position: absolute; left: 50%; bottom: 100%; transform: translate(-50%, -2px); white-space: nowrap; font-family: var(--mono); font-size: 0.7rem; letter-spacing: .04em; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 99px; padding: 4px 10px; opacity: 0; transition: opacity .3s ease, transform .3s ease; pointer-events: none; box-shadow: 0 8px 20px -14px rgba(30,38,34,.4); }
+.pet.talk .pet-bubble { opacity: 1; transform: translate(-50%, -8px); }
+.heart, .crumb { position: fixed; z-index: 41; pointer-events: none; }
+.heart { color: var(--rose); font-size: 18px; animation: floatup 1.1s ease-out forwards; }
+@keyframes floatup { from { opacity: 1; transform: translate(-50%, 0) scale(.6); } to { opacity: 0; transform: translate(calc(-50% + var(--dx)), -70px) scale(1.2); } }
+.crumb { width: 5px; height: 5px; border-radius: 2px; background: #E7C08E; animation: crumb .7s ease-out forwards; }
+@keyframes crumb { to { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(120deg); } }
+.treat { position: fixed; left: 0; top: 0; width: 34px; z-index: 39; pointer-events: none; transform-origin: center; }
+.treat svg { display: block; width: 100%; }
+.treat.drop { animation: drop .55s cubic-bezier(.3,1.4,.5,1) both; }
+@keyframes drop { from { transform: translateY(-60px) rotate(-40deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.pet-dock { position: fixed; z-index: 42; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 8px; align-items: center; }
+.pet-dock button { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 0.68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--soft); background: var(--card); border: 1px solid var(--line); border-radius: 99px; padding: 7px 12px; cursor: pointer; box-shadow: 0 10px 24px -18px rgba(30,38,34,.45); transition: color .2s, border-color .2s, transform .2s; }
+.pet-dock button:hover { color: var(--ink); border-color: var(--accent); transform: translateY(-1px); }
+.pet-dock button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.pet-dock .feed svg { width: 22px; }
+.pet-dock .count { color: var(--accent); }
+@media (max-width: 600px) { .pet { width: 84px; } }
+@media (prefers-reduced-motion: reduce) { .chibi .tail { animation: none; } }
 </style>
 
 <!-- reusable drawings -->
@@ -688,3 +727,185 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
     <svg class="art" aria-hidden="true"><use href="#fawn"/></svg>
   </div>
 </footer>
+
+<div class="pet" id="pet" role="img" aria-label="Chibi Diudiu, my mini dachshund, follows your cursor">
+  <div class="pet-bubble" id="petBubble">Hi, I'm Diudiu</div>
+  <div class="pet-body" id="petBody">
+    <svg class="chibi" viewBox="0 0 120 132" aria-hidden="true">
+      <ellipse class="sh" cx="60" cy="126" rx="30" ry="4.5"/>
+      <g class="tail"><path d="M86 98c8-2 14-9 16-18" fill="none" stroke="#5E3A28" stroke-width="6" stroke-linecap="round"/></g>
+      <ellipse cx="60" cy="101" rx="28" ry="20" fill="#6E4532"/>
+      <ellipse cx="60" cy="103" rx="13" ry="12.5" fill="#EBCBA4"/>
+      <rect class="paw pl" x="38" y="112" width="12" height="11" rx="5.5" fill="#E2BE96"/>
+      <rect class="paw pr" x="70" y="112" width="12" height="11" rx="5.5" fill="#E2BE96"/>
+      <path d="M40 80c12 6 28 6 40 0" fill="none" stroke="#EC8FA6" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="60" cy="86" r="3.2" fill="#F6C344" stroke="#D9A21E" stroke-width=".8"/>
+      <g class="ear el"><path d="M34 34c-12 2-18 14-17 30 1 10 6 17 12 16 6-1 8-10 9-20 1-9 0-20-4-26z" fill="#573422"/></g>
+      <g class="ear er"><path d="M86 34c12 2 18 14 17 30-1 10-6 17-12 16-6-1-8-10-9-20-1-9 0-20 4-26z" fill="#573422"/></g>
+      <ellipse cx="60" cy="50" rx="31" ry="29" fill="#6E4532"/>
+      <ellipse cx="47" cy="34" rx="4.2" ry="2.8" fill="#EBCBA4"/>
+      <ellipse cx="73" cy="34" rx="4.2" ry="2.8" fill="#EBCBA4"/>
+      <ellipse cx="60" cy="64" rx="16" ry="12" fill="#EBCBA4"/>
+      <ellipse cx="38" cy="60" rx="5" ry="3" fill="#F4A3B4" opacity=".55"/>
+      <ellipse cx="82" cy="60" rx="5" ry="3" fill="#F4A3B4" opacity=".55"/>
+      <g transform="translate(47 47)"><g class="eye"><ellipse rx="7.2" ry="8" fill="#22150F"/><g class="pupil"><circle cx="-1.8" cy="-2.6" r="2.8" fill="#fff"/><circle cx="2.2" cy="2.4" r="1.1" fill="#fff" opacity=".85"/></g><ellipse class="lid" rx="8.4" ry="9" fill="#6E4532"/></g></g>
+      <g transform="translate(73 47)"><g class="eye"><ellipse rx="7.2" ry="8" fill="#22150F"/><g class="pupil"><circle cx="-1.8" cy="-2.6" r="2.8" fill="#fff"/><circle cx="2.2" cy="2.4" r="1.1" fill="#fff" opacity=".85"/></g><ellipse class="lid" rx="8.4" ry="9" fill="#6E4532"/></g></g>
+      <ellipse cx="60" cy="58.5" rx="5.6" ry="4" fill="#3A2420"/>
+      <ellipse cx="58.6" cy="57.3" rx="1.6" ry="1" fill="#fff" opacity=".5"/>
+      <path class="mouth" d="M53 65c2 3 5 3 7 0 2 3 5 3 7 0" fill="none" stroke="#3A2420" stroke-width="1.6" stroke-linecap="round"/>
+      <ellipse class="open" cx="60" cy="68" rx="5" ry="0" fill="#3A2420"/>
+      <path class="tongue" d="M57 66.5h6v3.5a3 3 0 0 1-6 0z" fill="#F07D96"/>
+    </svg>
+  </div>
+</div>
+<div class="pet-dock">
+  <button class="feed" id="petFeed" type="button"><svg viewBox="0 0 40 20" aria-hidden="true"><path d="M9 4a4 4 0 0 0-3.5 6A4 4 0 0 0 9 16c1.5 0 2.6-.8 3.2-2h15.6c.6 1.2 1.7 2 3.2 2a4 4 0 0 0 3.5-6A4 4 0 0 0 31 4c-1.5 0-2.6.8-3.2 2H12.2C11.6 4.8 10.5 4 9 4z" fill="#F2D3A7" stroke="#C99B63" stroke-width="1.4"/></svg>Toss a treat <span class="count" id="petCount"></span></button>
+  <button id="petToggle" type="button" aria-pressed="false">Hide Diudiu</button>
+</div>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const pet = $('pet'), body = $('petBody'), bubble = $('petBubble'), toggle = $('petToggle'), feed = $('petFeed'), countEl = $('petCount');
+  const pupils = pet.querySelectorAll('.pupil'), eyes = pet.querySelectorAll('.eye'), earL = pet.querySelector('.el'), earR = pet.querySelector('.er');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const BONE = '<svg viewBox="0 0 40 20" aria-hidden="true"><path d="M9 4a4 4 0 0 0-3.5 6A4 4 0 0 0 9 16c1.5 0 2.6-.8 3.2-2h15.6c.6 1.2 1.7 2 3.2 2a4 4 0 0 0 3.5-6A4 4 0 0 0 31 4c-1.5 0-2.6.8-3.2 2H12.2C11.6 4.8 10.5 4 9 4z" fill="#F2D3A7" stroke="#C99B63" stroke-width="1.4"/></svg>';
+  const W = () => pet.offsetWidth, H = () => pet.offsetHeight;
+  let x = innerWidth - W() - 60, y = innerHeight - H() - 80, mx = x - 200, my = y - 150;
+  let vx = 0, t = 0, hovering = false, hidden = false, facing = 1, lastMove = performance.now(), eating = false, fed = 0;
+  const treats = [];
+  const lines = ["Hi, I'm Diudiu", "Woof!", "Snack time?", "Main quest: charm humans", "Follow me!"];
+  const yum = ["Yum!", "More please!", "Best. Treat. Ever.", "Nom nom", "Thank you!"];
+  try { fed = parseInt(localStorage.getItem('diudiu-fed') || '0', 10) || 0; } catch (e) {}
+  const showCount = () => { countEl.textContent = fed ? '\u00b7 ' + fed : ''; };
+  showCount();
+
+  function setHidden(h) {
+    hidden = h; pet.hidden = h; treats.forEach(tr => tr.el.hidden = h);
+    toggle.textContent = h ? 'Show Diudiu' : 'Hide Diudiu'; feed.hidden = h;
+    toggle.setAttribute('aria-pressed', String(h));
+    try { localStorage.setItem('diudiu-hidden', h ? '1' : '0'); } catch (e) {}
+  }
+  try { if (localStorage.getItem('diudiu-hidden') === '1') setHidden(true); } catch (e) {}
+  toggle.addEventListener('click', () => setHidden(!hidden));
+
+  function say(text, ms = 1800) {
+    bubble.textContent = text; pet.classList.add('talk');
+    clearTimeout(say.t); say.t = setTimeout(() => pet.classList.remove('talk'), ms);
+  }
+  setTimeout(() => say(lines[0], 2600), 900);
+
+  function burst(cls, cx, cy, n) {
+    for (let i = 0; i < n; i++) {
+      const el = document.createElement('span'); el.className = cls;
+      if (cls === 'heart') el.textContent = '\u2665';
+      el.style.left = (cx + Math.random() * 24 - 12) + 'px'; el.style.top = cy + 'px';
+      el.style.setProperty('--dx', (Math.random() * 60 - 30) + 'px');
+      el.style.setProperty('--dy', (Math.random() * 30 + 10) + 'px');
+      el.style.animationDelay = (i * 0.06) + 's';
+      document.body.appendChild(el); setTimeout(() => el.remove(), 1500);
+    }
+  }
+
+  function toss() {
+    if (hidden) return;
+    const el = document.createElement('div'); el.className = 'treat drop'; el.innerHTML = BONE;
+    const margin = 80;
+    // land somewhere visible, away from the dog so he has to run for it
+    let tx, ty, tries = 0;
+    do {
+      tx = margin + Math.random() * (innerWidth - margin * 2);
+      ty = innerHeight * 0.35 + Math.random() * (innerHeight * 0.5);
+      tries++;
+    } while (Math.hypot(tx - (x + W() / 2), ty - (y + H())) < 220 && tries < 20);
+    el.style.left = (tx - 17) + 'px'; el.style.top = (ty - 10) + 'px';
+    document.body.appendChild(el);
+    treats.push({ el, x: tx, y: ty });
+    pet.classList.add('excited');
+    say(treats.length > 1 ? 'So many treats!' : 'Ooh, a treat!', 1400);
+  }
+  feed.addEventListener('click', toss);
+
+  function eat(tr) {
+    eating = true;
+    let n = 0;
+    const chew = setInterval(() => { pet.classList.toggle('chomp'); if (++n >= 6) { clearInterval(chew); pet.classList.remove('chomp'); } }, 140);
+    tr.el.style.transition = 'transform .5s ease, opacity .5s ease';
+    tr.el.style.transform = 'scale(.2)'; tr.el.style.opacity = '0';
+    burst('crumb', tr.x, tr.y, 8);
+    setTimeout(() => {
+      tr.el.remove(); fed++; showCount();
+      try { localStorage.setItem('diudiu-fed', String(fed)); } catch (e) {}
+      const r = pet.getBoundingClientRect();
+      burst('heart', r.left + r.width / 2, r.top + 10, 4);
+      say(fed % 10 === 0 ? fed + ' treats! Best human ever' : yum[Math.floor(Math.random() * yum.length)]);
+      pet.classList.remove('happy'); void pet.offsetWidth; pet.classList.add('happy');
+      eating = false;
+      if (!treats.length) setTimeout(() => pet.classList.remove('excited'), 1200);
+    }, 900);
+  }
+
+  addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; lastMove = performance.now(); }, { passive: true });
+  addEventListener('pointerdown', e => {
+    if (e.target.closest('#pet, .pet-dock, a, button')) return;
+    if (e.pointerType !== 'mouse') { mx = e.clientX; my = e.clientY; lastMove = performance.now(); }
+  }, { passive: true });
+  pet.addEventListener('pointerenter', () => { hovering = true; });
+  pet.addEventListener('pointerleave', () => { hovering = false; });
+  pet.addEventListener('click', e => {
+    pet.classList.remove('happy'); void pet.offsetWidth; pet.classList.add('happy');
+    say(lines[1 + Math.floor(Math.random() * (lines.length - 1))]);
+    burst('heart', e.clientX, e.clientY - 10, 5);
+  });
+
+  (function blink() {
+    pet.classList.add('blink'); setTimeout(() => pet.classList.remove('blink'), 130);
+    if (Math.random() < 0.25) setTimeout(() => { pet.classList.add('blink'); setTimeout(() => pet.classList.remove('blink'), 120); }, 260);
+    setTimeout(blink, 2200 + Math.random() * 3800);
+  })();
+
+  function lookAt(px, py) {
+    eyes.forEach((eye, i) => {
+      const r = eye.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      const dx = (px - cx) * facing, dy = py - cy, d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 140);
+      pupils[i].style.transform = `translate(${(dx / d) * k * 2.6}px, ${(dy / d) * k * 2.6}px)`;
+    });
+  }
+
+  function frame(now) {
+    t++;
+    if (!hidden) {
+      const idle = now - lastMove > 3500;
+      const goal = treats[0];
+      let tx = x, ty = y, gx = mx, gy = my;
+      if (goal) {
+        gx = goal.x; gy = goal.y;
+        tx = goal.x - W() / 2; ty = goal.y - H() * 0.82;
+      } else if (!hovering) {
+        const side = mx > x + W() / 2 ? -1 : 1;
+        tx = mx - W() / 2 + side * 70; ty = my - H() * 0.35 + 40;
+      }
+      tx = Math.max(8, Math.min(innerWidth - W() - 8, tx));
+      ty = Math.max(70, Math.min(innerHeight - H() - 8, ty));
+      const dx = tx - x, dy = ty - y, dist = Math.hypot(dx, dy);
+      const ease = still ? (goal ? 1 : 0) : (goal ? 0.09 : 0.07);
+      if (!eating) { x += dx * ease; y += dy * ease; }
+      vx += ((eating ? 0 : dx * ease) - vx) * 0.25;
+      if (goal && !eating && dist < 10) { treats.shift(); eat(goal); }
+      const moving = !still && dist > 6 && !eating;
+      if (Math.abs(vx) > 0.6) facing = vx < 0 ? 1 : -1;
+      const hop = moving ? Math.abs(Math.sin(t * 0.34)) * Math.min(10, dist / 12) : 0;
+      const tilt = eating ? Math.sin(t * 0.5) * 4 : moving ? Math.max(-12, Math.min(12, vx * 1.5)) : (idle ? Math.sin(now / 900) * 5 : 0);
+      const breathe = 1 + Math.sin(now / 520) * 0.014;
+      pet.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      if (!pet.classList.contains('happy')) body.style.transform = `translateY(${-hop}px) rotate(${tilt}deg) scale(${facing * breathe}, ${breathe})`;
+      const flap = moving ? Math.sin(t * 0.34) * 14 : Math.sin(now / 700) * 3;
+      earL.style.transform = `rotate(${flap}deg)`; earR.style.transform = `rotate(${-flap}deg)`;
+      lookAt(gx, gy);
+      if (idle && !goal && !pet.classList.contains('talk') && Math.random() < 0.0015) say(Math.random() < .5 ? lines[Math.floor(Math.random() * lines.length)] : 'Toss me a treat?');
+    }
+    requestAnimationFrame(frame);
+  }
+  addEventListener('resize', () => { x = Math.min(x, innerWidth - W() - 8); y = Math.min(y, innerHeight - H() - 8); });
+  requestAnimationFrame(frame);
+})();
+</script>
