@@ -296,7 +296,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
 .pet.chomp .chibi .open { ry: 4.5; }
 .pet.chomp .chibi .tongue { opacity: 0; }
 .pet.happy .pet-body { animation: wiggle .5s ease-in-out 2; }
-@keyframes wiggle { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-7deg) translateY(-8px); } 75% { transform: rotate(7deg) translateY(-8px); } }
+@keyframes wiggle { 0%,100% { transform: scale(var(--f, 1), 1) rotate(0); } 25% { transform: scale(var(--f, 1), 1) rotate(-7deg) translateY(-8px); } 75% { transform: scale(var(--f, 1), 1) rotate(7deg) translateY(-8px); } }
 .pet-bubble { position: absolute; left: 30%; bottom: 100%; transform: translate(-50%, -2px); white-space: nowrap; font-family: var(--mono); font-size: 0.7rem; letter-spacing: .04em; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 99px; padding: 4px 10px; opacity: 0; transition: opacity .3s ease, transform .3s ease; pointer-events: none; box-shadow: 0 8px 20px -14px rgba(30,38,34,.4); }
 .pet.talk .pet-bubble { opacity: 1; transform: translate(-50%, -6px); }
 .heart, .crumb { position: fixed; z-index: 41; pointer-events: none; }
@@ -333,6 +333,10 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
 .paw-print { position: absolute; width: 11px; height: 11px; z-index: 3; pointer-events: none; animation: pawfade 1.8s ease-out forwards; }
 .paw-print svg { display: block; width: 100%; height: 100%; fill: #B88E6A; }
 @keyframes pawfade { 0% { opacity: 0; transform: scale(.6) rotate(var(--r)); } 12% { opacity: .55; transform: scale(1) rotate(var(--r)); } 100% { opacity: 0; transform: scale(1) rotate(var(--r)); } }
+
+.pet-lane.off .pet, .pet-lane.off .treat, .pet-lane.off .poop, .pet-lane.off .paw-print { display: none; }
+.pet-lane.off { height: 0; margin-top: 24px; }
+.pet-play button:disabled { opacity: .45; cursor: default; transform: none; }
 </style>
 
 <!-- reusable drawings -->
@@ -774,6 +778,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
     </div>
     <div class="pet-play">
         <button id="petFeed" type="button"><svg viewBox="0 0 40 20" aria-hidden="true"><path d="M9 4a4 4 0 0 0-3.5 6A4 4 0 0 0 9 16c1.5 0 2.6-.8 3.2-2h15.6c.6 1.2 1.7 2 3.2 2a4 4 0 0 0 3.5-6A4 4 0 0 0 31 4c-1.5 0-2.6.8-3.2 2H12.2C11.6 4.8 10.5 4 9 4z" fill="#F2D3A7" stroke="#C99B63" stroke-width="1.4"/></svg>Toss Diudiu a treat <span class="count" id="petCount"></span></button>
+        <button id="petToggle" type="button" aria-pressed="false">Hide Diudiu</button>
         <span class="hint">He wanders around down here. Keep an eye on him.</span>
       </div>
   </div>
@@ -826,7 +831,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
   let x = 20, y = 0, target = 20, ty = 0, vx = 0, t = 0, facing = -1, mode = 'pause', until = performance.now() + 1500;
   let mx = null, my = null, pendingPoop = false, fed = 0, sinceLastPoop = 0, lookOverride = null;
   const treats = [];
-  const lines = ["Hi, I'm Diudiu", "Woof!", "Snack time?", "Main quest: charm humans", "Toss me a treat?"];
+  const lines = ["Hi, I'm Diudiu", "Woof!", "Main quest: charm all humans", "Snack time?", "Toss me a treat?"];
   const yum = ["Yum!", "More please!", "Best. Treat. Ever.", "Nom nom", "Thank you!"];
   try { fed = parseInt(localStorage.getItem('diudiu-fed') || '0', 10) || 0; } catch (e) {}
   const showCount = () => { countEl.textContent = fed ? '\u00b7 ' + fed : ''; };
@@ -888,6 +893,16 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
     if (mode !== 'poop') { mode = 'treat'; say(treats.length > 1 ? 'So many treats!' : 'Ooh, a treat!', 1400); }
   }
   feed.addEventListener('click', toss);
+  const toggle = $('petToggle');
+  function setHidden(h) {
+    lane.classList.toggle('off', h);
+    toggle.textContent = h ? 'Show Diudiu' : 'Hide Diudiu';
+    toggle.setAttribute('aria-pressed', String(h));
+    feed.disabled = h;
+    try { localStorage.setItem('diudiu-hidden', h ? '1' : '0'); } catch (e) {}
+  }
+  toggle.addEventListener('click', () => setHidden(!lane.classList.contains('off')));
+  try { if (localStorage.getItem('diudiu-hidden') === '1') setHidden(true); } catch (e) {}
 
   function eat(tr) {
     mode = 'eat';
@@ -943,7 +958,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
     mode = 'belly';
     body.style.setProperty('--f', String(-facing));
     pet.classList.add('belly', 'walk');
-    say(Math.random() < .5 ? 'Belly rubs?' : 'Rub my tummy!', 1800);
+    say(['Belly rubs?', 'Rub my tummy!', 'Main quest: charm all humans'][Math.floor(Math.random() * 3)], 1800);
     burst('heart', e.clientX, e.clientY - 10, 5);
     setTimeout(() => { pet.classList.remove('belly', 'walk'); mode = 'pause'; until = performance.now() + 1200; }, 2000);
   });
@@ -989,15 +1004,20 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
   function frame(now) {
     t++;
     const maxX = Math.max(0, LW() - W());
-    if (mode === 'pause' && now > until) wander(now);
+    if (mode === 'pause' && now > until) { if (Math.random() < 0.3 && !pet.classList.contains('talk')) say(lines[1 + Math.floor(Math.random() * (lines.length - 1))]); wander(now); }
     let moving = false;
     const goal = treats.find(tr => tr.landed);
     if (mode === 'treat' && goal) {
-      const gx = goal.x; target = Math.max(0, Math.min(maxX, gx < x + W() / 2 ? gx - W() * 0.2 : gx - W() * 0.8));
+      // decide once which way he approaches, so he always walks head-first
+      const gx = goal.x, tR = Math.max(0, Math.min(maxX, gx - W() * 0.8)), tL = Math.max(0, Math.min(maxX, gx - W() * 0.2));
+      if (!goal.side) goal.side = x <= tR ? 1 : x >= tL ? -1 : (gx < x + W() / 2 ? -1 : 1);
+      target = goal.side > 0 ? tR : tL;
       ty = goal.y + 8 - (LH() - 4);
       const dx = target - x, dy = ty - y, d = Math.hypot(dx, dy), speed = still ? 9999 : 3.2;
+      const forward = Math.abs(dx) < 2 || Math.sign(dx) === goal.side;
+      facing = goal.side;
       if (d <= speed) { x = target; y = ty; treats.splice(treats.indexOf(goal), 1); eat(goal); }
-      else { x += dx / d * speed; y += dy / d * speed; moving = true; if (Math.abs(dx) > 1) facing = dx < 0 ? -1 : 1; }
+      else { x += dx / d * speed; y += dy / d * speed; moving = forward; }
     } else if (mode === 'home') {
       const dy = -y, speed = still ? 9999 : 2.6;
       if (Math.abs(dy) <= speed) {
@@ -1017,6 +1037,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
     const breathe = 1 + Math.sin(now / 520) * 0.01;
     const tilt = mode === 'eat' ? Math.sin(t * 0.5) * 3 : 0;
     pet.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    if (!pet.classList.contains('belly')) body.style.setProperty('--f', String(-facing));
     // the drawing faces left; flip it when he walks right
     if (!pet.classList.contains('happy') && !pet.classList.contains('belly')) body.style.transform = `translateY(${squat - bob}px) rotate(${tilt}deg) scale(${-facing}, ${breathe - squat / 120})`;
     const flap = moving ? Math.sin(t * 0.3) * 12 : Math.sin(now / 700) * 3;
