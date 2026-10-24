@@ -250,6 +250,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
 .rail-x { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 4px; padding: 4px 4px 18px; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--rose) transparent; }
 .rail-x:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 12px; }
 .shot { flex: 0 0 min(78%, 680px); scroll-snap-align: start; }
+.rail-x { align-items: flex-start; }
 .shot figcaption span { color: var(--rose); margin-right: 8px; }
 @media (max-width: 600px) { .shot { flex-basis: 88%; } }
 </style>
@@ -590,14 +591,15 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
     <div class="gallery reveal">
       <div class="gallery-head"><span class="mono">Pages I designed</span><span class="mono">Scroll →</span></div>
       <div class="rail-x" tabindex="0" role="region" aria-label="Screenshots of the pages I designed">
-        <figure class="shot"><div class="frame"><img src="img/burberry-page-1.jpg" alt="Burberry, Reconnected site page: Home · Reconnecting heritage with the future" width="1400" height="764" loading="lazy"></div><figcaption><span>01</span>Home · Reconnecting heritage with the future</figcaption></figure>
-        <figure class="shot"><div class="frame"><img src="img/burberry-page-2.jpg" alt="Burberry, Reconnected site page: About · Heritage, reimagined for a new generation" width="1400" height="764" loading="lazy"></div><figcaption><span>02</span>About · Heritage, reimagined for a new generation</figcaption></figure>
-        <figure class="shot"><div class="frame"><img src="img/burberry-page-3.jpg" alt="Burberry, Reconnected site page: Heritage, refocused" width="1400" height="764" loading="lazy"></div><figcaption><span>03</span>Heritage, refocused</figcaption></figure>
-        <figure class="shot"><div class="frame"><img src="img/burberry-page-8.jpg" alt="Burberry, Reconnected site page: Four pillars: identity, storytelling, digital, culture" width="1400" height="764" loading="lazy"></div><figcaption><span>04</span>Four pillars: identity, storytelling, digital, culture</figcaption></figure>
-        <figure class="shot"><div class="frame"><img src="img/burberry-page-7.jpg" alt="Burberry, Reconnected site page: Sustainability · Built to last" width="1400" height="764" loading="lazy"></div><figcaption><span>05</span>Sustainability · Built to last</figcaption></figure>
-        <figure class="shot"><div class="frame"><img src="img/burberry-page-4.jpg" alt="Burberry, Reconnected site page: Core icons" width="1400" height="764" loading="lazy"></div><figcaption><span>06</span>Core icons</figcaption></figure>
-        <figure class="shot"><div class="frame"><img src="img/burberry-page-5.jpg" alt="Burberry, Reconnected site page: Transformations" width="1400" height="764" loading="lazy"></div><figcaption><span>07</span>Transformations</figcaption></figure>
-        <figure class="shot"><div class="frame"><img src="img/burberry-page-6.jpg" alt="Burberry, Reconnected site page: Campaign page · Campaign archive" width="1400" height="764" loading="lazy"></div><figcaption><span>08</span>Campaign page · Campaign archive</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-1.jpg" alt="Burberry, Reconnected site page: Home · Reconnecting heritage with the future" loading="lazy"></div><figcaption><span>01</span>Home · Reconnecting heritage with the future</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-2.jpg" alt="Burberry, Reconnected site page: About · Heritage, reimagined for a new generation" loading="lazy"></div><figcaption><span>02</span>About · Heritage, reimagined for a new generation</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-3.jpg" alt="Burberry, Reconnected site page: Heritage, refocused" loading="lazy"></div><figcaption><span>03</span>Heritage, refocused</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-8.jpg" alt="Burberry, Reconnected site page: Four pillars: identity, storytelling, digital, culture" loading="lazy"></div><figcaption><span>04</span>Four pillars: identity, storytelling, digital, culture</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-7.jpg" alt="Burberry, Reconnected site page: Sustainability · Built to last" loading="lazy"></div><figcaption><span>05</span>Sustainability · Built to last</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-9.jpg" alt="Burberry, Reconnected site page: Sustainability · Trench, scarf and materials for tomorrow" loading="lazy"></div><figcaption><span>06</span>Sustainability · Trench, scarf and materials for tomorrow</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-4.jpg" alt="Burberry, Reconnected site page: Core icons" loading="lazy"></div><figcaption><span>07</span>Core icons</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-5.jpg" alt="Burberry, Reconnected site page: Transformations" loading="lazy"></div><figcaption><span>08</span>Transformations</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-6.jpg" alt="Burberry, Reconnected site page: Campaign page · Campaign archive" loading="lazy"></div><figcaption><span>09</span>Campaign page · Campaign archive</figcaption></figure>
       </div>
     </div>
   </div>
