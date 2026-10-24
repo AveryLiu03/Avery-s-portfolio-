@@ -246,7 +246,9 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
 .materials a { color: var(--ink); text-decoration-color: var(--accent); }
 
 .gallery { margin-top: 56px; }
-.gallery-head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.gallery-head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.gallery-note { margin: 0 0 16px; font-size: 0.92rem; color: var(--soft); }
+.gallery-note a { color: var(--accent); }
 .rail-x { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 4px; padding: 4px 4px 18px; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--rose) transparent; }
 .rail-x:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 12px; }
 .shot { flex: 0 0 min(78%, 680px); scroll-snap-align: start; }
@@ -590,6 +592,7 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
     </div>
     <div class="gallery reveal">
       <div class="gallery-head"><span class="mono">Pages I designed</span><span class="mono">Scroll →</span></div>
+      <p class="gallery-note">These are partial screenshots. <a href="https://yuhsuanliu64.wixsite.com/burberry" target="_blank" rel="noopener">See every page in full on the live site ↗</a></p>
       <div class="rail-x" tabindex="0" role="region" aria-label="Screenshots of the pages I designed">
         <figure class="shot"><div class="frame"><img src="img/burberry-page-1.jpg" alt="Burberry, Reconnected site page: Home · Reconnecting heritage with the future" loading="lazy"></div><figcaption><span>01</span>Home · Reconnecting heritage with the future</figcaption></figure>
         <figure class="shot"><div class="frame"><img src="img/burberry-page-2.jpg" alt="Burberry, Reconnected site page: About · Heritage, reimagined for a new generation" loading="lazy"></div><figcaption><span>02</span>About · Heritage, reimagined for a new generation</figcaption></figure>
