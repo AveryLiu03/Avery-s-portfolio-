@@ -1,0 +1,524 @@
+<title>Avery Liu Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an airy contact sheet — hand-drawn line props (camera, reels, cello, fawn) floating on daylight paper, a running film strip as the spine, case studies as framed sequences. */
+:root {
+  --paper: #FCF8F7;
+  --card: #FFFFFF;
+  --ink: #1E2621;
+  --soft: #66706A;
+  --line: #EEDFDC;
+  --accent: #3D6B52;
+  --blush: #F6D9D8;
+  --rose: #D8879A;
+  --deep: #2E5240;
+  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "DM Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #131815; --card: #1A201C; --ink: #EFEAE8; --soft: #A3ABA6; --line: #2B332E;
+    --accent: #9CC8AB; --blush: #3B2A2E; --rose: #EBA4B4; --deep: #1F3328; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #131815; --card: #1A201C; --ink: #EFEAE8; --soft: #A3ABA6; --line: #2B332E;
+    --accent: #9CC8AB; --blush: #3B2A2E; --rose: #EBA4B4; --deep: #1F3328; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--body); font-size: 1.02rem; line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.wrap {
+  max-width: 1140px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+img { display: block; max-width: 100%; height: auto; }
+.mono { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); }
+
+/* line art */
+.art * { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.art .dot { fill: var(--ink); stroke: none; }
+.art .warm { stroke: var(--rose); }
+.art .warmfill { fill: var(--rose); stroke: none; }
+.art .glow { fill: var(--blush); stroke: none; }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: var(--display); font-size: 1.25rem; font-weight: 400; }
+.brand svg { width: 30px; height: 30px; }
+.nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+.nav ul a { font-size: 0.9rem; color: var(--soft); text-decoration: none; }
+.nav ul a:hover { color: var(--ink); }
+@media (max-width: 520px) { .nav ul { gap: 16px; } .brand span { display: none; } }
+
+/* hero */
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 32px; align-items: center; padding-block: clamp(36px, 7vw, 88px) clamp(28px, 5vw, 56px); }
+.rec { display: inline-flex; align-items: center; gap: 10px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 99px; background: var(--card); }
+.rec i { width: 8px; height: 8px; border-radius: 50%; background: var(--rose); animation: blink 1.6s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: 0.25; } }
+.hero h1 { font-family: var(--display); font-weight: 300; font-size: clamp(3.6rem, 10vw, 7.6rem); line-height: 0.95; letter-spacing: -0.02em; margin: 22px 0 0; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero .tagline { font-family: var(--display); font-weight: 300; font-style: italic; font-size: clamp(1.3rem, 2.6vw, 1.75rem); line-height: 1.35; margin: 22px 0 0; max-width: 24ch; text-wrap: balance; }
+.hero .intro { color: var(--soft); max-width: 46ch; margin: 18px 0 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.chip { font-size: 0.82rem; padding: 6px 12px; border-radius: 99px; background: var(--card); border: 1px solid var(--line); }
+.hero-art { position: relative; }
+.hero-art svg { width: 100%; height: auto; max-width: 480px; margin-left: auto; display: block; }
+.wave rect { fill: var(--rose); stroke: none; transform-box: fill-box; transform-origin: center; animation: wave 1.4s ease-in-out infinite; }
+@keyframes wave { 0%,100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
+@media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; } .hero-art svg { margin: 0 auto; max-width: 360px; } }
+
+/* film strip */
+.strip { overflow: hidden; background: var(--deep); color: #FCF8F7; position: relative; }
+.strip::before, .strip::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 8px;
+  background: repeating-linear-gradient(90deg, transparent 0 10px, var(--blush) 10px 22px, transparent 22px 32px);
+  opacity: 0.9;
+}
+.strip::before { top: 6px; } .strip::after { bottom: 6px; }
+.strip .track { display: flex; width: max-content; animation: roll 38s linear infinite; padding-block: 26px; }
+.strip span { font-family: var(--display); font-style: italic; font-weight: 300; font-size: 1.5rem; padding-inline: 22px; white-space: nowrap; }
+.strip span b { font-family: var(--mono); font-style: normal; font-weight: 400; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--rose); margin-right: 10px; vertical-align: middle; }
+@keyframes roll { to { transform: translateX(-50%); } }
+
+/* sections */
+section { padding-block: clamp(64px, 9vw, 112px); }
+.head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
+.head h2 { font-family: var(--display); font-weight: 300; font-size: clamp(2.3rem, 5vw, 3.6rem); line-height: 1; letter-spacing: -0.015em; margin: 8px 0 0; }
+.head h2 em { font-style: italic; color: var(--accent); }
+.head p { color: var(--soft); max-width: 40ch; margin: 0; }
+
+/* work cards */
+.cards { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.card { grid-column: span 2; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: var(--ink); transition: transform .25s ease, border-color .25s ease; min-width: 0; }
+.card.wide { grid-column: span 3; }
+a.card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.card svg { width: 72px; height: 72px; margin: -6px 0 2px -8px; }
+.card h3 { font-family: var(--display); font-weight: 400; font-size: 1.45rem; line-height: 1.15; margin: 0; }
+.card p { margin: 0; color: var(--soft); font-size: 0.93rem; line-height: 1.55; }
+.card .foot { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.tag { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 99px; background: var(--paper); color: var(--soft); border: 1px solid var(--line); }
+.tag.live { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+@media (max-width: 900px) { .card, .card.wide { grid-column: span 3; } }
+@media (max-width: 560px) { .cards { grid-template-columns: 1fr; } .card, .card.wide { grid-column: auto; } }
+
+/* case study */
+.case { border-top: 1px solid var(--line); }
+.case-top { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 64px); align-items: end; }
+.case-top h3 { font-family: var(--display); font-weight: 300; font-size: clamp(2.4rem, 6vw, 4.4rem); line-height: 0.98; letter-spacing: -0.02em; margin: 12px 0 0; text-wrap: balance; }
+.case-top h3 em { font-style: italic; color: var(--accent); }
+.case-top .sum { font-size: 1.08rem; line-height: 1.65; margin: 0; }
+.meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 40px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.meta div { padding: 14px 16px 16px 0; min-width: 0; }
+.meta div + div { padding-left: 16px; border-left: 1px solid var(--line); }
+.meta dd { margin: 4px 0 0; font-size: 0.93rem; line-height: 1.45; }
+.meta dt { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); }
+@media (max-width: 820px) {
+  .case-top { grid-template-columns: 1fr; }
+  .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .meta div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .meta div:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+.beats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 56px; margin-top: 48px; }
+.beat h4 { display: flex; align-items: center; gap: 12px; margin: 0 0 10px; font-family: var(--display); font-weight: 400; font-size: 1.35rem; }
+.beat h4 span { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; color: var(--rose); border: 1px solid var(--rose); border-radius: 99px; padding: 2px 8px; }
+.beat p { margin: 0 0 0.9em; max-width: 60ch; }
+.beat.full { grid-column: 1 / -1; }
+.beat.full p { max-width: 72ch; }
+@media (max-width: 820px) { .beats { grid-template-columns: 1fr; } }
+.num { font-family: var(--mono); font-size: 0.9em; color: var(--accent); white-space: nowrap; }
+
+.frame { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px; box-shadow: 0 18px 40px -28px rgba(61, 107, 82, 0.35); }
+.frame img { border-radius: 8px; }
+figure { margin: 0; }
+figcaption { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.04em; color: var(--soft); margin-top: 10px; line-height: 1.5; padding-inline: 4px; }
+.hero-fig { margin-top: 44px; }
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+@media (max-width: 760px) { .trio { grid-template-columns: 1fr; } }
+.materials { list-style: none; padding: 0; margin: 8px 0 0; }
+.materials li { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px dashed var(--line); font-size: 0.95rem; }
+.materials li span:last-child { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); text-align: right; }
+.note { font-size: 0.85rem; color: var(--soft); font-style: italic; margin-top: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 10px 18px; border-radius: 99px; background: var(--accent); color: var(--paper); text-decoration: none; font-size: 0.9rem; }
+.btn:hover { background: var(--deep); color: #FCF8F7; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); gap: clamp(24px, 5vw, 56px); align-items: start; margin-top: 48px; }
+@media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+
+/* about */
+.about { background: var(--card); border-block: 1px solid var(--line); }
+.about-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: clamp(28px, 6vw, 80px); align-items: start; }
+.about-grid .quote { font-family: var(--display); font-weight: 300; font-style: italic; font-size: clamp(1.6rem, 3.2vw, 2.3rem); line-height: 1.25; margin: 0; text-wrap: balance; }
+.about-grid p { margin: 0 0 1.1em; max-width: 62ch; }
+.cello-note { display: flex; gap: 16px; align-items: center; margin-top: 28px; padding: 16px 18px; border-radius: 16px; background: var(--paper); border: 1px solid var(--line); }
+.cello-note svg { width: 64px; height: 64px; flex: none; }
+.cello-note p { margin: 0; font-size: 0.95rem; }
+@media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; } }
+
+/* contact */
+.contact .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; }
+.contact h2 { font-family: var(--display); font-weight: 300; font-size: clamp(2.8rem, 7vw, 5rem); line-height: 1; margin: 10px 0 0; letter-spacing: -0.02em; }
+.contact h2 em { font-style: italic; color: var(--accent); }
+.rows { display: grid; }
+.row { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.todo { font-family: var(--mono); font-size: 0.8rem; color: var(--rose); }
+@media (max-width: 820px) { .contact .wrap { grid-template-columns: 1fr; } }
+footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-block: 28px 36px; border-top: 1px solid var(--line); }
+footer svg { width: 54px; height: 54px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .strip .track, .wave rect, .rec i { animation: none; }
+  a.card:hover { transform: none; }
+}
+
+.card.full { grid-column: 1 / -1; display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 6px 22px; }
+.card.full svg { margin: 0; grid-row: span 2; }
+.card.full h3 { align-self: end; }
+.card.full p { grid-column: 2; }
+.card.full .foot { grid-column: 3; grid-row: 1 / span 2; padding: 0; flex-direction: column; align-items: end; }
+@media (max-width: 560px) { .card.full { display: flex; } .card.full .foot { flex-direction: row; align-items: center; } }
+
+/* motion: transform + opacity only, so it stays smooth */
+.float { animation: drift 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.f2 { animation-duration: 9s; animation-delay: -3s; }
+@keyframes drift { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-8px) rotate(-3deg); } }
+.glow { animation: breathe 10s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+.card, .btn, .nav ul a, .frame { transition: transform .45s cubic-bezier(.2,.7,.2,1), border-color .3s ease, background-color .3s ease, color .3s ease, box-shadow .45s ease; }
+a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(61,107,82,.4); }
+.frame:hover { transform: translateY(-3px) scale(1.005); }
+@supports (animation-timeline: view()) {
+  .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+  @keyframes rise { from { opacity: .35; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  .strip .track { }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float, .glow, .reveal { animation: none !important; }
+  .frame:hover, a.card:hover { transform: none; }
+}
+</style>
+
+<!-- reusable drawings -->
+<svg class="art" width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="fawn" viewBox="30 24 140 152">
+      <path d="M44 58c4-6 10-11 16-12 3 0 5 1 7 3"/>
+      <path d="M44 58c1 3 3 4 6 4h7c3 0 5 1 6 2"/>
+      <path d="M64 48c5-5 12-9 19-10-3 6-8 11-14 14"/>
+      <path d="M61 46c0-6 2-11 5-14 1 5 1 10-1 14"/>
+      <path d="M70 54c4 14 10 26 20 32 18 4 40 3 58 4 8 1 12 6 12 12 0 6-2 11-4 16"/>
+      <path d="M150 90c3-4 7-6 10-5"/>
+      <path d="M63 64c3 14 6 28 12 40"/>
+      <path d="M76 106c18 8 50 9 70 6"/>
+      <path d="M78 108c2 12 2 22 1 32l1 30"/>
+      <path d="M88 112c2 10 2 20 1 28l1 30"/>
+      <path d="M146 112c3 9 6 18 6 28-1 10-3 20-4 30"/>
+      <path d="M156 116c3 8 5 16 4 24-1 10-2 20-3 30"/>
+      <circle class="dot" cx="56" cy="52" r="1.7"/>
+    </symbol>
+    <symbol id="still" viewBox="0 0 200 200">
+      <rect x="34" y="72" width="132" height="76" rx="10"/>
+      <path d="M78 72l8-16h28l8 16"/><path d="M34 92h132"/>
+      <circle cx="100" cy="112" r="28"/><circle cx="100" cy="112" r="18"/><circle cx="100" cy="112" r="7"/>
+      <rect x="46" y="62" width="16" height="10" rx="2"/><circle cx="146" cy="64" r="5"/>
+      <rect x="140" y="80" width="16" height="8" rx="2"/>
+      <path class="warm" d="M90 105c3-4 7-5 10-5"/>
+    </symbol>
+    <symbol id="cine" viewBox="0 0 200 200">
+      <circle cx="66" cy="56" r="22"/><circle cx="66" cy="56" r="4"/>
+      <circle cx="114" cy="56" r="22"/><circle cx="114" cy="56" r="4"/>
+      <path d="M66 52V38M62.5 58l-12 7M69.5 58l12 7"/><path d="M114 52V38M110.5 58l-12 7M117.5 58l12 7"/>
+      <rect x="44" y="80" width="96" height="52" rx="6"/>
+      <path d="M140 94l20-10v44l-20-10"/><path d="M160 90h10v32h-10"/>
+      <path d="M76 132l-14 40M108 132l14 40M92 132v40"/>
+      <circle class="warmfill" cx="58" cy="94" r="3.5"/>
+    </symbol>
+    <symbol id="cello" viewBox="0 0 200 200">
+      <path d="M100 18v14"/><path d="M95 22c0-4 10-4 10 0"/>
+      <path d="M97 32h6l2 46h-10z"/>
+      <path d="M92 78c-14 0-22 10-20 22 1 8 8 12 8 18s-12 12-12 28c0 18 14 30 32 30s32-12 32-30c0-16-12-22-12-28s7-10 8-18c2-12-6-22-20-22z"/>
+      <path d="M88 112c-2 4-2 8 0 10M112 112c2 4 2 8 0 10"/>
+      <path d="M98 80v84M102 80v84"/><path d="M92 140h16"/><path d="M100 176v10"/>
+      <path class="warm" d="M40 60l120 110"/>
+    </symbol>
+    <symbol id="mic" viewBox="0 0 200 200">
+      <rect x="84" y="36" width="32" height="62" rx="16"/>
+      <path d="M70 82c0 18 13 30 30 30s30-12 30-30"/><path d="M100 112v34M80 146h40"/>
+      <path class="warm" d="M24 92v16M34 84v32M44 96v8M156 96v8M166 84v32M176 92v16"/>
+    </symbol>
+    <symbol id="phone" viewBox="0 0 200 200">
+      <rect x="66" y="26" width="68" height="140" rx="12"/><path d="M90 36h20"/>
+      <path class="warm" d="M100 112c-14-10-20-16-20-24 0-6 5-10 10-10 4 0 8 2 10 6 2-4 6-6 10-6 5 0 10 4 10 10 0 8-6 14-20 24z"/>
+      <path d="M78 140h44M78 150h28"/>
+    </symbol>
+    <symbol id="spark" viewBox="0 0 200 200">
+      <path d="M36 162V48M36 162h132"/>
+      <path d="M58 162v-34M82 162v-50M106 162v-40M130 162v-70"/>
+      <path class="warm" d="M50 112l30-26 26 14 46-50"/>
+      <path class="warm" d="M140 50h12v12"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg class="art" aria-hidden="true"><use href="#fawn"/></svg><span>Avery Liu</span></a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="rec mono"><i></i>Rec · Entertainment marketing</span>
+      <h1>Avery <em>Liu</em></h1>
+      <p class="tagline">Trained to make stories. Trained to move them.</p>
+      <p class="intro">Film production at Emerson. Digital Social Media at USC Annenberg. Somewhere between the edit bay and the feed, I learned to care about the audience as much as the story.</p>
+      <div class="chips">
+        <span class="chip">Production &amp; editing</span>
+        <span class="chip">Social strategy</span>
+        <span class="chip">Content creation</span>
+        <span class="chip">Sound</span>
+        <span class="chip">Audience research</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg class="art" viewBox="0 0 440 380">
+        <circle class="glow" cx="262" cy="168" r="128"/>
+        <use class="float f1" href="#still" x="40" y="14" width="88" height="88"/>
+        <use class="float f2" href="#cine" x="326" y="28" width="98" height="98"/>
+        <use href="#fawn" x="158" y="92" width="220" height="239"/>
+        <path d="M30 322h390"/>
+        <path d="M30 334h390" style="stroke-dasharray:6 8"/>
+        <g class="wave" transform="translate(52 268)">
+          <rect x="0" y="12" width="4" height="26" rx="2"/>
+          <rect x="10" y="4" width="4" height="42" rx="2" style="animation-delay:-.2s"/>
+          <rect x="20" y="14" width="4" height="22" rx="2" style="animation-delay:-.5s"/>
+          <rect x="30" y="0" width="4" height="50" rx="2" style="animation-delay:-.8s"/>
+          <rect x="40" y="10" width="4" height="30" rx="2" style="animation-delay:-.35s"/>
+          <rect x="50" y="16" width="4" height="18" rx="2" style="animation-delay:-.65s"/>
+          <rect x="60" y="6" width="4" height="38" rx="2" style="animation-delay:-1s"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="strip" aria-hidden="true">
+  <div class="track">
+    <span><b>01</b>Film</span><span><b>02</b>Social</span><span><b>03</b>Content</span><span><b>04</b>Marketing</span><span><b>05</b>Sound</span><span><b>06</b>Story</span>
+    <span><b>01</b>Film</span><span><b>02</b>Social</span><span><b>03</b>Content</span><span><b>04</b>Marketing</span><span><b>05</b>Sound</span><span><b>06</b>Story</span>
+    <span><b>01</b>Film</span><span><b>02</b>Social</span><span><b>03</b>Content</span><span><b>04</b>Marketing</span><span><b>05</b>Sound</span><span><b>06</b>Story</span>
+    <span><b>01</b>Film</span><span><b>02</b>Social</span><span><b>03</b>Content</span><span><b>04</b>Marketing</span><span><b>05</b>Sound</span><span><b>06</b>Story</span>
+  </div>
+</div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="head reveal">
+      <div><span class="mono">Selected work</span><h2>Both sides of <em>the screen</em></h2></div>
+      <p>How content gets made, and how it finds the people it's for.</p>
+    </div>
+    <div class="cards">
+      <a class="reveal card wide" href="#kona">
+        <svg class="art" aria-hidden="true"><use href="#spark"/></svg>
+        <h3>Kona Village, A Rosewood Resort</h3>
+        <p>Audience research that found what guests love and the brand isn't selling.</p>
+        <div class="foot"><span class="mono">USC · Marketing</span><span class="tag live">Case study</span></div>
+      </a>
+      <a class="reveal card wide" href="#burberry">
+        <svg class="art" aria-hidden="true"><use href="#spark"/></svg>
+        <h3>Burberry, Reconnected</h3>
+        <p>A brand revival concept built on one strategic bet: Daniel Lee.</p>
+        <div class="foot"><span class="mono">Emerson · Marketing</span><span class="tag live">Case study</span></div>
+      </a>
+      <div class="reveal card">
+        <svg class="art" aria-hidden="true"><use href="#phone"/></svg>
+        <h3>Rednote pet account</h3>
+        <p>Written, shot, edited and posted solo since March 2025.</p>
+        <div class="foot"><span class="mono">Content</span><span class="tag">Coming soon</span></div>
+      </div>
+      <div class="reveal card">
+        <svg class="art" aria-hidden="true"><use href="#cine"/></svg>
+        <h3>On set &amp; in the edit</h3>
+        <p>Documentary work and my time as Assistant Editor at Boston Production Inc.</p>
+        <div class="foot"><span class="mono">Production</span><span class="tag">Coming soon</span></div>
+      </div>
+      <div class="reveal card">
+        <svg class="art" aria-hidden="true"><use href="#still"/></svg>
+        <h3>Photography</h3>
+        <p>Selected frames.</p>
+        <div class="foot"><span class="mono">Visual</span><span class="tag">Coming soon</span></div>
+      </div>
+      <div class="reveal card full">
+        <svg class="art" aria-hidden="true"><use href="#mic"/></svg>
+        <h3>Coursework</h3>
+        <p>Sound design, public health, film analysis and production design.</p>
+        <div class="foot"><span class="mono">Craft</span><span class="tag">Coming soon</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="kona">
+  <div class="wrap">
+    <div class="case-top reveal">
+      <div>
+        <span class="mono">Case study · Audience research</span>
+        <h3>Selling what guests <em>already love</em></h3>
+      </div>
+      <p class="sum">Kona Village markets its iconic hale bungalows, but our review analysis showed guests talk about the property no more than they do at Four Seasons next door. What they rave about is the food and the service. I helped identify that gap and the competitor behind it, then wrote the interview guide and designed the survey to test whether leading with dining and service would win over first-time guests.</p>
+    </div>
+    <dl class="meta reveal">
+      <div><dt>Brand</dt><dd>Kona Village, A Rosewood Resort</dd></div>
+      <div><dt>Where</dt><dd>USC Annenberg, DSM 550</dd></div>
+      <div><dt>Team</dt><dd>5 people · Fall 2026</dd></div>
+      <div><dt>Status</dt><dd>In progress</dd></div>
+    </dl>
+
+    <div class="beats">
+      <div class="reveal beat">
+        <h4><span>01</span>The challenge</h4>
+        <p>Kona Village reopened under Rosewood in 2023 after more than a decade closed, so most luxury travelers have never stayed there. Its growth depends on first-time guests, and right next door is Four Seasons Hualālai, at a similar price, with a similar setting and a similar cultural story. When two resorts look this alike on paper, a first-timer decides based on what the marketing and other guests say. We set out to find what actually makes Kona Village different, in guests' own words.</p>
+      </div>
+      <div class="reveal beat">
+        <h4><span>02</span>My role</h4>
+        <p>I helped pin down Four Seasons Hualālai as Kona Village's real competitor and identify where Kona actually wins. I wrote the qualitative interview guide on my own, from the warm-up questions to the blind stimulus tests and the closing ranking exercise, and designed our quantitative survey. I also built the recruitment plan with my team, recruited participants through my network and LinkedIn, and wrote the consent form. I was part of every stage of the research process.</p>
+      </div>
+    </div>
+
+    <figure class="reveal hero-fig">
+      <div class="frame"><img src="img/kona-finding.jpg" alt="Slide titled 'Guests praise what the brand doesn't sell', comparing the share of Expedia reviews mentioning property, service, dining and amenities at Kona Village and Four Seasons Hualālai." width="1400" height="788"></div>
+      <figcaption>The core finding · share of Expedia reviews mentioning each theme</figcaption>
+    </figure>
+
+    <div class="beats">
+      <div class="reveal beat full">
+        <h4><span>03</span>The approach</h4>
+        <p>We started by coding 100 Expedia reviews for each resort, and the gap jumped out. Kona Village sells its standalone hales and setting, yet guests mention the property at almost exactly the same rate as at Four Seasons (<span class="num">57% vs. 58%</span>). Where Kona pulls ahead is in things the brand barely talks about: dining (<span class="num">32% vs. 19%</span>) and service (<span class="num">52% vs. 46%</span>). That turned into our central question: should Kona Village lead with the experiences guests already love?</p>
+        <p>To answer it, we designed a two-phase study. First come 30-minute blind interviews, where the resorts are only ever called Resort A and Resort B, so people react to the experience rather than the brand name. Participants compare unbranded Instagram-style photos and real review excerpts, then pick between two ad concepts, one built around the property and one around food and service, with one question at the center: which would make you stop scrolling? What we learn there shapes the survey, which screens for high-income travelers who have never stayed at Kona Village, ranks seven resort attributes, and tests four marketing messages in randomized order, measuring how likely people are to consider the resort before and after they see them.</p>
+      </div>
+    </div>
+
+    <div class="trio">
+      <figure class="reveal"><div class="frame"><img src="img/kona-method.jpg" alt="Slide showing the exploratory sequential design: interviews, then survey, then messaging priorities." width="1400" height="788"></div><figcaption>Interviews first, survey second</figcaption></figure>
+      <figure class="reveal"><div class="frame"><img src="img/kona-interview.jpg" alt="Slide showing the 30-minute interview guide structure in timed sections." width="1400" height="788"></div><figcaption>The interview guide I wrote</figcaption></figure>
+      <figure class="reveal"><div class="frame"><img src="img/kona-stimuli.jpg" alt="Slide showing unbranded Resort A vs. Resort B stimuli and two ad concepts." width="1400" height="788"></div><figcaption>Blind stimuli · Resort A vs. Resort B</figcaption></figure>
+    </div>
+
+    <div class="split">
+      <div class="reveal beat">
+        <h4><span>04</span>Where it stands</h4>
+        <p>The research plan and instruments are complete and presented, and recruitment for interviews and the Qualtrics survey is underway. The final deliverables are an insights deck, a survey dataset, and a strategic report recommending what Kona Village should lead with in its marketing. I'll update this page with the findings.</p>
+      </div>
+      <div>
+        <span class="mono">Research materials</span>
+        <ul class="materials">
+          <li><span>Research plan &amp; instruments</span><span>Team</span></li>
+          <li><span>Interview guide with stimuli</span><span>Written by me</span></li>
+          <li><span>Informed consent form</span><span>Written by me</span></li>
+        </ul>
+        <p class="note">Full documents available on request.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case" id="burberry">
+  <div class="wrap">
+    <div class="case-top reveal">
+      <div>
+        <span class="mono">Case study · Brand revival concept</span>
+        <h3>Burberry, <em>Reconnected</em></h3>
+      </div>
+      <p class="sum">Burberry's sales were sliding, its image felt dated to younger shoppers, and outlets had grown to drive most of its revenue. I pitched the angle that shaped our whole project: new creative director Daniel Lee, who had made Bottega Veneta feel young again, was Burberry's way back to the next generation.</p>
+    </div>
+    <dl class="meta reveal">
+      <div><dt>Where</dt><dd>Emerson College, Online Content &amp; Strategy</dd></div>
+      <div><dt>Team</dt><dd>5 people · senior final</dd></div>
+      <div><dt>My part</dt><dd>Strategic angle, 6 of 10 pages, infographic</dd></div>
+      <div><dt>Audience</dt><dd>18–30, lapsed fans, Bottega fans</dd></div>
+    </dl>
+
+    <div class="split">
+      <div class="beats" style="grid-template-columns:1fr;margin-top:0">
+        <div class="reveal beat">
+          <h4><span>01</span>The challenge</h4>
+          <p>Burberry had a heritage problem. Sales had been falling for years, younger shoppers saw it as their parents' label, and outlets had grown to account for more than half of total sales, a sign the brand was being sold on discount rather than desire. Our brief: pick a struggling brand and build a fully functional website that could help bring it back to life.</p>
+        </div>
+        <div class="reveal beat">
+          <h4><span>02</span>My role</h4>
+          <p>I proposed Burberry and the strategic angle behind the whole project. The opening was Daniel Lee, the new creative director who had turned Bottega Veneta into a label young people wanted, with breakout signature pieces and its now-famous green. If he could do it there, Burberry had a real shot at winning back a younger audience. On the build, I co-created the Wix site with one teammate, designing six of its ten pages (Home, About, Our Vision, Sustainability, Collection, and the Campaign page), and created the campaign infographic.</p>
+        </div>
+        <div class="reveal beat">
+          <h4><span>03</span>The approach</h4>
+          <p>We aimed at 18–30-year-olds, plus two audiences we didn't want to leave on the table: people who used to love Burberry, and Bottega fans who had followed Daniel Lee. Our insight was that this generation respects heritage when it feels personal, not when it's put behind glass. So the campaign, <em>Rewritten Heritage</em>, treats the trench and the check as raw material for self-expression, built on creator collaborations, immersive drops centered on craft and sustainability, and short-form, social-first storytelling.</p>
+          <p>My pages carry the core of that story: from Burberry's heritage, to the vision for its future, to sustainability, the collection, and finally the campaign itself, so a visitor understands why the brand matters before we ask them to see it differently. The infographic, <em>How Burberry Can Win Back Gen Z</em>, put the whole argument on one page: why the brand was losing younger shoppers to rivals like Gucci, Prada, and Off-White, what research says Gen Z actually wants, and four moves to win them back: streetwear and cultural collaborations, social-first storytelling, accessible entry-level and unisex products, and leading with sustainability.</p>
+        </div>
+        <div class="reveal beat">
+          <h4><span>04</span>The outcome</h4>
+          <p>A live, fully built brand site with an original podcast, embedded video, a press kit, a blog, and a sign-up form, presented to the class as a 20–30 minute pitch. More than anything, it taught me to start with the business problem and let every piece of content answer it.</p>
+          <a class="btn" href="https://yuhsuanliu64.wixsite.com/burberry/portfolio" target="_blank" rel="noopener">View the live site ↗</a>
+        </div>
+      </div>
+      <figure class="reveal">
+        <div class="frame"><img src="img/burberry-infographic.jpg" alt="Infographic titled 'How Burberry Can Win Back Gen Z', covering the challenge, Gen Z statistics, four solutions, and expected impact." width="1100" height="1675"></div>
+        <figcaption>How Burberry Can Win Back Gen Z · designed by me · product imagery is AI-generated concept art</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="mono">About</span>
+      <p class="quote" style="margin-top:14px">When I build a campaign, I'm thinking about how it'll be made. When I make content, I'm thinking about who it's for.</p>
+    </div>
+    <div>
+      <p>I'm Avery Liu. I started behind the camera, studying film production at Emerson College, and I most recently worked as an Assistant Editor at Boston Production Inc, cutting complete videos from scripts and notes. Somewhere between the set and the edit bay, I got just as curious about the audience as about the story. By senior year, I was building a brand revival campaign for Burberry alongside my film work.</p>
+      <p>Now I'm pursuing a master's in Digital Social Media at USC Annenberg, where I've been working on research for Kona Village (Rosewood) to sharpen how a luxury resort markets itself to first-time guests. I've also been running my own pet-focused Rednote account since March 2025, where I write, shoot, edit, and post every piece myself.</p>
+      <p>That mix is my edge. I want to bring both halves to entertainment marketing.</p>
+      <div class="cello-note">
+        <svg class="art" aria-hidden="true"><use href="#cello"/></svg>
+        <p>Off camera, I play cello and tinker with sound engineering, which is probably why I always notice the audio first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div><span class="mono">Contact</span><h2>Let's make something <em>people watch.</em></h2></div>
+    <div class="rows">
+      <div class="row"><span class="mono">Email</span><span class="todo">[add your email]</span></div>
+      <div class="row"><span class="mono">LinkedIn</span><span class="todo">[add your LinkedIn URL]</span></div>
+      <div class="row"><span class="mono">Rednote</span><a href="https://xhslink.cn/o/30zKCCC5hGo" target="_blank" rel="noopener">My pet account ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">© 2026 Avery Liu · Filmmaker &amp; marketer</span>
+    <svg class="art" aria-hidden="true"><use href="#fawn"/></svg>
+  </div>
+</footer>
