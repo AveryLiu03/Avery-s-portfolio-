@@ -6,15 +6,15 @@
 <style>
 /* Layout: an airy contact sheet — hand-drawn line props (camera, reels, cello, fawn) floating on daylight paper, a running film strip as the spine, case studies as framed sequences. */
 :root {
-  --paper: #FFFAF9;
-  --card: #FFFFFF;
-  --ink: #1C2620;
-  --soft: #5E6A63;
-  --line: #F4E1E3;
-  --accent: #2E8A5C;
-  --blush: #FFD6DD;
-  --rose: #EC7A95;
-  --deep: #23774E;
+  --paper: #FBF6F4;
+  --card: #FFFDFC;
+  --ink: #1E2622;
+  --soft: #616C66;
+  --line: #EDDFDE;
+  --accent: #377A59;
+  --blush: #F7D9DB;
+  --rose: #DC8398;
+  --deep: #2C6649;
   --display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --mono: "DM Mono", ui-monospace, Menlo, monospace;
@@ -93,9 +93,11 @@ section { padding-block: clamp(64px, 9vw, 112px); }
 .head p { color: var(--soft); max-width: 40ch; margin: 0; }
 
 /* work cards */
-.cards { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
-.card { grid-column: span 2; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: var(--ink); transition: transform .25s ease, border-color .25s ease; min-width: 0; }
-.card.wide { grid-column: span 3; }
+.cards { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+.card { grid-column: span 4; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: var(--ink); transition: transform .25s ease, border-color .25s ease; min-width: 0; }
+.card.wide { grid-column: span 6; }
+.card.small { grid-column: span 3; }
+.card.small h3 { font-size: 1.25rem; }
 a.card:hover { transform: translateY(-3px); border-color: var(--accent); }
 .card svg { width: 72px; height: 72px; margin: -6px 0 2px -8px; }
 .card h3 { font-family: var(--display); font-weight: 400; font-size: 1.45rem; line-height: 1.15; margin: 0; }
@@ -103,8 +105,10 @@ a.card:hover { transform: translateY(-3px); border-color: var(--accent); }
 .card .foot { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .tag { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 9px; border-radius: 99px; background: var(--paper); color: var(--soft); border: 1px solid var(--line); }
 .tag.live { background: var(--accent); color: var(--paper); border-color: var(--accent); }
-@media (max-width: 900px) { .card, .card.wide { grid-column: span 3; } }
-@media (max-width: 560px) { .cards { grid-template-columns: 1fr; } .card, .card.wide { grid-column: auto; } }
+@media (max-width: 900px) { .card, .card.wide { grid-column: span 6; }
+.card.small { grid-column: span 3; }
+.card.small h3 { font-size: 1.25rem; } }
+@media (max-width: 560px) { .cards { grid-template-columns: 1fr; } .card, .card.wide, .card.small { grid-column: auto; } }
 
 /* case study */
 .case { border-top: 1px solid var(--line); }
@@ -261,6 +265,20 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
       <path class="warm" d="M50 112l30-26 26 14 46-50"/>
       <path class="warm" d="M140 50h12v12"/>
     </symbol>
+    <symbol id="clap" viewBox="0 0 200 200">
+      <rect x="40" y="86" width="120" height="76" rx="6"/>
+      <path d="M40 86l-4-24 116-20 6 24"/>
+      <path class="warm" d="M60 59l14 22M90 54l14 22M120 49l14 22"/>
+      <path d="M40 106h120"/><path d="M56 124h40M56 140h28"/>
+    </symbol>
+    <symbol id="design" viewBox="0 0 200 200">
+      <path d="M40 160V60l100 100z"/><path d="M60 140v-32l32 32z"/>
+      <path d="M152 40l12 12-62 62-16 4 4-16z"/><path class="warm" d="M142 50l12 12"/>
+    </symbol>
+    <symbol id="pulse" viewBox="0 0 200 200">
+      <path d="M100 162c-36-24-56-44-56-70 0-18 14-30 30-30 12 0 20 6 26 16 6-10 14-16 26-16 16 0 30 12 30 30 0 26-20 46-56 70z"/>
+      <path class="warm" d="M40 108h34l10-20 14 40 12-28 8 8h42"/>
+    </symbol>
   </defs>
 </svg>
 
@@ -358,11 +376,25 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
         <p>Selected frames.</p>
         <div class="foot"><span class="mono">Visual</span><span class="tag">Coming soon</span></div>
       </div>
-      <div class="reveal card full">
+      <div class="reveal card small">
         <svg class="art" aria-hidden="true"><use href="#mic"/></svg>
-        <h3>Coursework</h3>
-        <p>Sound design, public health, film analysis and production design.</p>
-        <div class="foot"><span class="mono">Craft</span><span class="tag">Coming soon</span></div>
+        <h3>Sound Design</h3>
+        <div class="foot"><span class="mono">Sound</span><span class="tag">Coming soon</span></div>
+      </div>
+      <div class="reveal card small">
+        <svg class="art" aria-hidden="true"><use href="#clap"/></svg>
+        <h3>Film &amp; TV Analysis</h3>
+        <div class="foot"><span class="mono">Story</span><span class="tag">Coming soon</span></div>
+      </div>
+      <div class="reveal card small">
+        <svg class="art" aria-hidden="true"><use href="#design"/></svg>
+        <h3>Production Design</h3>
+        <div class="foot"><span class="mono">Design</span><span class="tag">Coming soon</span></div>
+      </div>
+      <div class="reveal card small">
+        <svg class="art" aria-hidden="true"><use href="#pulse"/></svg>
+        <h3>Public Health</h3>
+        <div class="foot"><span class="mono">Communication</span><span class="tag">Coming soon</span></div>
       </div>
     </div>
   </div>
