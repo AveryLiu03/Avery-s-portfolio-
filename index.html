@@ -244,6 +244,14 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
 .design-note { margin: 16px 0 0; color: var(--soft); font-size: 0.92rem; }
 @media (max-width: 600px) { .timeline { flex-wrap: wrap; } .timeline span { flex: 1 1 30%; } }
 .materials a { color: var(--ink); text-decoration-color: var(--accent); }
+
+.gallery { margin-top: 56px; }
+.gallery-head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.rail-x { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 4px; padding: 4px 4px 18px; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--rose) transparent; }
+.rail-x:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 12px; }
+.shot { flex: 0 0 min(78%, 680px); scroll-snap-align: start; }
+.shot figcaption span { color: var(--rose); margin-right: 8px; }
+@media (max-width: 600px) { .shot { flex-basis: 88%; } }
 </style>
 
 <!-- reusable drawings -->
@@ -578,6 +586,17 @@ a.card:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -30px rgba(4
         <div class="frame"><img src="img/burberry-infographic.jpg" alt="Infographic titled 'How Burberry Can Win Back Gen Z', covering the challenge, Gen Z statistics, four solutions, and expected impact." width="1100" height="1675"></div>
         <figcaption>How Burberry Can Win Back Gen Z · designed by me · product imagery is AI-generated concept art</figcaption>
       </figure>
+    </div>
+    <div class="gallery reveal">
+      <div class="gallery-head"><span class="mono">Pages I designed</span><span class="mono">Scroll →</span></div>
+      <div class="rail-x" tabindex="0" role="region" aria-label="Screenshots of the pages I designed">
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-1.jpg" alt="Burberry, Reconnected site page: Reconnecting heritage with the future" width="1400" height="764" loading="lazy"></div><figcaption><span>01</span>Home · Reconnecting heritage with the future</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-2.jpg" alt="Burberry, Reconnected site page: Heritage, reimagined for a new generation" width="1400" height="764" loading="lazy"></div><figcaption><span>02</span>About · Heritage, reimagined for a new generation</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-3.jpg" alt="Burberry, Reconnected site page: Heritage, refocused" width="1400" height="764" loading="lazy"></div><figcaption><span>03</span>Heritage, refocused</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-4.jpg" alt="Burberry, Reconnected site page: Core icons" width="1400" height="764" loading="lazy"></div><figcaption><span>04</span>Core icons</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-5.jpg" alt="Burberry, Reconnected site page: Transformations" width="1400" height="764" loading="lazy"></div><figcaption><span>05</span>Transformations</figcaption></figure>
+        <figure class="shot"><div class="frame"><img src="img/burberry-page-6.jpg" alt="Burberry, Reconnected site page: Campaign archive" width="1400" height="764" loading="lazy"></div><figcaption><span>06</span>Campaign page · Campaign archive</figcaption></figure>
+      </div>
     </div>
   </div>
 </section>
