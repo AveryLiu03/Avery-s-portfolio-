@@ -753,9 +753,18 @@ html.motion.ready .home-hero .hh-meta { opacity: 1; transform: none; transition-
 .chapter.ch-feed { background: var(--pink-lt); color: var(--ink); }
 .ch-feed .ch-shade { display: none; }
 .ch-feed .ch-media { inset: auto; right: max(6vw, 20px); top: 50%; width: clamp(190px, 22vw, 290px); aspect-ratio: 9 / 18; transform: translateY(-50%) rotate(4deg); border-radius: 36px; border: 10px solid #151515; background: #151515; z-index: 0; box-shadow: 0 40px 60px -30px rgba(20,20,20,.6); }
-.ch-feed .ch-bg { height: 200%; object-fit: cover; filter: none; animation: feedScroll 9s steps(5) infinite; transform: none; }
-@keyframes feedScroll { to { transform: translateY(-50%); } }
-.ch-feed .ch-media::after { content: "\2665  \2665  \2665"; position: absolute; right: -46px; bottom: 30%; color: #E23A7E; font-size: 1.4rem; letter-spacing: 6px; writing-mode: vertical-rl; animation: hearts 2.4s ease-in infinite; }
+.ch-feed .ch-media { display: flex; flex-direction: column; background: #1C1C1E; }
+.ph-bar { display: flex; align-items: center; gap: 7px; padding: 14px 12px 9px; color: #F4EFE8; font-size: .72rem; flex: none; }
+.ph-av { width: 20px; height: 20px; border-radius: 50%; background: url(img/rn-post-1.jpg) 30% 25% / 260% auto; flex: none; }
+.ph-bar b { margin-left: auto; font-weight: 600; font-size: .64rem; background: #FF2442; color: #fff; border-radius: 99px; padding: 3px 9px; }
+.ph-screen { flex: 1; overflow: hidden; border-radius: 0 0 24px 24px; }
+.ph-feed { display: flex; flex-direction: column; gap: 8px; padding: 0 8px; animation: feedScroll 10s cubic-bezier(.7,0,.2,1) infinite; }
+.ph-feed img { display: block; width: 100%; height: auto; border-radius: 10px; max-width: none; }
+@keyframes feedScroll { 0%, 38% { transform: translateY(0); } 48%, 86% { transform: translateY(calc(-33.333% - 2.67px)); } 96%, 100% { transform: translateY(calc(-66.667% - 5.33px)); } }
+.ph-hearts { position: absolute; right: max(calc(6vw - 34px), 4px); top: 58%; display: flex; flex-direction: column; gap: 10px; color: #E23A7E; font-size: 1.4rem; pointer-events: none; z-index: 1; }
+.ph-hearts i { font-style: normal; animation: hearts 2.4s ease-in infinite; } .ph-hearts i:nth-child(2) { animation-delay: .8s; font-size: 1rem; } .ph-hearts i:nth-child(3) { animation-delay: 1.6s; }
+.ph-bar span:not(.ph-av) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+@media (max-width: 700px) { .ph-hearts { display: none; } .chapter.ch-feed .ch-media { right: 22px; top: 28px; width: 160px; transform: rotate(4deg); border-width: 7px; border-radius: 28px; opacity: 1; } .ph-bar { padding: 10px 9px 7px; font-size: .62rem; } .ph-bar b { display: none; } }
 @keyframes hearts { from { transform: translateY(20px); opacity: 0; } 30% { opacity: 1; } to { transform: translateY(-120px); opacity: 0; } }
 .ch-feed .ch-word { color: #151515; } .ch-feed .ch-no { color: #8E1F55; } .ch-feed .ch-title { color: #151515; }
 .ch-feed .ch-foot { border-top-color: rgba(20,20,20,.25); }
@@ -915,7 +924,7 @@ a.cval:hover { color: var(--accent); }
 .fx.in .fx-leader { opacity: 1; }
 .fx.out .fx-leader { opacity: 0; transition-duration: .45s; }
 .fx-leader .ring2 { width: min(46vmin, 300px); aspect-ratio: 1; border-radius: 50%; border: 2px solid rgba(244,239,232,.55); background: conic-gradient(rgba(244,239,232,.22) var(--a, 0deg), transparent var(--a, 0deg)); display: grid; place-items: center; font-family: var(--display); font-size: min(26vmin, 170px); color: #F4EFE8; }
-@media (prefers-reduced-motion: reduce) { .ch-bg, .ch-word, .sprockets::before, .snow, .scan::after, .ch-ecg path, .ch-feed .ch-bg, .ch-feed .ch-media::after { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .ch-bg, .ch-word, .sprockets::before, .snow, .scan::after, .ch-ecg path, .ph-feed, .ph-hearts i { animation: none !important; } }
 .reel-band.flash { animation: bandFlash .5s steps(1); }
 @keyframes bandFlash { 0% { filter: none; } 20% { filter: brightness(2) contrast(1.4); } 40% { filter: none; transform: translateX(-6px); } 60% { filter: brightness(1.5); transform: translateX(4px); } 80% { filter: none; transform: none; } }
 
@@ -1290,7 +1299,10 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 
 <div class="view" id="content" data-key="content" data-title="Content Creation" data-fx="feed" hidden>
 <header class="chapter ch-feed">
-  <div class="ch-media"><img class="ch-bg" src="img/rednote-posts.jpg" alt=""></div>
+  <div class="ch-media phone" aria-hidden="true">
+    <div class="ph-bar"><span class="ph-av"></span><span>丢丢不丢丢啦</span><b>Follow</b></div>
+    <div class="ph-screen"><div class="ph-feed"><img src="img/rn-post-1.jpg" alt=""><img src="img/rn-post-2.jpg" alt=""><img src="img/rn-post-1.jpg" alt=""></div></div>
+  </div><div class="ph-hearts" aria-hidden="true"><i>&#9829;</i><i>&#9829;</i><i>&#9829;</i></div>
   <div class="ch-shade" aria-hidden="true"></div>
   <div class="wrap ch-in">
     <span class="mono ch-no">Chapter <b data-chno>01</b></span>
