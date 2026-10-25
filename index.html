@@ -670,7 +670,7 @@ body { background: var(--paper); }
 .reel-track { display: flex; height: 100%; width: max-content; will-change: transform; }
 .reel-track img { height: 100%; width: auto; max-width: none; filter: grayscale(1) contrast(1.12) brightness(.82); }
 .orb { position: absolute; z-index: 3; top: 50%; left: 0; width: clamp(150px, 17vw, 230px); aspect-ratio: 1; margin-top: calc(clamp(150px, 17vw, 230px) / -2); border-radius: 50%; overflow: hidden; will-change: transform; box-shadow: 0 28px 50px -18px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.25); }
-.orb-img { position: absolute; inset: 0; background-repeat: no-repeat; transform: scale(-1, -1); filter: saturate(1.25) contrast(1.06); }
+.orb-img { position: absolute; inset: 0; background-repeat: no-repeat; filter: saturate(1.25) contrast(1.06); }
 .orb-shine { position: absolute; inset: 0; border-radius: 50%; background:
   radial-gradient(circle at 32% 24%, rgba(255,255,255,.92) 0 5%, rgba(255,255,255,.28) 11%, transparent 26%),
   radial-gradient(circle at 70% 82%, rgba(242,163,200,.42), transparent 42%),
@@ -989,7 +989,6 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 .sk-head .hand { font-family: var(--hand); font-size: 1.5rem; color: var(--accent); margin: 0; transform: rotate(-2deg); }
 .sk-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.6vw, 28px); margin-top: 28px; }
 .sk-col { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px 22px 18px; }
-.sk-col:nth-child(2) { transform: rotate(.6deg); } .sk-col:nth-child(3) { transform: rotate(-.5deg); }
 .sk-col h4 { font-family: var(--display); text-transform: uppercase; font-weight: 400; font-size: 1.5rem; letter-spacing: .01em; margin: 0 0 12px; display: flex; gap: 10px; align-items: baseline; }
 .sk-col h4 span { font-family: var(--mono); font-size: .7rem; color: var(--accent); }
 .sk-col ul { list-style: none; margin: 0; padding: 0; }
@@ -1043,6 +1042,19 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 .sk-tools p { margin: 0; display: flex; flex-wrap: wrap; gap: 5px; }
 .sk-tools p span { font-size: .78rem; padding: 3px 9px; border-radius: 99px; background: var(--paper); border: 1px solid var(--line); }
 #aboutv .about2 { padding-top: clamp(64px, 8vw, 110px); }
+
+/* belly-up pose for rubs */
+.pet:not([data-view="belly"]) .v-belly { display: none; }
+.pet[data-view="belly"] .v-belly { width: 100%; height: auto; }
+.pet.belly .pet-body { animation: none !important; }
+.v-belly .lgb { transform-box: fill-box; transform-origin: 50% 100%; }
+.pet.belly .v-belly .lb1, .pet.belly .v-belly .lb3 { animation: paw .26s ease-in-out infinite alternate; }
+.pet.belly .v-belly .lb2, .pet.belly .v-belly .lb4 { animation: paw .26s ease-in-out infinite alternate-reverse; }
+@keyframes paw { from { transform: rotate(-16deg); } to { transform: rotate(14deg); } }
+.v-belly .tbl { transform-origin: 138px 100px; animation: wag .16s ease-in-out infinite alternate; }
+.v-belly .bl-body { transform-box: fill-box; transform-origin: 50% 100%; animation: wriggle .5s ease-in-out infinite alternate; }
+@keyframes wriggle { from { transform: rotate(-2.5deg); } to { transform: rotate(2.5deg); } }
+.pet.belly { cursor: grab; }
 </style>
 
 <!-- reusable drawings -->
@@ -1495,6 +1507,30 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 <path class="mouth" d="M53 65c2 3 5 3 7 0 2 3 5 3 7 0" fill="none" stroke="#3A2420" stroke-linecap="round" stroke-width="1.6"></path>
 <ellipse class="open" cx="60" cy="68" fill="#3A2420" rx="5" ry="0"></ellipse>
 <path class="tongue" d="M57 66.5h6v3.5a3 3 0 0 1-6 0z" fill="#F07D96"></path>
+</g>
+</svg>
+<svg aria-hidden="true" class="chibi v-belly" viewBox="0 0 170 120">
+<ellipse class="sh" cx="90" cy="113" rx="62" ry="5"></ellipse>
+<g class="tail tbl"><path d="M138 100c10 2 18-2 24-9" fill="none" stroke="#5E3A28" stroke-linecap="round" stroke-width="6.5"></path></g>
+<g class="lgb lb1"><rect fill="#6E4532" height="30" rx="6" width="12" x="66" y="56"></rect><rect fill="#E2BE96" height="8" rx="4" width="12" x="66" y="54"></rect></g>
+<g class="lgb lb2"><rect fill="#56331F" height="28" rx="5.5" width="11" x="82" y="60"></rect><rect fill="#CFA77C" height="7" rx="3.5" width="11" x="82" y="58"></rect></g>
+<g class="lgb lb3"><rect fill="#56331F" height="28" rx="5.5" width="11" x="112" y="60"></rect><rect fill="#CFA77C" height="7" rx="3.5" width="11" x="112" y="58"></rect></g>
+<g class="lgb lb4"><rect fill="#6E4532" height="30" rx="6" width="12" x="127" y="56"></rect><rect fill="#E2BE96" height="8" rx="4" width="12" x="127" y="54"></rect></g>
+<g class="bl-body">
+<ellipse cx="98" cy="94" fill="#6E4532" rx="48" ry="19"></ellipse>
+<ellipse cx="100" cy="86" fill="#EBCBA4" rx="34" ry="11"></ellipse>
+<circle cx="92" cy="85" fill="#F4A3B4" opacity=".5" r="1.6"></circle><circle cx="104" cy="85" fill="#F4A3B4" opacity=".5" r="1.6"></circle>
+</g>
+<g class="bl-head">
+<ellipse cx="30" cy="106" fill="#573422" rx="9" ry="6"></ellipse>
+<ellipse cx="62" cy="108" fill="#573422" rx="10" ry="5.5"></ellipse>
+<path d="M50 94c6 4 10 10 12 16" fill="none" stroke="#EC8FA6" stroke-linecap="round" stroke-width="5"></path>
+<ellipse cx="44" cy="90" fill="#6E4532" rx="25" ry="22"></ellipse>
+<ellipse cx="38" cy="99" fill="#EBCBA4" rx="14" ry="9"></ellipse>
+<ellipse cx="30" cy="99" fill="#3A2420" rx="4.6" ry="3.4"></ellipse>
+<path d="M33 83q4-4 8 0M47 85q4-4 8 0" fill="none" stroke="#22150F" stroke-linecap="round" stroke-width="2"></path>
+<ellipse cx="30" cy="89" fill="#F4A3B4" opacity=".6" rx="4" ry="2.4"></ellipse><ellipse cx="58" cy="92" fill="#F4A3B4" opacity=".6" rx="4" ry="2.4"></ellipse>
+<path d="M38 104c1 5 6 6 8 1" fill="#F07D96"></path>
 </g>
 </svg>
 <svg aria-hidden="true" class="chibi v-front" viewBox="0 0 120 120">
@@ -2193,7 +2229,7 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
       const pr = pet.getBoundingClientRect();
       burst('heart', pr.left + pr.width / 2, pr.top + 6, 4);
       say(fed % 10 === 0 ? fed + ' treats! Best human ever' : yum[Math.floor(Math.random() * yum.length)]);
-      pet.classList.remove('happy'); void pet.offsetWidth; pet.classList.add('happy');
+      pet.classList.remove('happy'); void pet.offsetWidth; pet.classList.add('happy'); setTimeout(() => pet.classList.remove('happy'), 1050);
       if (treats.length) { mode = 'treat'; return; }
       setTimeout(() => pet.classList.remove('excited'), 1200);
       if (sinceLastPoop >= 3) setTimeout(poop, 900);   // what goes in must come out
@@ -2238,15 +2274,26 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
   try { if (localStorage.getItem('diudiu-hidden') === '1') setHidden(true); } catch (e) {}
 
   addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+  let bellyUntil = 0, lastRub = 0;
+  function endBelly() {
+    if (mode !== 'belly') return;
+    if (performance.now() < bellyUntil) { setTimeout(endBelly, 250); return; }
+    pet.classList.remove('belly'); setView('side'); mode = 'pause'; until = performance.now() + 1200;
+  }
   pet.addEventListener('click', e => {
     if (mode !== 'pause' && mode !== 'walk') return;
-    mode = 'belly'; path = [];
-    setView('side');
-    body.style.setProperty('--f', String(-facing));
-    pet.classList.add('belly', 'walk');
-    say(['Belly rubs?', 'Rub my tummy!', 'Main quest: charm all humans'][Math.floor(Math.random() * 3)], 1800);
+    // rolls over onto his back, legs in the air, belly up for rubs
+    mode = 'belly'; path = []; setView('belly');
+    pet.classList.remove('walk'); pet.classList.add('belly');
+    say(['Belly rubs?', 'Rub my tummy!', 'Main quest: charm all humans'][Math.floor(Math.random() * 3)], 2000);
     burst('heart', e.clientX, e.clientY - 10, 5);
-    setTimeout(() => { pet.classList.remove('belly', 'walk'); mode = 'pause'; until = performance.now() + 1200; }, 2000);
+    bellyUntil = performance.now() + 3000; setTimeout(endBelly, 3000);
+  });
+  pet.addEventListener('pointermove', e => {
+    if (mode !== 'belly') return;
+    const now = performance.now();
+    bellyUntil = Math.max(bellyUntil, now + 1200);       // keep rubbing, he stays belly-up
+    if (now - lastRub > 160) { lastRub = now; burst('heart', e.clientX, e.clientY - 8, 1); }
   });
 
   (function blink() {
@@ -2313,9 +2360,9 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
     const breathe = 1 + Math.sin(now / 520) * 0.01;
     const tilt = mode === 'eat' ? Math.sin(t * 0.5) * 3 : 0;
     pet.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    const f = view === 'side' ? -facing : 1;
+    const f = (view === 'side' || view === 'belly') ? -facing : 1;
     if (!pet.classList.contains('belly')) body.style.setProperty('--f', String(f));
-    if (!pet.classList.contains('happy') && !pet.classList.contains('belly')) body.style.transform = `translateY(${squat - bob}px) rotate(${tilt}deg) scale(${f}, ${breathe - squat / 120})`;
+    body.style.transform = `translateY(${squat - bob}px) rotate(${tilt}deg) scale(${f}, ${breathe - squat / 120})`;
     const flap = moving ? Math.sin(t * 0.3) * 12 : Math.sin(now / 700) * 3;
     pet.querySelectorAll('.v-' + view + ' .el').forEach(e => e.style.transform = `rotate(${flap}deg)`);
     pet.querySelectorAll('.v-' + view + ' .er').forEach(e => e.style.transform = `rotate(${-flap}deg)`);
