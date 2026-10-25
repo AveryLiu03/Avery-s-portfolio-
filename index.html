@@ -996,6 +996,8 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 .sk-col li { font-size: .95rem; line-height: 1.45; padding: 8px 0; border-top: 1px dashed var(--line); }
 .sk-col li b { font-weight: 600; color: var(--ink); background: linear-gradient(transparent 62%, var(--blush) 62%); }
 @media (max-width: 820px) { .sk-grid { grid-template-columns: minmax(0, 1fr); } .sk-col:nth-child(n) { transform: none; } }
+.cm-shot { margin-top: 20px; max-width: 360px; } .cm-shot .shot { margin: 0; }
+.sk-lang { margin: 22px 0 0; font-family: var(--display); text-transform: uppercase; font-size: 1.3rem; letter-spacing: .02em; display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; } .sk-lang .mono { font-size: .7rem; color: var(--accent); }
 </style>
 
 <!-- reusable drawings -->
@@ -1167,10 +1169,11 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
     <div class="sk-head"><span class="mono">Skills &amp; tools</span><h3>The <em>toolkit</em></h3><p class="hand">set, edit bay, studio and strategy deck</p></div>
     <div class="sk-grid">
       <div class="sk-col"><h4><span>01</span>Film &amp; post</h4><ul>
-        <li>Editing in <b>Adobe Premiere Pro</b> and <b>Avid Media Composer</b></li>
+        <li>Editing in <b>Adobe Premiere Pro</b>, <b>Avid Media Composer</b> and <b>Final Cut Pro</b></li>
         <li>Review loops in <b>Frame.io</b></li>
         <li>16mm: <b>Bolex</b> camera, <b>Steenbeck</b> flatbed editing</li>
         <li>B-roll videography and producing for documentary</li>
+        <li>UPM and set dressing on short films</li>
         <li>Production design and art direction: mood boards, costume, props and budget</li>
         <li>Set plans in <b>SketchUp</b>, script breakdowns</li>
       </ul></div>
@@ -1187,9 +1190,11 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
         <li>Qualitative research: interview guides, thematic and online review analysis</li>
         <li>Survey design, sentiment analysis, secondary research</li>
         <li>Brand storytelling, infographics, website design in <b>Wix</b></li>
+        <li>Design and photo editing in <b>Photoshop</b>, <b>Lightroom</b> and <b>Canva</b></li>
         <li>Xiaohongshu (Rednote) and the Chinese social landscape</li>
       </ul></div>
     </div>
+    <p class="sk-lang"><span class="mono">Languages</span>English · Mandarin · Cantonese</p>
   </div>
 </section>
 
@@ -1200,7 +1205,7 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
     <ol class="ct-list" id="ctList">
       <li data-ch="strategy" data-thumb="img/burberry-page-5.jpg"><a class="ct-main" href="#strategy"><span class="ct-no"></span><span class="ct-t">Brand &amp; Audience Strategy</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#kona">Kona Village</a><a href="#burberry">Burberry, Reconnected</a></span></li>
       <li data-ch="content" data-thumb="img/rednote-posts.jpg"><a class="ct-main" href="#content"><span class="ct-no"></span><span class="ct-t">Content Creation</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#rednote">Xiaohongshu pet account</a></span></li>
-      <li data-ch="filmv" data-thumb="img/onset-5.jpg"><a class="ct-main" href="#filmv"><span class="ct-no"></span><span class="ct-t">Film &amp; Production</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#film">Boston Production Inc</a><a href="#lock">The Lock's Still the Same</a></span></li>
+      <li data-ch="filmv" data-thumb="img/onset-5.jpg"><a class="ct-main" href="#filmv"><span class="ct-no"></span><span class="ct-t">Film &amp; Production</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#film">Boston Production Inc</a><a href="#lock">The Lock's Still the Same</a><a href="#checkmate">Checkmate, My Dearest</a></span></li>
       <li data-ch="designv" data-thumb="img/ozi-5.jpg"><a class="ct-main" href="#designv"><span class="ct-no"></span><span class="ct-t">Production Design</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#poorthings">Poor Things</a><a href="#ozi">ØZI studio</a></span></li>
       <li data-ch="analysisv" data-thumb="img/tmad-01.jpg"><a class="ct-main" href="#analysisv"><span class="ct-no"></span><span class="ct-t">Film &amp; TV Analysis</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#bacurau">Bacurau</a><a href="#tmad">Three Meals a Day</a><a href="#abc">ABC News</a></span></li>
       <li data-ch="healthv" data-thumb="img/ph-03.jpg"><a class="ct-main" href="#healthv"><span class="ct-no"></span><span class="ct-t">Public Health</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#health">Licensed ≠ Protected</a></span></li>
@@ -1545,7 +1550,7 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
     <h2 class="ch-word" data-text="FILM">FILM</h2>
     <p class="ch-title">Film &amp; Production</p>
     <p class="ch-sub">The edit bay, the set, and the craft behind every frame.</p>
-    <div class="subnav"><a href="#film">Boston Production Inc</a><a href="#lock">The Lock's Still the Same</a></div>
+    <div class="subnav"><a href="#film">Boston Production Inc</a><a href="#lock">The Lock's Still the Same</a><a href="#checkmate">Checkmate, My Dearest</a></div>
   </div>
   <div class="wrap ch-foot"><span>Avery Liu &nbsp;|&nbsp; averyliu03.github.io</span><span>Portfolio 2026 &nbsp;|&nbsp; <b data-chno>01</b></span></div>
 </header>
@@ -1634,6 +1639,13 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 <figure class="shot"><div class="frame"><img alt="The Lock's Still the Same production design: Before and after set dressing" height="788" loading="lazy" src="img/lock-09.jpg" width="1400"/></div><figcaption><span>07</span>Before and after set dressing</figcaption></figure>
 </div>
 </div>
+</div>
+<div class="film-proj reveal" id="checkmate">
+<div class="film-head">
+<div><span class="mono">Short film · on set</span><h3 class="film-title">Checkmate, <em>My Dearest</em></h3></div>
+<div class="film-role"><span class="mono">My role</span><p>UPM · Set Dresser</p></div>
+</div>
+<div class="cm-shot"><figure class="shot"><div class="frame"><img alt="On the set of Checkmate, My Dearest: the camera monitor framing a bedroom scene" height="900" loading="lazy" src="img/onset-5.jpg" width="675"/></div><figcaption><span>On set</span>Monitor check, bedroom scene</figcaption></figure></div>
 </div>
 </div>
 </section>
