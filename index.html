@@ -804,7 +804,7 @@ html.motion.ready .home-hero .hh-meta { opacity: 1; transform: none; transition-
 @keyframes ecg { 0% { stroke-dashoffset: 1; } 60% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1; } }
 
 /* in-page hover effects */
-#filmv .frame:hover img, #filmv .ch-media:hover .ch-bg { animation: skip .5s steps(1) infinite; }
+#filmv .frame:not(.lens):hover img, #filmv .ch-media:hover .ch-bg { animation: skip .5s steps(1) infinite; }
 @keyframes skip { 0% { transform: translate(0,0); filter: none; } 20% { transform: translate(-3px,1px); filter: brightness(1.15) contrast(1.1); } 40% { transform: translate(2px,-2px); } 60% { transform: translate(0,2px); filter: brightness(.85); } 80% { transform: translate(3px,0); } }
 .glitchy:not(.ch-media) { position: relative; } .glitchy { overflow: hidden; }
 .glitchy .gl { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; pointer-events: none; }
@@ -996,7 +996,9 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 .sk-col li { font-size: .95rem; line-height: 1.45; padding: 8px 0; border-top: 1px dashed var(--line); }
 .sk-col li b { font-weight: 600; color: var(--ink); background: linear-gradient(transparent 62%, var(--blush) 62%); }
 @media (max-width: 820px) { .sk-grid { grid-template-columns: minmax(0, 1fr); } .sk-col:nth-child(n) { transform: none; } }
-.cm-shot { margin-top: 20px; max-width: 360px; } .cm-shot .shot { margin: 0; }
+.cm-split { margin-top: 20px; align-items: start; } .cm-split p { margin: 0 0 14px; line-height: 1.6; } .cm-split .mono { display: block; margin-bottom: 4px; color: var(--accent); }
+.cm-rail .shot { flex: 0 0 auto; } .cm-rail .frame img { height: min(52vh, 440px); width: auto; max-width: none; display: block; }
+@media (max-width: 600px) { .cm-rail .frame img { height: 300px; } }
 .sk-lang { margin: 22px 0 0; font-family: var(--display); text-transform: uppercase; font-size: 1.3rem; letter-spacing: .02em; display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; } .sk-lang .mono { font-size: .7rem; color: var(--accent); }
 </style>
 
@@ -1642,10 +1644,27 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 </div>
 <div class="film-proj reveal" id="checkmate">
 <div class="film-head">
-<div><span class="mono">Short film · on set</span><h3 class="film-title">Checkmate, <em>My Dearest</em></h3></div>
-<div class="film-role"><span class="mono">My role</span><p>UPM · Set Dresser</p></div>
+<div><span class="mono">Undergraduate student short · 念念不忘</span><h3 class="film-title">Checkmate, <em>My Dearest</em></h3></div>
+<div class="film-role"><span class="mono">My role</span><p>UPM · Script Supervisor · Set Dresser</p></div>
 </div>
-<div class="cm-shot"><figure class="shot"><div class="frame"><img alt="On the set of Checkmate, My Dearest: the camera monitor framing a bedroom scene" height="900" loading="lazy" src="img/onset-5.jpg" width="675"/></div><figcaption><span>On set</span>Monitor check, bedroom scene</figcaption></figure></div>
+<div class="split cm-split">
+<div>
+<p class="cm-log"><span class="mono">The film</span>After years of waiting for her husband to come home, a woman starts noticing strange things around the house, and the line between memory and reality begins to slip. A student short by Flora Cai.</p>
+<p><span class="mono">What I did</span>I ran the floor as unit production manager: keeping every department in sync, pushing the schedule and moving us from setup to setup so the day stayed on track. In between, I covered script supervision and dressed the set.</p>
+</div>
+<aside class="job-note">
+<span class="mono">Why it matters for marketing</span>
+<p>A shoot day is a launch with no extensions. Every department has to hit its mark at the same time, and someone has to keep the clock honest.</p>
+</aside>
+</div>
+<div aria-label="Set stills from Checkmate, My Dearest" class="rail-x film-rail cm-rail" role="region" tabindex="0">
+<figure class="shot"><div class="frame lens"><img alt="On the set of Checkmate, My Dearest: The actor being mic’d on the couch, seen past the camera monitor" height="1050" loading="lazy" src="img/cm-1.jpg" width="1400"/></div><figcaption><span>01</span>Monitor check on the living room scene</figcaption></figure>
+<figure class="shot"><div class="frame lens"><img alt="On the set of Checkmate, My Dearest: Camera monitor framing the bedroom scene" height="1400" loading="lazy" src="img/cm-5.jpg" width="1050"/></div><figcaption><span>02</span>Bedroom scene on the A-cam monitor</figcaption></figure>
+<figure class="shot"><div class="frame lens"><img alt="On the set of Checkmate, My Dearest: Wireless monitor beside a slate covered in taped roll and take numbers" height="1050" loading="lazy" src="img/cm-2.jpg" width="1400"/></div><figcaption><span>03</span>Slate tape and the wireless monitor</figcaption></figure>
+<figure class="shot"><div class="frame lens"><img alt="On the set of Checkmate, My Dearest: A crew member holding a wireless monitor showing the kitchen scene" height="1400" loading="lazy" src="img/cm-3.jpg" width="1050"/></div><figcaption><span>04</span>Kitchen scene on the wireless monitor</figcaption></figure>
+<figure class="shot"><div class="frame lens"><img alt="On the set of Checkmate, My Dearest: Boom operator and camera crew framing the actor by the window" height="1400" loading="lazy" src="img/cm-4.jpg" width="1050"/></div><figcaption><span>05</span>Boom and camera ready for a take</figcaption></figure>
+</div>
+<p class="split-note"><span class="mono">Stills</span>All set photos taken by me.</p>
 </div>
 </div>
 </section>
@@ -2609,7 +2628,8 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
   /* ---------- glass loupe over production design boards ---------- */
   const loupe = $('loupe');
   if (loupe && matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('#designv .frame img, #filmv #lock .frame img').forEach(im => {
+    document.querySelectorAll('#designv .frame img, #filmv #lock .frame img, #filmv #checkmate .frame img').forEach(im => {
+      im.closest('.frame').classList.add('lens');
       im.addEventListener('pointerenter', () => { loupe.style.backgroundImage = `url(${im.currentSrc || im.src})`; loupe.classList.add('on'); });
       im.addEventListener('pointerleave', () => loupe.classList.remove('on'));
       im.addEventListener('pointermove', e => {
