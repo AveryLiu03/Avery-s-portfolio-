@@ -1001,43 +1001,36 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 @media (max-width: 600px) { .cm-rail .frame img { height: 300px; } }
 .sk-lang { margin: 22px 0 0; font-family: var(--display); text-transform: uppercase; font-size: 1.3rem; letter-spacing: .02em; display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; } .sk-lang .mono { font-size: .7rem; color: var(--accent); }
 
-/* ---- contents: dressing-room mirror selfie ---- */
-.ct-thumbs { padding: 18px 10px 0; }
-.mirror { position: relative; perspective: 900px; }
-.mir-frame { position: relative; padding: 26px; border-radius: 26px; background: linear-gradient(145deg, #F6C6DD, #EC86B8 55%, #DE5F9F); box-shadow: 0 34px 60px -32px rgba(60,10,40,.6), inset 0 2px 0 rgba(255,255,255,.6), inset 0 -3px 0 rgba(120,20,70,.25); transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .5s cubic-bezier(.2,.8,.2,1); transform-style: preserve-3d; }
-.mir-glass { position: relative; aspect-ratio: 3 / 4; border-radius: 12px; overflow: hidden; background: radial-gradient(120% 90% at 30% 15%, #FFF7FB 0, #F6E4EC 45%, #E3CDD8 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7), inset 0 0 40px rgba(120,40,80,.18); }
-.mir-glass::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 46px, rgba(120,90,100,.08) 46px 47px), repeating-linear-gradient(0deg, transparent 0 46px, rgba(120,90,100,.08) 46px 47px); }
-.mir-me, .mir-ht { position: absolute; bottom: -6%; left: 50%; height: 104%; width: auto; max-width: none; transform: translate(calc(-46% + var(--px, 0px)), 0); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
-.mir-ht { transform: translate(calc(-46% + 14px - var(--px, 0px) * 1.6), -10px); opacity: .9; }
-.mir-me { filter: drop-shadow(0 10px 18px rgba(80,20,50,.25)); }
-.mir-sheen { position: absolute; inset: -20%; background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.55) 46%, rgba(255,255,255,.08) 52%, transparent 60%); transform: translateX(var(--sx, -40%)); mix-blend-mode: screen; pointer-events: none; transition: transform .5s ease; }
-html.motion .mirror:not(:hover) .mir-sheen { animation: sheen 6s ease-in-out infinite; }
-@keyframes sheen { 0%, 55% { transform: translateX(-60%); } 85%, 100% { transform: translateX(60%); } }
-.bulb { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff 0 25%, #FFF1C9 45%, #F6C96B 100%); box-shadow: 0 0 10px 3px rgba(255,226,150,.65); }
-html.motion .bulb { animation: bulb 3.6s steps(1) infinite; animation-delay: var(--d, 0s); }
-@keyframes bulb { 0%, 92% { opacity: 1; } 94% { opacity: .35; } 96% { opacity: 1; } 98% { opacity: .5; } }
-.mirror:hover .bulb { box-shadow: 0 0 16px 6px rgba(255,226,150,.85); }
-.sticker { position: absolute; z-index: 3; display: grid; place-content: center; text-align: center; width: 104px; aspect-ratio: 1; border-radius: 50%; font-family: var(--display); text-transform: uppercase; line-height: .95; box-shadow: 0 10px 18px -10px rgba(0,0,0,.45); border: 3px solid #fff; transition: transform .3s cubic-bezier(.2,1.4,.4,1); }
-.sticker b { font-weight: 400; font-size: .95rem; letter-spacing: .02em; }
-.sticker i { font-style: normal; font-family: var(--mono); font-size: .5rem; max-width: 84px; margin-inline: auto; letter-spacing: .08em; margin-bottom: 4px; opacity: .85; }
-.st-em { top: -6px; left: -18px; background: #4B2A75; color: #F3D27A; transform: rotate(-10deg); }
-.st-usc { top: 40%; right: -22px; background: #8F1A1D; color: #FFCC33; transform: rotate(9deg); }
-.sticker:hover { transform: rotate(0deg) scale(1.08); }
-.mir-note { position: absolute; left: -6px; bottom: 76px; margin: 0; font-size: 1.5rem; color: var(--accent); transform: rotate(-6deg); z-index: 3; }
-.ct-thumbs .ct-frame { position: absolute; left: -26px; bottom: 60px; width: 52%; z-index: 4; opacity: 0; transform: rotate(-5deg) scale(.85) translateY(10px); transition: opacity .25s, transform .35s cubic-bezier(.2,1.4,.4,1); pointer-events: none; padding: 7px 7px 26px; }
-.ct-thumbs.peek .ct-frame { opacity: 1; transform: rotate(-5deg) scale(1) translateY(0); }
-.ct-thumbs.peek .mir-note { opacity: 0; }
-@media (prefers-reduced-motion: reduce) { .mir-frame, .mir-me, .mir-ht, .mir-sheen { transition: none; } }
-@media (max-width: 900px) { .ct-grid .ct-thumbs { display: block; position: relative; top: 0; width: min(300px, 82%); max-width: 300px; justify-self: center; margin: 36px auto 0; } .ct-thumbs .ct-frame, .ct-thumbs .ct-hint { display: none; } .mir-note { bottom: 20px; } .st-em { left: -10px; } .st-usc { right: -10px; } }
-
-/* polaroid is the main picture again (no mirror) */
-.ct-thumbs .ct-frame { position: relative; left: auto; bottom: auto; width: auto; opacity: 1; transform: rotate(2.5deg); pointer-events: none; padding: 10px 10px 40px; }
-.ct-thumbs.peek .ct-frame { transform: rotate(2.5deg); }
-.ct-thumbs .ct-frame { z-index: 1; } .ct-thumbs .sticker { z-index: 5; }
-.st-em { top: -30px; left: -26px; } .st-usc { top: auto; bottom: 46px; right: -24px; }
-@media (max-width: 900px) { .ct-thumbs .ct-frame { display: block; } }
-.st-ic { width: 26px; height: 21px; margin: 0 auto 3px; display: block; }
-.sticker { width: 112px; }
+/* ---- contents side: a contact sheet with a grease-pencil select, plus two ticket stubs ---- */
+.ct-side { position: sticky; top: 96px; padding: 8px 6px 0; }
+.sheet { --fh: 150px; position: relative; height: calc(var(--fh) * 2.7); background: #141414; border-radius: 6px; padding: 0 30px; overflow: hidden; transform: rotate(-1.5deg); box-shadow: 0 30px 50px -30px rgba(20,20,20,.7); }
+.sheet::before, .sheet::after { content: ""; position: absolute; top: 0; bottom: 0; width: 30px; background: radial-gradient(ellipse 5px 7px at 50% 50%, #EEE7DC 92%, transparent 100%) 50% 0 / 30px 22px repeat-y; z-index: 2; }
+.sheet::before { left: 0; } .sheet::after { right: 0; }
+.sheet-track { display: flex; flex-direction: column; gap: 22px; padding-block: calc(var(--fh) * .85) calc(var(--fh) * .85); transition: transform .7s cubic-bezier(.7,0,.2,1); }
+.sf { position: relative; display: block; height: var(--fh); border-radius: 3px; overflow: hidden; background: #222; text-decoration: none; }
+.sf img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1) brightness(.75); transition: filter .5s ease; }
+.sf.on img { filter: none; }
+.sf-edge { position: absolute; left: 6px; right: 6px; top: calc(100% + 4px); font-family: var(--mono); font-size: .55rem; letter-spacing: .12em; color: #E9A64B; display: flex; justify-content: space-between; text-transform: uppercase; pointer-events: none; }
+.sf-wrap { position: relative; }
+.grease { position: absolute; left: 10px; right: 10px; top: 50%; height: calc(var(--fh) + 34px); transform: translateY(-52%) rotate(-3deg); z-index: 3; pointer-events: none; overflow: visible; }
+.grease path { fill: none; stroke: #FF3D8B; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 1px rgba(255,61,139,.5)); }
+.grease.draw path { animation: grease .7s cubic-bezier(.4,0,.2,1) forwards; }
+@keyframes grease { to { stroke-dashoffset: 0; } }
+.grease-note { position: absolute; right: 14px; top: calc(50% + var(--fh) * .5 + 6px); z-index: 3; color: #FF7AB0; font-size: 1.5rem; transform: rotate(-8deg); opacity: 0; transition: opacity .3s .45s; pointer-events: none; }
+.grease.draw ~ .grease-note { opacity: 1; }
+.tix { position: relative; margin-top: 30px; height: 190px; }
+.tix-one { position: absolute; width: 88%; padding: 14px 84px 14px 24px; border-radius: 8px; display: grid; gap: 2px; box-shadow: 0 16px 26px -18px rgba(0,0,0,.6); transition: transform .35s cubic-bezier(.2,1.4,.4,1); -webkit-mask: radial-gradient(circle 9px at 0 50%, transparent 98%, #000) , radial-gradient(circle 9px at 100% 50%, transparent 98%, #000); -webkit-mask-composite: source-in; mask: radial-gradient(circle 9px at 0 50%, transparent 98%, #000) intersect, radial-gradient(circle 9px at 100% 50%, transparent 98%, #000); }
+.tix-one::after { content: ""; position: absolute; top: 10px; bottom: 10px; right: 64px; border-left: 2px dashed currentColor; opacity: .45; }
+.tix-one b { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 1.2rem; line-height: 1; letter-spacing: .01em; white-space: nowrap; }
+.tix-one .tix-kicker { font-size: .56rem; letter-spacing: .14em; opacity: .8; color: inherit; }
+@media (max-width: 600px) { .tix-one b { font-size: 1rem; } .tix-one { padding-right: 66px; } .tix-one::after { right: 54px; } .tix-ic { right: 14px; width: 24px; } }
+.tix-sub { font-family: var(--hand); font-size: 1.15rem; line-height: 1; }
+.tix-ic { position: absolute; right: 20px; top: 50%; width: 28px; transform: translateY(-50%); }
+.tix-one.em { left: 0; top: 0; background: #4B2A75; color: #F3D27A; transform: rotate(-3deg); z-index: 1; }
+.tix-one.usc { right: 0; top: 92px; background: #8F1A1D; color: #FFCC33; transform: rotate(2.5deg); z-index: 2; }
+.tix-one:hover { transform: rotate(0deg) translateY(-4px); z-index: 3; }
+@media (max-width: 900px) { .ct-grid .ct-side { position: relative; top: 0; width: min(320px, 88%); justify-self: center; margin: 32px auto 0; } .sheet { --fh: 130px; } }
+@media (prefers-reduced-motion: reduce) { .sheet-track { transition: none; } .grease.draw path { animation: none; stroke-dashoffset: 0; } }
 </style>
 
 <!-- reusable drawings -->
@@ -1244,18 +1237,23 @@ html.motion .bulb { animation: bulb 3.6s steps(1) infinite; animation-delay: var
     <h2 class="ct-vert">Contents</h2>
     <ol class="ct-list" id="ctList">
       <li data-ch="strategy" data-thumb="img/burberry-page-5.jpg"><a class="ct-main" href="#strategy"><span class="ct-no"></span><span class="ct-t">Brand &amp; Audience Strategy</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#kona">Kona Village</a><a href="#burberry">Burberry, Reconnected</a></span></li>
-      <li data-ch="content" data-thumb="img/rednote-posts.jpg"><a class="ct-main" href="#content"><span class="ct-no"></span><span class="ct-t">Content Creation</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#rednote">Xiaohongshu pet account</a></span></li>
-      <li data-ch="filmv" data-thumb="img/onset-5.jpg"><a class="ct-main" href="#filmv"><span class="ct-no"></span><span class="ct-t">Film &amp; Production</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#film">Boston Production Inc</a><a href="#lock">The Lock's Still the Same</a><a href="#checkmate">Checkmate, My Dearest</a></span></li>
+      <li data-ch="content" data-thumb="img/rn-post-1.jpg"><a class="ct-main" href="#content"><span class="ct-no"></span><span class="ct-t">Content Creation</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#rednote">Xiaohongshu pet account</a></span></li>
+      <li data-ch="filmv" data-thumb="img/cm-1.jpg"><a class="ct-main" href="#filmv"><span class="ct-no"></span><span class="ct-t">Film &amp; Production</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#film">Boston Production Inc</a><a href="#lock">The Lock's Still the Same</a><a href="#checkmate">Checkmate, My Dearest</a></span></li>
       <li data-ch="designv" data-thumb="img/ozi-5.jpg"><a class="ct-main" href="#designv"><span class="ct-no"></span><span class="ct-t">Production Design</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#poorthings">Poor Things</a><a href="#ozi">ØZI studio</a></span></li>
       <li data-ch="analysisv" data-thumb="img/tmad-01.jpg"><a class="ct-main" href="#analysisv"><span class="ct-no"></span><span class="ct-t">Film &amp; TV Analysis</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#bacurau">Bacurau</a><a href="#tmad">Three Meals a Day</a><a href="#abc">ABC News</a></span></li>
       <li data-ch="healthv" data-thumb="img/ph-03.jpg"><a class="ct-main" href="#healthv"><span class="ct-no"></span><span class="ct-t">Public Health</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#health">Licensed ≠ Protected</a></span></li>
-      <li data-ch="contact" data-thumb="img/lock-03.jpg"><a class="ct-main" href="#contact"><span class="ct-no"></span><span class="ct-t">Contact</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#contact">That's a wrap</a></span></li>
+      <li data-ch="contact" data-thumb="img/onset-3.jpg"><a class="ct-main" href="#contact"><span class="ct-no"></span><span class="ct-t">Contact</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#contact">That's a wrap</a></span></li>
     </ol>
-    <div class="ct-thumbs" id="ctThumbs">
-      <span class="sticker st-em" aria-hidden="true"><svg class="st-ic" viewBox="0 0 32 26" aria-hidden="true"><rect x="3" y="10" width="26" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10 27 3l1.6 5.4L4.6 15.4z" fill="currentColor"/><path d="M9 8.3l3.2 4.4M15 6.6l3.2 4.4M21 4.9l3.2 4.4" stroke="#4B2A75" stroke-width="2"/><path d="M7 17h18M7 20.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><i>B.A. · Film production</i><b>Emerson<br>College</b></span>
-      <span class="sticker st-usc" aria-hidden="true"><svg class="st-ic" viewBox="0 0 32 26" aria-hidden="true"><rect x="9" y="1.5" width="14" height="23" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 4.5h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16 18.5c-3.2-2.2-4.6-3.6-4.6-5.4 0-1.4 1.1-2.3 2.3-2.3.9 0 1.8.5 2.3 1.3.5-.8 1.4-1.3 2.3-1.3 1.2 0 2.3.9 2.3 2.3 0 1.8-1.4 3.2-4.6 5.4z" fill="currentColor"/></svg><i>M.S. · Digital Social Media</i><b>USC<br>Annenberg</b></span>
-      <div class="ct-frame" aria-hidden="true"><img id="ctImg" src="img/onset-1.jpg" alt=""></div>
-      <p class="hand ct-hint">hover a chapter, click to jump in</p>
+    <div class="ct-side" id="ctSide">
+      <div class="sheet" id="sheet" aria-label="Contact sheet of chapter frames">
+        <div class="sheet-track" id="sheetTrack"></div>
+        <svg class="grease" id="grease" viewBox="0 0 220 180" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M18 92c-6-42 52-74 104-72 52 2 92 30 86 74-5 40-56 66-108 64-50-2-88-26-82-66 3-24 30-46 70-52"/></svg>
+        <span class="grease-note hand" id="greaseNote" aria-hidden="true">select!</span>
+      </div>
+      <div class="tix" aria-label="Education">
+        <div class="tix-one em"><span class="tix-kicker mono">Admit one · B.A.</span><b>Emerson College</b><span class="tix-sub">Film production</span><svg class="tix-ic" viewBox="0 0 32 26" aria-hidden="true"><rect x="3" y="10" width="26" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10 27 3l1.6 5.4L4.6 15.4z" fill="currentColor"/><path d="M7 17h18M7 20.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <div class="tix-one usc"><span class="tix-kicker mono">Admit one · M.S.</span><b>USC Annenberg</b><span class="tix-sub">Digital Social Media</span><svg class="tix-ic" viewBox="0 0 32 26" aria-hidden="true"><rect x="9" y="1.5" width="14" height="23" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 18.5c-3.2-2.2-4.6-3.6-4.6-5.4 0-1.4 1.1-2.3 2.3-2.3.9 0 1.8.5 2.3 1.3.5-.8 1.4-1.3 2.3-1.3 1.2 0 2.3.9 2.3 2.3 0 1.8-1.4 3.2-4.6 5.4z" fill="currentColor"/></svg></div>
+      </div>
     </div>
   </div>
   <p class="wrap ct-soon mono">Photography and Sound Design · coming soon</p>
@@ -2483,35 +2481,36 @@ html.motion .bulb { animation: bulb 3.6s steps(1) infinite; animation-delay: var
   }));
   applyCut(cut);
 
-  /* ---------- contents hover preview ---------- */
-  const ctImg = $('ctImg'), ctFrame = ctImg && ctImg.parentElement;
-  const ctThumbs = $('ctThumbs');
-  $('ctList') && $('ctList').addEventListener('pointerleave', () => { ctThumbs.classList.remove('peek'); document.querySelectorAll('#ctList li').forEach(x => x.classList.remove('on')); });
-  document.querySelectorAll('#ctList li').forEach(li => li.addEventListener('pointerenter', () => {
-    ctThumbs.classList.add('peek');
-    document.querySelectorAll('#ctList li').forEach(x => x.classList.toggle('on', x === li));
-    if (ctImg.getAttribute('src') !== li.dataset.thumb) { ctImg.src = li.dataset.thumb; ctFrame.classList.remove('swap'); void ctFrame.offsetWidth; ctFrame.classList.add('swap'); }
-  }));
-
-
-  /* ---------- dressing-room mirror: bulbs, tilt, sheen, parallax ---------- */
-  const mirror = $('mirror');
-  if (mirror) {
-    const fr = mirror.querySelector('.mir-frame');
-    const N = { top: 5, side: 6 };
-    const put = (x, y, i) => { const b = document.createElement('span'); b.className = 'bulb'; b.style.left = x + '%'; b.style.top = y + '%'; b.style.setProperty('--d', (i * 0.37 % 3.6) + 's'); fr.appendChild(b); };
-    let i = 0;
-    for (let k = 0; k < N.top; k++) put(14 + k * 72 / (N.top - 1), 2.6, i++);
-    for (let k = 0; k < N.side; k++) { const y = 14 + k * 76 / (N.side - 1); put(3.6, y, i++); put(96.4, y, i++); }
-    if (motion) {
-      mirror.addEventListener('pointermove', e => {
-        const r = mirror.getBoundingClientRect(), nx = (e.clientX - r.left) / r.width - .5, ny = (e.clientY - r.top) / r.height - .5;
-        fr.style.setProperty('--ry', (nx * 10).toFixed(2) + 'deg'); fr.style.setProperty('--rx', (-ny * 8).toFixed(2) + 'deg');
-        fr.style.setProperty('--px', (nx * 12).toFixed(1) + 'px'); fr.style.setProperty('--sx', (nx * 120).toFixed(0) + '%');
+  /* ---------- contents: contact sheet with grease-pencil select ---------- */
+  const sTrack = $('sheetTrack'), grease = $('grease'), sheet = $('sheet');
+  if (sTrack) {
+    let frames = [], idx = 0, auto = null, hovering = false;
+    const build = () => {
+      const lis = [...document.querySelectorAll('#ctList li')];
+      sTrack.innerHTML = '';
+      frames = lis.map((li, i) => {
+        const a = li.querySelector('.ct-main'), w = document.createElement('div'); w.className = 'sf-wrap';
+        w.innerHTML = `<a class="sf" href="${a.getAttribute('href')}" tabindex="-1"><img src="${li.dataset.thumb}" alt="" loading="lazy"></a><span class="sf-edge"><span>Avery Liu \u00b7 2026</span><span>\u25B8 ${String(i + 1).padStart(2, '0')}A</span></span>`;
+        sTrack.appendChild(w); return w;
       });
-      mirror.addEventListener('pointerleave', () => { ['--ry', '--rx', '--px', '--sx'].forEach(v => fr.style.removeProperty(v)); });
+      lis.forEach((li, i) => { li.onpointerenter = () => { hovering = true; select(i); }; });
+      select(Math.min(idx, frames.length - 1), true);
+    };
+    function select(i, quiet) {
+      if (!frames.length) return; idx = i;
+      frames.forEach((f, k) => f.firstChild.classList.toggle('on', k === i));
+      document.querySelectorAll('#ctList li').forEach((x, k) => x.classList.toggle('on', hovering && k === i));
+      const f = frames[i], y = f.offsetTop + f.offsetHeight / 2 - sheet.clientHeight / 2;
+      sTrack.style.transform = `translateY(${-y}px)`;
+      grease.classList.remove('draw'); if (!quiet || motion) { void grease.getBoundingClientRect(); setTimeout(() => grease.classList.add('draw'), motion ? 520 : 0); }
     }
+    $('ctList').addEventListener('pointerleave', () => { hovering = false; document.querySelectorAll('#ctList li').forEach(x => x.classList.remove('on')); });
+    if (motion) auto = setInterval(() => { if (!hovering && sheet.offsetParent) select((idx + 1) % frames.length); }, 2600);
+    build();
+    window.__rebuildSheet = build;
+    addEventListener('resize', () => select(idx, true));
   }
+
   /* ---------- TV snow ---------- */
   function makeSnow(canvas, w = 160, h = 90) {
     canvas.width = w; canvas.height = h; const g = canvas.getContext('2d'); const img = g.createImageData(w, h); let on = true, last = 0;
