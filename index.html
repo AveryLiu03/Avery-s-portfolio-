@@ -1031,6 +1031,12 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 .tix-one:hover { transform: rotate(0deg) translateY(-4px); z-index: 3; }
 @media (max-width: 900px) { .ct-grid .ct-side { position: relative; top: 0; width: min(320px, 88%); justify-self: center; margin: 32px auto 0; } .sheet { --fh: 130px; } }
 @media (prefers-reduced-motion: reduce) { .sheet-track { transition: none; } .grease.draw path { animation: none; stroke-dashoffset: 0; } }
+.sk-gear { display: grid; gap: 14px; margin-top: 26px; padding: 20px 22px; border: 1px dashed var(--line); border-radius: 18px; }
+.sk-gear > div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.sk-gear .mono { font-size: .66rem; color: var(--accent); }
+.sk-gear p { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.sk-gear p span { font-size: .84rem; padding: 4px 11px; border-radius: 99px; background: var(--card); border: 1px solid var(--line); }
+@media (max-width: 600px) { .sk-gear > div { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
 </style>
 
 <!-- reusable drawings -->
@@ -1226,6 +1232,11 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
         <li>Design and photo editing in <b>Photoshop</b>, <b>Lightroom</b> and <b>Canva</b></li>
         <li>Xiaohongshu (Rednote) and the Chinese social landscape</li>
       </ul></div>
+    </div>
+    <div class="sk-gear">
+      <div><span class="mono">Software</span><p><span>Final Cut Pro</span><span>Avid Media Composer</span><span>Adobe Premiere Pro</span><span>Adobe Photoshop</span><span>Adobe Lightroom</span><span>Pro Tools</span><span>Canva</span><span>Wix</span><span>SketchUp</span><span>Final Draft</span><span>Story Architect</span><span>Microsoft Excel</span><span>Microsoft Word</span><span>Microsoft PowerPoint</span></p></div>
+      <div><span class="mono">Social platforms</span><p><span>Rednote</span><span>TikTok</span><span>YouTube</span><span>X</span><span>Facebook</span></p></div>
+      <div><span class="mono">On set</span><p><span>Canon EOS C70</span><span>Bolex H-16 REX</span><span>Arri lighting kit</span><span>Sennheiser AVX digital lav kit</span><span>Zoom F8n Pro</span><span>Sony PCM-D10 recorder</span><span>Tilta Nucleus Nano II</span></p></div>
     </div>
     <p class="sk-lang"><span class="mono">Languages</span>English · Mandarin · Cantonese</p>
   </div>
