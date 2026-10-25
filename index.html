@@ -1000,6 +1000,35 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 .cm-rail .shot { flex: 0 0 auto; } .cm-rail .frame img { height: min(52vh, 440px); width: auto; max-width: none; display: block; }
 @media (max-width: 600px) { .cm-rail .frame img { height: 300px; } }
 .sk-lang { margin: 22px 0 0; font-family: var(--display); text-transform: uppercase; font-size: 1.3rem; letter-spacing: .02em; display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; } .sk-lang .mono { font-size: .7rem; color: var(--accent); }
+
+/* ---- contents: dressing-room mirror selfie ---- */
+.ct-thumbs { padding: 18px 10px 0; }
+.mirror { position: relative; perspective: 900px; }
+.mir-frame { position: relative; padding: 26px; border-radius: 26px; background: linear-gradient(145deg, #F6C6DD, #EC86B8 55%, #DE5F9F); box-shadow: 0 34px 60px -32px rgba(60,10,40,.6), inset 0 2px 0 rgba(255,255,255,.6), inset 0 -3px 0 rgba(120,20,70,.25); transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .5s cubic-bezier(.2,.8,.2,1); transform-style: preserve-3d; }
+.mir-glass { position: relative; aspect-ratio: 3 / 4; border-radius: 12px; overflow: hidden; background: radial-gradient(120% 90% at 30% 15%, #FFF7FB 0, #F6E4EC 45%, #E3CDD8 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.7), inset 0 0 40px rgba(120,40,80,.18); }
+.mir-glass::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 46px, rgba(120,90,100,.08) 46px 47px), repeating-linear-gradient(0deg, transparent 0 46px, rgba(120,90,100,.08) 46px 47px); }
+.mir-me, .mir-ht { position: absolute; bottom: -6%; left: 50%; height: 104%; width: auto; max-width: none; transform: translate(calc(-46% + var(--px, 0px)), 0); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+.mir-ht { transform: translate(calc(-46% + 14px - var(--px, 0px) * 1.6), -10px); opacity: .9; }
+.mir-me { filter: drop-shadow(0 10px 18px rgba(80,20,50,.25)); }
+.mir-sheen { position: absolute; inset: -20%; background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.55) 46%, rgba(255,255,255,.08) 52%, transparent 60%); transform: translateX(var(--sx, -40%)); mix-blend-mode: screen; pointer-events: none; transition: transform .5s ease; }
+html.motion .mirror:not(:hover) .mir-sheen { animation: sheen 6s ease-in-out infinite; }
+@keyframes sheen { 0%, 55% { transform: translateX(-60%); } 85%, 100% { transform: translateX(60%); } }
+.bulb { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff 0 25%, #FFF1C9 45%, #F6C96B 100%); box-shadow: 0 0 10px 3px rgba(255,226,150,.65); }
+html.motion .bulb { animation: bulb 3.6s steps(1) infinite; animation-delay: var(--d, 0s); }
+@keyframes bulb { 0%, 92% { opacity: 1; } 94% { opacity: .35; } 96% { opacity: 1; } 98% { opacity: .5; } }
+.mirror:hover .bulb { box-shadow: 0 0 16px 6px rgba(255,226,150,.85); }
+.sticker { position: absolute; z-index: 3; display: grid; place-content: center; text-align: center; width: 104px; aspect-ratio: 1; border-radius: 50%; font-family: var(--display); text-transform: uppercase; line-height: .95; box-shadow: 0 10px 18px -10px rgba(0,0,0,.45); border: 3px solid #fff; transition: transform .3s cubic-bezier(.2,1.4,.4,1); }
+.sticker b { font-weight: 400; font-size: .95rem; letter-spacing: .02em; }
+.sticker i { font-style: normal; font-family: var(--mono); font-size: .5rem; max-width: 84px; margin-inline: auto; letter-spacing: .08em; margin-bottom: 4px; opacity: .85; }
+.st-em { top: -6px; left: -18px; background: #4B2A75; color: #F3D27A; transform: rotate(-10deg); }
+.st-usc { top: 40%; right: -22px; background: #8F1A1D; color: #FFCC33; transform: rotate(9deg); }
+.sticker:hover { transform: rotate(0deg) scale(1.08); }
+.mir-note { position: absolute; left: -6px; bottom: 76px; margin: 0; font-size: 1.5rem; color: var(--accent); transform: rotate(-6deg); z-index: 3; }
+.ct-thumbs .ct-frame { position: absolute; left: -26px; bottom: 60px; width: 52%; z-index: 4; opacity: 0; transform: rotate(-5deg) scale(.85) translateY(10px); transition: opacity .25s, transform .35s cubic-bezier(.2,1.4,.4,1); pointer-events: none; padding: 7px 7px 26px; }
+.ct-thumbs.peek .ct-frame { opacity: 1; transform: rotate(-5deg) scale(1) translateY(0); }
+.ct-thumbs.peek .mir-note { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .mir-frame, .mir-me, .mir-ht, .mir-sheen { transition: none; } }
+@media (max-width: 900px) { .ct-grid .ct-thumbs { display: block; position: relative; top: 0; width: min(300px, 82%); max-width: 300px; justify-self: center; margin: 36px auto 0; } .ct-thumbs .ct-frame, .ct-thumbs .ct-hint { display: none; } .mir-note { bottom: 20px; } .st-em { left: -10px; } .st-usc { right: -10px; } }
 </style>
 
 <!-- reusable drawings -->
@@ -1213,7 +1242,22 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
       <li data-ch="healthv" data-thumb="img/ph-03.jpg"><a class="ct-main" href="#healthv"><span class="ct-no"></span><span class="ct-t">Public Health</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#health">Licensed ≠ Protected</a></span></li>
       <li data-ch="contact" data-thumb="img/lock-03.jpg"><a class="ct-main" href="#contact"><span class="ct-no"></span><span class="ct-t">Contact</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#contact">That's a wrap</a></span></li>
     </ol>
-    <div class="ct-thumbs" aria-hidden="true"><div class="ct-frame"><img id="ctImg" src="img/burberry-page-5.jpg" alt=""></div><p class="hand ct-hint">hover a chapter, click to jump in</p></div>
+    <div class="ct-thumbs" id="ctThumbs">
+      <div class="mirror" id="mirror" role="img" aria-label="Avery Liu, mirror selfie in a dressing-room mirror">
+        <div class="mir-frame" aria-hidden="true">
+          <div class="mir-glass">
+            <img class="mir-ht" src="img/avery-halftone.webp" alt="">
+            <img class="mir-me" src="img/avery-cutout.webp" alt="">
+            <span class="mir-sheen"></span>
+          </div>
+        </div>
+      </div>
+      <span class="sticker st-em" aria-hidden="true"><i>Film production</i><b>Emerson<br>College</b></span>
+      <span class="sticker st-usc" aria-hidden="true"><i>Digital Social Media</i><b>USC<br>Annenberg</b></span>
+      <p class="hand mir-note" aria-hidden="true">hi, that's me &#8599;</p>
+      <div class="ct-frame" aria-hidden="true"><img id="ctImg" src="img/burberry-page-5.jpg" alt=""></div>
+      <p class="hand ct-hint">hover a chapter, click to jump in</p>
+    </div>
   </div>
   <p class="wrap ct-soon mono">Photography and Sound Design · coming soon</p>
 </section>
@@ -2442,11 +2486,33 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 
   /* ---------- contents hover preview ---------- */
   const ctImg = $('ctImg'), ctFrame = ctImg && ctImg.parentElement;
+  const ctThumbs = $('ctThumbs');
+  $('ctList') && $('ctList').addEventListener('pointerleave', () => { ctThumbs.classList.remove('peek'); document.querySelectorAll('#ctList li').forEach(x => x.classList.remove('on')); });
   document.querySelectorAll('#ctList li').forEach(li => li.addEventListener('pointerenter', () => {
+    ctThumbs.classList.add('peek');
     document.querySelectorAll('#ctList li').forEach(x => x.classList.toggle('on', x === li));
     if (ctImg.getAttribute('src') !== li.dataset.thumb) { ctImg.src = li.dataset.thumb; ctFrame.classList.remove('swap'); void ctFrame.offsetWidth; ctFrame.classList.add('swap'); }
   }));
 
+
+  /* ---------- dressing-room mirror: bulbs, tilt, sheen, parallax ---------- */
+  const mirror = $('mirror');
+  if (mirror) {
+    const fr = mirror.querySelector('.mir-frame');
+    const N = { top: 5, side: 6 };
+    const put = (x, y, i) => { const b = document.createElement('span'); b.className = 'bulb'; b.style.left = x + '%'; b.style.top = y + '%'; b.style.setProperty('--d', (i * 0.37 % 3.6) + 's'); fr.appendChild(b); };
+    let i = 0;
+    for (let k = 0; k < N.top; k++) put(14 + k * 72 / (N.top - 1), 2.6, i++);
+    for (let k = 0; k < N.side; k++) { const y = 14 + k * 76 / (N.side - 1); put(3.6, y, i++); put(96.4, y, i++); }
+    if (motion) {
+      mirror.addEventListener('pointermove', e => {
+        const r = mirror.getBoundingClientRect(), nx = (e.clientX - r.left) / r.width - .5, ny = (e.clientY - r.top) / r.height - .5;
+        fr.style.setProperty('--ry', (nx * 10).toFixed(2) + 'deg'); fr.style.setProperty('--rx', (-ny * 8).toFixed(2) + 'deg');
+        fr.style.setProperty('--px', (nx * 12).toFixed(1) + 'px'); fr.style.setProperty('--sx', (nx * 120).toFixed(0) + '%');
+      });
+      mirror.addEventListener('pointerleave', () => { ['--ry', '--rx', '--px', '--sx'].forEach(v => fr.style.removeProperty(v)); });
+    }
+  }
   /* ---------- TV snow ---------- */
   function makeSnow(canvas, w = 160, h = 90) {
     canvas.width = w; canvas.height = h; const g = canvas.getContext('2d'); const img = g.createImageData(w, h); let on = true, last = 0;
