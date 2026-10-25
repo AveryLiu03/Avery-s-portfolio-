@@ -1146,6 +1146,11 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
   <div class="lb t"></div><div class="lb b"></div>
   <div class="wrap hh-top">
     <p class="hand hi">Hi. Since you're new here,</p>
+    <div class="cut-switch" role="group" aria-label="Choose your cut">
+      <span class="mono">Choose your cut</span>
+      <button type="button" data-cut="marketing" aria-pressed="true">Marketing Cut</button>
+      <button type="button" data-cut="directors" aria-pressed="false">Director's Cut</button>
+    </div>
   </div>
   <div class="wrap"><h1 class="bubble-name"><span class="w1">Avery</span> <span class="w2">Liu</span></h1></div>
   <div class="reel-band" id="reelBand" aria-hidden="true">
@@ -2442,13 +2447,15 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 
   /* ---------- two cuts of the same portfolio ---------- */
   const CUTS = {
-    marketing: { order: ['strategy', 'content', 'filmv', 'designv', 'analysisv', 'healthv'], role: 'Entertainment marketing · Film production · Content', line: "A filmmaker's eye for how stories find their audience." },
+    marketing: { order: ['strategy', 'content', 'filmv', 'designv', 'analysisv', 'healthv'], role: 'Entertainment marketing · Social strategy · Content', line: "A filmmaker's eye for how stories find their audience." },
     directors: { order: ['filmv', 'designv', 'analysisv', 'content', 'strategy', 'healthv'], role: 'Film production · Editing · Production design', line: "An editor's instinct for what keeps an audience watching." }
   };
   let cut = 'marketing';
+  try { if (localStorage.getItem('al-cut') === 'directors') cut = 'directors'; } catch (e) {}
   const titleOf = v => v.dataset.title;
   function applyCut(name) {
     cut = name; const c = CUTS[cut];
+    try { localStorage.setItem('al-cut', cut); } catch (e) {}
     document.querySelectorAll('.cut-switch button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cut === cut)));
     $('cutRole').textContent = c.role; $('cutLine').textContent = c.line;
     const list = $('ctList'), items = [...list.children];
@@ -2470,6 +2477,7 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
   document.querySelectorAll('.cut-switch button').forEach(b => b.addEventListener('click', () => {
     if (b.dataset.cut === cut) return;
     applyCut(b.dataset.cut);
+    window.__rebuildSheet && window.__rebuildSheet();
     const band = $('reelBand'); band.classList.remove('flash'); void band.offsetWidth; band.classList.add('flash');
   }));
   applyCut(cut);
@@ -2584,7 +2592,7 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
     view.dispatchEvent(new Event('viewshow'));
   }
   function go(id) {
-    if (id === 'marketing-cut' || id === 'directors-cut') { applyCut('marketing'); id = 'home'; }
+    if (id === 'marketing-cut' || id === 'directors-cut') { applyCut(id === 'directors-cut' ? 'directors' : 'marketing'); id = 'home'; }
     const target = findTarget(id) || $('home'); const view = target.closest('.view') || target;
     nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false');
     if (view === current) { const y = yFor(view, target); if (motion && window.__animateTo) window.__animateTo(y); else scrollTo(0, y); markNav(view, target); return; }
@@ -2605,7 +2613,7 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
   menuBtn.addEventListener('click', () => { const o = !nav.classList.contains('open'); nav.classList.toggle('open', o); menuBtn.setAttribute('aria-expanded', String(o)); });
   {
     let h = location.hash.slice(1);
-    if (h === 'marketing-cut' || h === 'directors-cut') { applyCut('marketing'); h = 'home'; }
+    if (h === 'marketing-cut' || h === 'directors-cut') { applyCut(h === 'directors-cut' ? 'directors' : 'marketing'); h = 'home'; }
     const start = findTarget(h);
     if (start) { const v = start.closest('.view'); if (v !== current) { current.hidden = true; v.hidden = false; current = v; } markNav(v, start); setTimeout(() => { const y = yFor(v, start); scrollTo(0, y); window.__stopScroll && window.__stopScroll(y); }, 60); }
     else markNav(current);
