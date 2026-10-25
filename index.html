@@ -54,7 +54,7 @@ img { display: block; max-width: 100%; height: auto; }
 .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 16px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: var(--display); font-size: 1.25rem; font-weight: 400; }
 .brand svg { width: 30px; height: 30px; }
-.nav ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+
 .nav ul a { font-size: 0.9rem; color: var(--soft); text-decoration: none; }
 .nav ul a:hover { color: var(--ink); }
 @media (max-width: 520px) { .nav ul { gap: 16px; } .brand span { display: none; } }
@@ -520,6 +520,81 @@ html.motion.ready .hero .rec { transition-delay: .35s; } html.motion.ready .hero
 html.motion .viz:not(.in):not(.done) .bar { transform: scaleX(0); }
 html.motion .viz .bar.k2 { transition-delay: .15s; }
 .split > *, .rn-side, .job-grid > *, .about-grid > * { min-width: 0; }
+
+/* ================= PAGES, MENU, SCENE CUTS ================= */
+.view[hidden] { display: none !important; }
+.nav .wrap { position: relative; }
+.nav-links { display: flex; align-items: center; gap: 26px; list-style: none; margin: 0; padding: 0; }
+.nav-links > li > a { position: relative; display: inline-block; padding: 6px 0; font-size: 0.9rem; color: var(--soft); text-decoration: none; }
+.nav-links > li > a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .45s cubic-bezier(.77,0,.18,1); }
+.nav-links > li > a:hover, .nav-links > li > a[aria-current="page"] { color: var(--ink); }
+.nav-links > li > a[aria-current="page"]::after, .nav-links > li > a:hover::after { transform: scaleX(1); }
+.drop { position: relative; }
+.drop > a { padding-right: 14px !important; }
+.drop > a::before { content: ""; position: absolute; right: 0; top: 50%; width: 6px; height: 6px; margin-top: -5px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); }
+.drop .sub { position: absolute; top: calc(100% + 10px); left: -14px; display: grid; gap: 2px; list-style: none; margin: 0; padding: 8px; min-width: 210px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 22px 44px -28px rgba(30,38,34,.4); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .25s, transform .3s cubic-bezier(.2,1,.3,1), visibility 0s .3s; }
+.drop .sub::before { content: ""; position: absolute; left: 0; right: 0; top: -12px; height: 12px; }
+.drop:hover .sub, .drop:focus-within .sub { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.drop .sub a { display: block; padding: 9px 12px; border-radius: 9px; font-size: 0.9rem; color: var(--ink); text-decoration: none; }
+.drop .sub a:hover, .drop .sub a[aria-current="page"] { background: var(--paper); color: var(--accent); }
+.menu-btn { display: none; align-items: center; gap: 8px; background: none; border: 1px solid var(--line); border-radius: 99px; padding: 8px 14px; cursor: pointer; color: var(--ink); font: inherit; font-size: .85rem; }
+.menu-btn span { display: block; width: 14px; height: 1.5px; background: currentColor; transition: transform .3s; }
+.menu-btn span + span { margin-left: -22px; transform: translateY(4px); }
+.menu-btn span:first-child { transform: translateY(-2px); }
+.menu-btn[aria-expanded="true"] span:first-child { transform: translateY(1px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] span + span { transform: translateY(1px) rotate(-45deg); }
+.menu-btn b { font-weight: 500; margin-left: 10px; }
+@media (max-width: 880px) {
+  .menu-btn { display: inline-flex; }
+  .nav-links { position: absolute; left: 0; right: 0; top: calc(100% + 8px); flex-direction: column; align-items: stretch; gap: 0; padding: 10px max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); background: var(--card); border-bottom: 1px solid var(--line); box-shadow: 0 26px 40px -30px rgba(30,38,34,.45); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .25s, transform .3s, visibility 0s .3s; }
+  .nav.open .nav-links { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+  .nav-links > li > a { display: block; padding: 12px 0; font-family: var(--display); font-size: 1.3rem; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .nav-links > li > a::after { display: none; }
+  .nav-links > li > a[aria-current="page"] { color: var(--accent); }
+  .drop > a::before { display: none; }
+  .drop .sub { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: 0; background: none; padding: 4px 0 8px 14px; min-width: 0; }
+  .brand span { display: inline !important; }
+}
+
+/* page heads */
+.page-head { padding-block: clamp(48px, 8vw, 96px) clamp(8px, 2vw, 20px); }
+.page-head h2 { font-family: var(--display); font-weight: 300; font-size: clamp(3rem, 8vw, 6.2rem); line-height: .95; letter-spacing: -0.025em; margin: 12px 0 0; }
+.page-head p { color: var(--soft); max-width: 52ch; margin: 18px 0 0; font-size: 1.05rem; }
+.page-head .mono { color: var(--rose); }
+.subnav { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 22px; }
+.subnav a { padding: 8px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--card); color: var(--ink); text-decoration: none; font-size: .88rem; transition: border-color .2s, color .2s; }
+.subnav a:hover { border-color: var(--accent); color: var(--accent); }
+html.motion .view.entering .page-head h2 { animation: headIn 1.1s cubic-bezier(.16,1,.3,1) both .15s; }
+html.motion .view.entering .page-head .mono, html.motion .view.entering .page-head p, html.motion .view.entering .subnav { animation: fadeUp .9s cubic-bezier(.16,1,.3,1) both; }
+html.motion .view.entering .page-head p { animation-delay: .35s; } html.motion .view.entering .subnav { animation-delay: .45s; }
+@keyframes headIn { from { clip-path: inset(0 0 100% 0); transform: translateY(40px); } to { clip-path: inset(0 0 -10% 0); transform: none; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.next-wrap { padding-block: 32px 56px; }
+.next-page { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; padding-top: 26px; border-top: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+.next-page b { font-family: var(--display); font-weight: 300; font-size: clamp(1.8rem, 4.5vw, 3.2rem); letter-spacing: -0.02em; }
+.next-page i { font-style: normal; display: inline-block; transition: transform .4s cubic-bezier(.2,1,.3,1); color: var(--accent); }
+.next-page:hover i { transform: translateX(10px); }
+
+/* scene cut between pages */
+.cut { position: fixed; inset: 0; z-index: 90; pointer-events: none; display: grid; place-items: center; }
+.cut[hidden] { display: none; }
+.cut .half { position: absolute; left: 0; right: 0; height: 50.5%; background: #151917; transition: transform .38s cubic-bezier(.77,0,.18,1); }
+.cut .half.t { top: 0; transform: translateY(-101%); } .cut .half.b { bottom: 0; transform: translateY(101%); }
+.cut.closed .half { transform: none; }
+.cut.opening .half { transition-duration: .62s; }
+.cut.opening .half.t { transform: translateY(-101%); } .cut.opening .half.b { transform: translateY(101%); }
+.cut-card { position: relative; z-index: 2; display: flex; align-items: center; gap: clamp(18px, 4vw, 40px); padding-inline: 20px; color: #F3EEE9; opacity: 0; transform: scale(.94); transition: opacity .2s, transform .35s cubic-bezier(.2,1.4,.4,1); }
+.cut.card .cut-card { opacity: 1; transform: none; }
+.cut.opening .cut-card { opacity: 0; transition: opacity .18s; }
+.cut-card .board { width: min(46vw, 230px); flex: none; }
+.cut-card .board .slab { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cut.snap .cut-card .board .stick.hi { transform: rotate(0); }
+.cut-title { display: grid; gap: 8px; }
+.cut-title .mono { color: #EBA4B4; }
+.cut-title h3 { font-family: var(--display); font-weight: 300; font-size: clamp(2rem, 6vw, 4.2rem); line-height: 1; margin: 0; letter-spacing: -0.02em; }
+.cut-icon { width: 64px; height: 64px; }
+.cut-icon * { stroke: #F3EEE9 !important; }
+@media (max-width: 600px) { .cut-card { flex-direction: column; text-align: center; } }
 </style>
 
 <!-- reusable drawings -->
@@ -606,18 +681,35 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
   <button class="skip" type="button" id="introSkip">Skip intro</button>
 </div>
 <div class="grain" id="grain" aria-hidden="true"></div>
+<div class="cut" id="cut" hidden aria-hidden="true">
+  <div class="half t"></div><div class="half b"></div>
+  <div class="cut-card">
+    <div class="board"><div class="stick hi"></div><div class="stick lo"></div><div class="slab"><div class="full"><small>PROD.</small><b>Avery Liu</b></div><div><small>SCENE</small><b id="cutScene">01</b></div><div><small>TAKE</small><b>1</b></div></div></div>
+    <div class="cut-title"><svg class="art cut-icon"><use id="cutIcon" href="#cine"/></svg><span class="mono" id="cutEyebrow">Scene 01</span><h3 id="cutTitle">Marketing</h3></div>
+  </div>
+</div>
 <nav class="nav" aria-label="Main">
   <div class="wrap">
-    <a class="brand" href="#top"><svg class="art" aria-hidden="true"><use href="#fawn"/></svg><span>Avery Liu</span></a>
-    <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <a class="brand" href="#home"><svg class="art" aria-hidden="true"><use href="#fawn"/></svg><span>Avery Liu</span></a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><b>Menu</b></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" data-view="home">Home</a></li>
+      <li><a href="#marketing" data-view="marketing">Marketing</a></li>
+      <li><a href="#content" data-view="content">Content</a></li>
+      <li><a href="#film" data-view="filmv">Film &amp; Production</a></li>
+      <li class="drop"><a href="#design" data-view="coursework" aria-haspopup="true">Coursework</a>
+        <ul class="sub">
+          <li><a href="#design">Production Design</a></li>
+          <li><a href="#analysis">Film &amp; TV Analysis</a></li>
+          <li><a href="#health">Public Health</a></li>
+        </ul>
+      </li>
+      <li><a href="#about" data-view="aboutv">About</a></li>
     </ul>
   </div>
-  <div class="scrub" aria-hidden="true"><div class="wrap"><span class="tc" id="navTc">00:00:00:00</span><div class="scrub-track"><div class="scrub-fill" id="scrubFill"></div><div class="scrub-head" id="scrubHead"></div></div><span class="scene" id="navScene">Opening titles</span></div></div>
 </nav>
 
+<main class="view" id="home" data-key="home" data-title="Avery Liu" data-scene="00" data-icon="fawn">
 <header class="hero" id="top" data-scene="Opening titles">
   <div class="lb t"></div><div class="lb b"></div>
   <div class="wrap">
@@ -731,13 +823,14 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     </div>
   </div>
 </section>
+<div class="wrap next-wrap"><a class="next-page" href="#marketing"><span class="mono">Next scene</span><b>Marketing Projects <i>→</i></b></a>
+</div>
+</main>
 
+<div class="view" id="marketing" data-key="marketing" data-title="Marketing Projects" data-scene="01" data-icon="spark" hidden>
+<div class="page-head"><div class="wrap"><span class="mono">Scene 01</span><h2>Marketing Projects</h2><p>Audience research and brand strategy, from a luxury resort to a heritage fashion house.</p><div class="subnav"><a href="#kona">Kona Village</a><a href="#burberry">Burberry, Reconnected</a></div></div></div>
 <section class="case" id="kona" data-scene="SC 01 · Kona Village">
   <div class="wrap">
-    <div class="slate" data-kind="">
-      <div class="board"><div class="stick hi"></div><div class="stick lo"></div><div class="slab"><div class="full"><small>PROD.</small><b>Avery Liu</b></div><div><small>SCENE</small><b>01</b></div><div><small>TAKE</small><b>1</b></div></div></div>
-      <div class="slate-meta"><span class="mono">Scene 01 · Audience research</span><div class="slate-rule"><i></i></div><span class="slate-cut">Cut to: what guests really say</span></div>
-    </div>
     <div class="case-top reveal">
       <div>
         <span class="mono">Case study · Audience research</span>
@@ -835,10 +928,6 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
 
 <section class="case" id="burberry" data-scene="SC 02 · Burberry">
   <div class="wrap">
-    <div class="slate" data-kind="">
-      <div class="board"><div class="stick hi"></div><div class="stick lo"></div><div class="slab"><div class="full"><small>PROD.</small><b>Avery Liu</b></div><div><small>SCENE</small><b>02</b></div><div><small>TAKE</small><b>1</b></div></div></div>
-      <div class="slate-meta"><span class="mono">Scene 02 · Brand revival</span><div class="slate-rule"><i></i></div><span class="slate-cut">Cut to: heritage, rewritten</span></div>
-    </div>
     <div class="case-top reveal">
       <div>
         <span class="mono">Case study · Brand revival concept</span>
@@ -895,13 +984,14 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     </div>
   </div>
 </section>
+<div class="wrap next-wrap"><a class="next-page" href="#content"><span class="mono">Next scene</span><b>Content Creation <i>→</i></b></a>
+</div>
+</div>
 
+<div class="view" id="content" data-key="content" data-title="Content Creation" data-scene="02" data-icon="phone" hidden>
+<div class="page-head"><div class="wrap"><span class="mono">Scene 02</span><h2>Content Creation</h2><p>A Xiaohongshu pet account I write, shoot, edit and post myself.</p></div></div>
 <section class="case" id="rednote" data-scene="SC 03 · Xiaohongshu">
   <div class="wrap">
-    <div class="slate" data-kind="toast">
-      <div class="board"><div class="stick hi"></div><div class="stick lo"></div><div class="slab"><div class="full"><small>PROD.</small><b>Avery Liu</b></div><div><small>SCENE</small><b>03</b></div><div><small>TAKE</small><b>1</b></div></div></div>
-      <div class="slate-meta"><span class="mono">Scene 03 · Content creation</span><div class="slate-rule"><i></i></div><span class="slate-cut">Cut to: a small dog, a big feed</span><span class="toast"><i>RED</i>丢丢不丢丢啦 posted a new note ♥</span></div>
-    </div>
     <div class="case-top reveal">
       <div>
         <span class="mono">Content creation · Xiaohongshu pet account</span>
@@ -994,16 +1084,17 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     </div>
   </div>
 </section>
+<div class="wrap next-wrap"><a class="next-page" href="#film"><span class="mono">Next scene</span><b>Film &amp; Production <i>→</i></b></a>
+</div>
+</div>
 
+<div class="view" id="filmv" data-key="filmv" data-title="Film &amp; Production" data-scene="03" data-icon="cine" hidden>
+<div class="page-head"><div class="wrap"><span class="mono">Scene 03</span><h2>Film &amp; Production</h2><p>The edit bay, the set, and the craft behind every frame.</p></div></div>
 <section class="case" id="film" data-scene="SC 04 · Film &amp; Production">
   <div class="wrap">
-    <div class="slate" data-kind="reel">
-      <div class="board"><div class="stick hi"></div><div class="stick lo"></div><div class="slab"><div class="full"><small>PROD.</small><b>Avery Liu</b></div><div><small>SCENE</small><b>04</b></div><div><small>TAKE</small><b>1</b></div></div></div>
-      <div class="slate-meta"><span class="mono">Scene 04 · On set · in the edit</span><div class="slate-rule"><i></i></div><span class="slate-cut">Cut to: the edit bay</span><div class="flour"><svg viewBox="0 0 600 44" preserveAspectRatio="none"><path class="draw" pathLength="1" d="M0 22h600"/></svg></div></div>
-    </div>
     <div class="case-top reveal viewfinder"><span class="vf a"></span><span class="vf b"></span><span class="vf c"></span><span class="vf d"></span><span class="vf-rec" id="vfRec">REC 00:00:00:00</span>
       <div>
-        <span class="mono">Film &amp; Production</span>
+        <span class="mono">Professional experience · On set &amp; in the edit</span>
         <h3>Where I learned <em>how stories are built</em></h3>
       </div>
       <p class="sum">Before marketing, I learned the craft from the inside: picking the take that lands, cutting to a script, and building sound until a scene feels real. That's why, when I plan content now, I already know what it takes to make it.</p>
@@ -1090,13 +1181,14 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     </div>
   </div>
 </section>
+<div class="wrap next-wrap"><a class="next-page" href="#design"><span class="mono">Next scene</span><b>Production Design <i>→</i></b></a>
+</div>
+</div>
 
+<div class="view" id="designv" data-key="coursework" data-title="Production Design" data-scene="04" data-icon="design" hidden>
+<div class="page-head"><div class="wrap"><span class="mono">Scene 04</span><h2>Production Design</h2><p>Reading a film's world, then building my own.</p></div></div>
 <section class="case" id="design" data-scene="SC 05 · Production Design">
   <div class="wrap">
-    <div class="slate" data-kind="grid">
-      <div class="board"><div class="stick hi"></div><div class="stick lo"></div><div class="slab"><div class="full"><small>PROD.</small><b>Avery Liu</b></div><div><small>SCENE</small><b>05</b></div><div><small>TAKE</small><b>1</b></div></div></div>
-      <div class="slate-meta"><span class="mono">Scene 05 · Worlds and rooms</span><div class="slate-rule"><i></i></div><span class="slate-cut">Cut to: building the set</span><div class="flour"><svg viewBox="0 0 600 44" preserveAspectRatio="none"><path class="grid" d="M0 0v44"/><path class="grid" d="M30 0v44"/><path class="grid" d="M60 0v44"/><path class="grid" d="M90 0v44"/><path class="grid" d="M120 0v44"/><path class="grid" d="M150 0v44"/><path class="grid" d="M180 0v44"/><path class="grid" d="M210 0v44"/><path class="grid" d="M240 0v44"/><path class="grid" d="M270 0v44"/><path class="grid" d="M300 0v44"/><path class="grid" d="M330 0v44"/><path class="grid" d="M360 0v44"/><path class="grid" d="M390 0v44"/><path class="grid" d="M420 0v44"/><path class="grid" d="M450 0v44"/><path class="grid" d="M480 0v44"/><path class="grid" d="M510 0v44"/><path class="grid" d="M540 0v44"/><path class="grid" d="M570 0v44"/><path class="grid" d="M600 0v44"/><path class="grid" d="M0 22h600"/><path class="draw" pathLength="1" d="M10 36L110 8L250 36L400 8L590 36"/></svg></div></div>
-    </div>
     <div class="case-top reveal">
       <div>
         <span class="mono">Coursework · Production Design</span>
@@ -1178,13 +1270,14 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     </div>
   </div>
 </section>
+<div class="wrap next-wrap"><a class="next-page" href="#analysis"><span class="mono">Next scene</span><b>Film &amp; TV Analysis <i>→</i></b></a>
+</div>
+</div>
 
+<div class="view" id="analysisv" data-key="coursework" data-title="Film &amp; TV Analysis" data-scene="05" data-icon="clap" hidden>
+<div class="page-head"><div class="wrap"><span class="mono">Scene 05</span><h2>Film &amp; TV Analysis</h2><p>What is on screen, and why it is there.</p></div></div>
 <section class="case" id="analysis" data-scene="SC 06 · Film &amp; TV Analysis">
   <div class="wrap">
-    <div class="slate" data-kind="static">
-      <div class="board"><div class="stick hi"></div><div class="stick lo"></div><div class="slab"><div class="full"><small>PROD.</small><b>Avery Liu</b></div><div><small>SCENE</small><b>06</b></div><div><small>TAKE</small><b>1</b></div></div></div>
-      <div class="slate-meta"><span class="mono">Scene 06 · Reading the screen</span><div class="slate-rule"><i></i></div><span class="slate-cut">Cut to: what is on screen</span><div class="flour"><svg viewBox="0 0 600 44" preserveAspectRatio="none"><path class="draw" pathLength="1" d="M0 22h80l10-14 10 28 10-28 10 28 10-14h470"/></svg></div></div>
-    </div>
     <div class="case-top reveal">
       <div>
         <span class="mono">Coursework · Film &amp; TV Analysis</span>
@@ -1289,13 +1382,14 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     </div>
   </div>
 </section>
+<div class="wrap next-wrap"><a class="next-page" href="#health"><span class="mono">Next scene</span><b>Public Health <i>→</i></b></a>
+</div>
+</div>
 
+<div class="view" id="healthv" data-key="coursework" data-title="Public Health" data-scene="06" data-icon="pulse" hidden>
+<div class="page-head"><div class="wrap"><span class="mono">Scene 06</span><h2>Public Health</h2><p>Research and advocacy writing.</p></div></div>
 <section class="case" id="health" data-scene="SC 07 · Public Health">
   <div class="wrap">
-    <div class="slate" data-kind="pulse">
-      <div class="board"><div class="stick hi"></div><div class="stick lo"></div><div class="slab"><div class="full"><small>PROD.</small><b>Avery Liu</b></div><div><small>SCENE</small><b>07</b></div><div><small>TAKE</small><b>1</b></div></div></div>
-      <div class="slate-meta"><span class="mono">Scene 07 · White paper</span><div class="slate-rule"><i></i></div><span class="slate-cut">Cut to: the cost of care</span><div class="flour"><svg viewBox="0 0 600 44" preserveAspectRatio="none"><path class="draw" pathLength="1" d="M0 26h200l14-18 16 34 14-30 12 14h344"/></svg></div></div>
-    </div>
     <div class="case-top reveal">
       <div>
         <span class="mono">Coursework · Public Health · White paper</span>
@@ -1339,7 +1433,12 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     </div>
   </div>
 </section>
+<div class="wrap next-wrap"><a class="next-page" href="#about"><span class="mono">Next scene</span><b>About <i>→</i></b></a>
+</div>
+</div>
 
+<div class="view" id="aboutv" data-key="aboutv" data-title="About" data-scene="07" data-icon="fawn" hidden>
+<div class="page-head"><div class="wrap"><span class="mono">Scene 07</span><h2>About</h2><p>Who is behind the camera, and how to reach me.</p></div></div>
 <section class="about" id="about" data-scene="About">
   <div class="wrap about-grid">
     <div>
@@ -1368,6 +1467,9 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     </div>
   </div>
 </section>
+<div class="wrap next-wrap"><a class="next-page" href="#home"><span class="mono">Next scene</span><b>Back to the start <i>→</i></b></a>
+</div>
+</div>
 
 <footer>
   <div class="wrap">
@@ -1566,6 +1668,7 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     lane.appendChild(el); setTimeout(() => el.remove(), 1900);
   }
   function frame(now) {
+    if (!lane.offsetParent) { requestAnimationFrame(frame); return; }
     t++;
     const maxX = Math.max(0, LW() - W());
     if (mode === 'pause' && now > until) { if (Math.random() < 0.3 && !pet.classList.contains('talk')) say(lines[1 + Math.floor(Math.random() * (lines.length - 1))]); wander(now); }
@@ -1672,7 +1775,8 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
         if (el.classList.contains('reveal')) setTimeout(() => { el.classList.add('done'); el.classList.remove('reveal', 'in'); el.style.transitionDelay = ''; }, 1600 + idx * 70);
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
-    document.querySelectorAll('.reveal, .slate').forEach(el => io.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => { el.dataset.r = '1'; io.observe(el); });
+    window.__replay = view => view.querySelectorAll('[data-r]').forEach(el => { el.classList.remove('done', 'in'); el.classList.add('reveal'); el.style.transitionDelay = ''; io.observe(el); });
   } else {
     document.querySelectorAll('.slate').forEach(el => { el.classList.add('in'); el.querySelector('.board').classList.add('snap'); });
     document.querySelectorAll('.viz, .edit, .viewfinder').forEach(el => el.classList.add('in'));
@@ -1702,15 +1806,10 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     }, { passive: false });
     addEventListener('scroll', () => { if (!animating) { target = current = scrollY; } }, { passive: true });
   }
-  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-    const id = a.getAttribute('href').slice(1); const el = id && document.getElementById(id);
-    if (!el) return; e.preventDefault();
-    const y = el.getBoundingClientRect().top + scrollY - (id === 'top' ? 0 : 70);
-    if (motion) animateTo(y); else scrollTo(0, y);
-  }));
+  window.__stopScroll = y => { animating = false; target = current = (y || 0); };
+  window.__animateTo = animateTo;
 
   /* ---------- timecode, scrubber, scenes, parallax, reels, edit playhead ---------- */
-  const fill = $('scrubFill'), head = $('scrubHead'), navTc = $('navTc'), navScene = $('navScene');
   const editTc = $('editTc'), playhead = $('playhead'), editTL = $('editTL'), vfRec = $('vfRec');
   const heroArt = document.querySelector('.hero-art'), reels = [...document.querySelectorAll('.reel')];
   const film = document.getElementById('film');
@@ -1722,20 +1821,11 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     const y = scrollY;
     if (y !== lastY) {
       lastY = y;
-      const p = maxY() ? y / maxY() : 0;
-      fill.style.width = (p * 100) + '%';
-      head.style.left = (p * 100) + '%';
-      navTc.textContent = tc(p * RUNTIME);
-      // scene label
-      let cur = scenes[0];
-      for (const s of scenes) { if (s.getBoundingClientRect().top < innerHeight * 0.4) cur = s; }
-      const label = cur ? cur.dataset.scene : '';
-      if (label !== lastScene) { lastScene = label; navScene.textContent = label; }
       if (motion) {
         if (heroArt && y < innerHeight * 1.2) heroArt.style.transform = `translate3d(0, ${y * 0.18}px, 0)`;
         reels.forEach(r => { const [cx, cy] = r.dataset.c.split(' '); r.setAttribute('transform', `rotate(${(y * 0.6) % 360} ${cx} ${cy})`); });
       }
-      if (film && editTL) {
+      if (film && editTL && film.offsetParent) {
         const r = film.getBoundingClientRect();
         const fp = Math.max(0, Math.min(1, (innerHeight * 0.75 - r.top) / (r.height * 0.85)));
         const bw = editTL.querySelector('.edit-body').clientWidth - 34;
@@ -1748,5 +1838,75 @@ html.motion .viz .bar.k2 { transition-delay: .15s; }
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+})();
+</script>
+<script>
+(() => {
+  const root = document.documentElement, motion = root.classList.contains('motion');
+  const views = [...document.querySelectorAll('.view')];
+  const nav = document.querySelector('.nav'), menuBtn = document.getElementById('menuBtn');
+  const cut = document.getElementById('cut');
+  let current = views.find(v => !v.hidden) || views[0], busy = false;
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+  const findTarget = id => { const el = id && document.getElementById(id); return el && el.closest('.view') ? el : null; };
+  function markNav(view) {
+    const key = view.dataset.key;
+    document.querySelectorAll('.nav-links > li > a').forEach(a => { if (a.dataset.view === key) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    document.querySelectorAll('.drop .sub a').forEach(a => { const t = findTarget(a.getAttribute('href').slice(1)); if (t && t.closest('.view') === view) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    document.title = view.id === 'home' ? 'Avery Liu Portfolio' : view.dataset.title.replace('&amp;', '&') + ' · Avery Liu';
+  }
+  function scrollFor(view, target) {
+    const first = view.querySelector('section, header');
+    const y = (!target || target === view || target === first) ? 0 : target.getBoundingClientRect().top + scrollY - 84;
+    scrollTo(0, y); window.__stopScroll && window.__stopScroll(y);
+  }
+  function show(view, target) {
+    current.hidden = true; current.classList.remove('entering');
+    view.hidden = false; current = view;
+    view.classList.add('entering'); setTimeout(() => view.classList.remove('entering'), 1600);
+    window.__replay && window.__replay(view);
+    markNav(view);
+    scrollFor(view, target);
+  }
+  function go(id, push) {
+    const target = findTarget(id) || document.getElementById('home');
+    const view = target.closest('.view') || target;
+    nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false');
+    if (view === current) {
+      const y = (target === view) ? 0 : target.getBoundingClientRect().top + scrollY - 84;
+      if (window.__animateTo && motion) window.__animateTo(y); else scrollTo(0, y);
+      return;
+    }
+    if (!motion || busy) { show(view, target); return; }
+    busy = true;
+    document.getElementById('cutScene').textContent = view.dataset.scene;
+    document.getElementById('cutEyebrow').textContent = view.id === 'home' ? 'Back to the opening' : 'Scene ' + view.dataset.scene;
+    document.getElementById('cutTitle').innerHTML = view.dataset.title;
+    document.getElementById('cutIcon').setAttribute('href', '#' + (view.dataset.icon || 'cine'));
+    cut.hidden = false; cut.className = 'cut';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      cut.classList.add('closed');
+      setTimeout(() => cut.classList.add('card'), 300);
+      setTimeout(() => cut.classList.add('snap'), 560);
+      setTimeout(() => show(view, target), 640);
+      setTimeout(() => { cut.classList.add('opening'); cut.classList.remove('closed'); }, 980);
+      setTimeout(() => { cut.hidden = true; cut.className = 'cut'; busy = false; }, 1650);
+    }));
+  }
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]'); if (!a) return;
+    const id = a.getAttribute('href').slice(1); if (!id || !findTarget(id)) return;
+    e.preventDefault();
+    if (location.hash.slice(1) !== id) { try { history.pushState(null, '', '#' + id); } catch (err) {} }
+    go(id, true);
+  });
+  addEventListener('popstate', () => go(location.hash.slice(1)));
+  addEventListener('hashchange', () => go(location.hash.slice(1)));
+  menuBtn.addEventListener('click', () => { const o = !nav.classList.contains('open'); nav.classList.toggle('open', o); menuBtn.setAttribute('aria-expanded', String(o)); });
+  // first load: open the page named in the link, without a cut
+  const start = findTarget(location.hash.slice(1));
+  if (start) { const v = start.closest('.view'); if (v !== current) { current.hidden = true; v.hidden = false; current = v; } markNav(v); setTimeout(() => scrollFor(v, start), 50); }
+  else markNav(current);
 })();
 </script>
