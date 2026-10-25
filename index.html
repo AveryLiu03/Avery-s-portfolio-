@@ -772,7 +772,7 @@ html.motion.ready .home-hero .hh-meta { opacity: 1; transform: none; transition-
 @media (max-width: 700px) { .ch-feed .ch-media { right: -30px; top: 30%; width: 150px; opacity: .9; } .ch-feed .ch-in { padding-right: max(16px, env(safe-area-inset-right, 0px)); } }
 
 /* frames (film): gate weave + skip frames + sprockets */
-.ch-frames .ch-bg { filter: grayscale(.2) sepia(.15) contrast(1.1) brightness(.78); animation: weave 2.4s steps(1) infinite; transform: scale(1.08); }
+.ch-frames .ch-bg { filter: grayscale(.35) sepia(.12) contrast(1.05) brightness(.5); animation: weave 2.4s steps(1) infinite; transform: scale(1.08); }
 @keyframes weave { 0% { transform: scale(1.08) translate(0,0); } 12% { transform: scale(1.08) translate(-2px,1px); } 25% { transform: scale(1.08) translate(1px,-2px); filter: grayscale(.2) sepia(.15) contrast(1.1) brightness(.9); } 37% { transform: scale(1.08) translate(0,2px); } 50% { transform: scale(1.08) translate(2px,0); filter: grayscale(.2) sepia(.15) contrast(1.1) brightness(.7); } 62% { transform: scale(1.08) translate(-1px,-1px); } 75% { transform: scale(1.08) translate(1px,1px); } 87% { transform: scale(1.08) translate(-2px,0); } }
 .sprockets { position: absolute; top: 0; bottom: 0; width: clamp(26px, 4vw, 44px); z-index: 0; background: #0D0D0D; }
 .sprockets::before { content: ""; position: absolute; left: 25%; right: 25%; top: 0; bottom: 0; background: repeating-linear-gradient(180deg, transparent 0 14px, #EEE7DC 14px 30px, transparent 30px 44px); opacity: .85; border-radius: 3px; animation: sprock .5s steps(4) infinite; }
@@ -943,6 +943,59 @@ html.motion .home-hero .hh-top, html.motion .home-hero .hh-foot, html.motion .re
 html.motion.ready .home-hero .hh-top { opacity: 1; transform: none; transition-delay: .3s; }
 html.motion.ready .reel-band .guide { opacity: 1; transform: rotate(-2deg); transition-delay: 1.1s; }
 html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-delay: .95s; }
+
+/* ---- film cover: a reel of on-set photos, advanced a frame at a time ---- */
+.ch-frames .ch-bg.onset-reel { display: flex; gap: 10px; width: max-content; height: 100%; object-fit: initial; animation: weave 2.4s steps(1) infinite, reelPan 70s steps(420) infinite; }
+.ch-frames .onset-reel img { height: 100%; width: auto; max-width: none; display: block; border-radius: 2px; }
+@keyframes reelPan { from { translate: 0 0; } to { translate: calc(-50% - 5px) 0; } }
+
+/* ---- Diudiu roams the whole Xiaohongshu page ---- */
+#rednote { position: relative; }
+#rednote > .wrap { position: relative; }
+.pet-lane { position: absolute; inset: 0; height: auto; margin: 0; border: 0; overflow: hidden; pointer-events: none; z-index: 6; }
+.pet-lane .pet, .pet-lane .poop, .pet-lane .treat { pointer-events: auto; }
+.pet-lane .treat { pointer-events: none; }
+.pet { left: 0; top: 0; bottom: auto; width: 128px; height: 90px; }
+.pet.away { visibility: hidden; }
+.pet-body { position: relative; width: 100%; height: 100%; transform-origin: 50% 94%; }
+.pet .chibi { position: absolute; bottom: 0; left: 50%; width: auto; height: 100%; translate: -50% 0; }
+.pet .v-side { width: 100%; height: auto; }
+.pet:not([data-view="side"]) .v-side, .pet:not([data-view="front"]) .v-front, .pet:not([data-view="back"]) .v-back { display: none; }
+.pet-bubble { left: 50%; }
+.chibi .lg { transform-box: fill-box; transform-origin: 50% 0; }
+.pet.walk .v-front .lfl, .pet.walk .v-front .lbr, .pet.walk .v-back .lfl, .pet.walk .v-back .lbr { animation: liftA .32s ease-in-out infinite alternate; }
+.pet.walk .v-front .lfr, .pet.walk .v-front .lbl, .pet.walk .v-back .lfr, .pet.walk .v-back .lbl { animation: liftB .32s ease-in-out infinite alternate; }
+@keyframes liftA { from { transform: translateY(0) scaleY(1); } to { transform: translateY(-4px) scaleY(.88); } }
+@keyframes liftB { from { transform: translateY(-4px) scaleY(.88); } to { transform: translateY(0) scaleY(1); } }
+.chibi .tf { transform-origin: 80px 86px; } .chibi .tb { transform-origin: 60px 88px; }
+.v-back .tb { animation: wagB .45s ease-in-out infinite alternate; }
+@keyframes wagB { from { transform: rotate(-20deg); } to { transform: rotate(20deg); } }
+.pet-lane.off .pet, .pet-lane.off .treat, .pet-lane.off .poop, .pet-lane.off .paw-print { display: none; }
+.pet-lane.off { height: auto; margin: 0; }
+.pet-play.mini { position: static; justify-content: flex-end; margin: -18px 0 14px; padding: 0; background: none; border: 0; border-radius: 0; gap: 6px; font-family: var(--mono); font-size: .64rem; letter-spacing: .06em; text-transform: uppercase; color: var(--soft); opacity: .5; transition: opacity .25s; z-index: 7; flex-wrap: nowrap; }
+.pet-play.mini:hover, .pet-play.mini:focus-within { opacity: 1; }
+.pet-play.mini button, .pet-play.mini #petFeed { background: none; border: 0; padding: 4px 2px; font-family: inherit; text-transform: inherit; color: inherit !important; font-size: inherit; letter-spacing: inherit; color: inherit; border-radius: 4px; }
+.pet-play.mini button:hover { color: var(--accent); transform: none; }
+.pp-paw { font-size: .9rem; filter: grayscale(1); }
+@media (max-width: 600px) { .pet { width: 96px; height: 68px; } .pet-play.mini { margin-top: -8px; font-size: .58rem; } }
+@media (prefers-reduced-motion: reduce) { .ch-frames .ch-bg.onset-reel { animation: none; } .pet.walk .chibi .lg, .v-back .tb { animation: none; } }
+
+/* ---- skills ---- */
+.skills { margin-top: clamp(56px, 8vw, 96px); }
+.sk-head { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+.sk-head .mono { width: 100%; }
+.sk-head h3 { font-family: var(--display); text-transform: uppercase; font-weight: 400; font-size: clamp(2.4rem, 5.4vw, 4.2rem); line-height: .9; margin: 10px 0 0; }
+.sk-head h3 em { font-family: var(--bubble); text-transform: none; font-style: normal; color: var(--pink); font-size: .82em; display: inline-block; transform: rotate(-2deg); }
+.sk-head .hand { font-family: var(--hand); font-size: 1.5rem; color: var(--accent); margin: 0; transform: rotate(-2deg); }
+.sk-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.6vw, 28px); margin-top: 28px; }
+.sk-col { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px 22px 18px; }
+.sk-col:nth-child(2) { transform: rotate(.6deg); } .sk-col:nth-child(3) { transform: rotate(-.5deg); }
+.sk-col h4 { font-family: var(--display); text-transform: uppercase; font-weight: 400; font-size: 1.5rem; letter-spacing: .01em; margin: 0 0 12px; display: flex; gap: 10px; align-items: baseline; }
+.sk-col h4 span { font-family: var(--mono); font-size: .7rem; color: var(--accent); }
+.sk-col ul { list-style: none; margin: 0; padding: 0; }
+.sk-col li { font-size: .95rem; line-height: 1.45; padding: 8px 0; border-top: 1px dashed var(--line); }
+.sk-col li b { font-weight: 600; color: var(--ink); background: linear-gradient(transparent 62%, var(--blush) 62%); }
+@media (max-width: 820px) { .sk-grid { grid-template-columns: minmax(0, 1fr); } .sk-col:nth-child(n) { transform: none; } }
 </style>
 
 <!-- reusable drawings -->
@@ -1109,6 +1162,35 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
       </div>
     </div>
   </div>
+
+  <div class="wrap skills reveal" id="skills">
+    <div class="sk-head"><span class="mono">Skills &amp; tools</span><h3>The <em>toolkit</em></h3><p class="hand">set, edit bay, studio and strategy deck</p></div>
+    <div class="sk-grid">
+      <div class="sk-col"><h4><span>01</span>Film &amp; post</h4><ul>
+        <li>Editing in <b>Adobe Premiere Pro</b> and <b>Avid Media Composer</b></li>
+        <li>Review loops in <b>Frame.io</b></li>
+        <li>16mm: <b>Bolex</b> camera, <b>Steenbeck</b> flatbed editing</li>
+        <li>B-roll videography and producing for documentary</li>
+        <li>Production design and art direction: mood boards, costume, props and budget</li>
+        <li>Set plans in <b>SketchUp</b>, script breakdowns</li>
+      </ul></div>
+      <div class="sk-col"><h4><span>02</span>Sound</h4><ul>
+        <li>Recording and assistant mixing for an original song</li>
+        <li>Sound design in <b>Pro Tools</b></li>
+        <li>Sourcing and layering SFX from sound libraries</li>
+        <li>Subtitles and timing</li>
+        <li>Cello, so I hear the score first</li>
+      </ul></div>
+      <div class="sk-col"><h4><span>03</span>Marketing &amp; research</h4><ul>
+        <li>Social content strategy and posting windows</li>
+        <li>Content creation, start to finish: concept, shoot, edit, post</li>
+        <li>Qualitative research: interview guides, thematic and online review analysis</li>
+        <li>Survey design, sentiment analysis, secondary research</li>
+        <li>Brand storytelling, infographics, website design in <b>Wix</b></li>
+        <li>Xiaohongshu (Rednote) and the Chinese social landscape</li>
+      </ul></div>
+    </div>
+  </div>
 </section>
 
 
@@ -1118,7 +1200,7 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
     <ol class="ct-list" id="ctList">
       <li data-ch="strategy" data-thumb="img/burberry-page-5.jpg"><a class="ct-main" href="#strategy"><span class="ct-no"></span><span class="ct-t">Brand &amp; Audience Strategy</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#kona">Kona Village</a><a href="#burberry">Burberry, Reconnected</a></span></li>
       <li data-ch="content" data-thumb="img/rednote-posts.jpg"><a class="ct-main" href="#content"><span class="ct-no"></span><span class="ct-t">Content Creation</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#rednote">Xiaohongshu pet account</a></span></li>
-      <li data-ch="filmv" data-thumb="img/lock-09.jpg"><a class="ct-main" href="#filmv"><span class="ct-no"></span><span class="ct-t">Film &amp; Production</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#film">Boston Production Inc</a><a href="#lock">The Lock's Still the Same</a></span></li>
+      <li data-ch="filmv" data-thumb="img/onset-5.jpg"><a class="ct-main" href="#filmv"><span class="ct-no"></span><span class="ct-t">Film &amp; Production</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#film">Boston Production Inc</a><a href="#lock">The Lock's Still the Same</a></span></li>
       <li data-ch="designv" data-thumb="img/ozi-5.jpg"><a class="ct-main" href="#designv"><span class="ct-no"></span><span class="ct-t">Production Design</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#poorthings">Poor Things</a><a href="#ozi">ØZI studio</a></span></li>
       <li data-ch="analysisv" data-thumb="img/tmad-01.jpg"><a class="ct-main" href="#analysisv"><span class="ct-no"></span><span class="ct-t">Film &amp; TV Analysis</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#bacurau">Bacurau</a><a href="#tmad">Three Meals a Day</a><a href="#abc">ABC News</a></span></li>
       <li data-ch="healthv" data-thumb="img/ph-03.jpg"><a class="ct-main" href="#healthv"><span class="ct-no"></span><span class="ct-t">Public Health</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#health">Licensed ≠ Protected</a></span></li>
@@ -1314,39 +1396,11 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
   <div class="wrap ch-foot"><span>Avery Liu &nbsp;|&nbsp; averyliu03.github.io</span><span>Portfolio 2026 &nbsp;|&nbsp; <b data-chno>01</b></span></div>
 </header>
 <section class="case" data-scene="SC 03 · Xiaohongshu" id="rednote">
-<div class="wrap">
-<div class="case-top reveal">
-<div>
-<span class="mono">Content creation · Xiaohongshu pet account</span>
-<h3>A small account, <em>run like a lab</em></h3>
-<p class="pet-sub">He likes to wander. Keep an eye on him.</p>
-</div>
-<p class="sum">Since March 2025, I've run a Rednote account about Diudiu, my mini chocolate dachshund, doing every part of it myself. It hasn't had a breakout yet, and that's what makes it useful: every post is a small test of who's watching, when, and why something earns a save.</p><div class="actions"><a class="btn" href="https://xhslink.cn/o/30zKCCC5hGo" rel="noopener" target="_blank">Visit the account ↗</a></div>
-</div>
-<dl class="meta reveal">
-<div><dt>Platform</dt><dd>Rednote (Xiaohongshu)</dd></div>
-<div><dt>Star</dt><dd>Diudiu, mini chocolate dachshund</dd></div>
-<div><dt>Since</dt><dd>March 2025 · nearly 900 likes &amp; saves</dd></div>
-<div><dt>My part</dt><dd>Everything: concept, shoot, edit, post</dd></div>
-</dl>
-<div class="split solo">
-
-<div class="rn-side">
-<figure class="reveal">
-<div class="frame"><img alt="Two pinned Rednote posts of Diudiu the dachshund: one with 1,123 views and one titled LouisV puppy with 5,236 views." height="766" loading="lazy" src="img/rednote-posts.jpg" width="900"/></div>
-<figcaption>Pinned posts · "Main quest: charm the humans" (1,123 views) and "Finally a LouisV puppy" (5,236 views)</figcaption>
-</figure>
-<div class="pet-play">
-<button id="petFeed" type="button"><svg aria-hidden="true" viewbox="0 0 40 20"><path d="M9 4a4 4 0 0 0-3.5 6A4 4 0 0 0 9 16c1.5 0 2.6-.8 3.2-2h15.6c.6 1.2 1.7 2 3.2 2a4 4 0 0 0 3.5-6A4 4 0 0 0 31 4c-1.5 0-2.6.8-3.2 2H12.2C11.6 4.8 10.5 4 9 4z" fill="#F2D3A7" stroke="#C99B63" stroke-width="1.4"></path></svg>Toss Diudiu a treat <span class="count" id="petCount"></span></button>
-<button aria-pressed="false" id="petToggle" type="button">Hide Diudiu</button>
-</div>
-</div>
-</div>
-<div class="pet-lane" id="petLane">
-<div aria-label="Chibi Diudiu, my mini dachshund, wanders around the bottom of this section" class="pet" id="pet" role="img">
+<div class="pet-lane" id="petLane" aria-hidden="false">
+<div aria-label="Chibi Diudiu, my mini dachshund, who wanders around this page" class="pet" id="pet" role="img">
 <div class="pet-bubble" id="petBubble">Hi, I'm Diudiu</div>
 <div class="pet-body" id="petBody">
-<svg aria-hidden="true" class="chibi" viewbox="0 0 170 120">
+<svg aria-hidden="true" class="chibi v-side" viewbox="0 0 170 120">
 <ellipse class="sh" cx="88" cy="113" rx="56" ry="4.5"></ellipse>
 <g class="tail"><path d="M140 66c9-3 15-11 17-21" fill="none" stroke="#5E3A28" stroke-linecap="round" stroke-width="6.5"></path></g>
 <!-- far legs -->
@@ -1381,7 +1435,80 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 <path class="tongue" d="M57 66.5h6v3.5a3 3 0 0 1-6 0z" fill="#F07D96"></path>
 </g>
 </svg>
+<svg aria-hidden="true" class="chibi v-front" viewBox="0 0 120 120">
+<ellipse class="sh" cx="60" cy="114" rx="34" ry="4.5"></ellipse>
+<g class="tail tf"><path d="M80 86c9-3 14-12 16-24" fill="none" stroke="#5E3A28" stroke-linecap="round" stroke-width="6"></path></g>
+<g class="lg lbl"><rect fill="#56331F" height="22" rx="5.5" width="11" x="30" y="88"></rect><rect fill="#CFA77C" height="7" rx="3.5" width="11" x="30" y="103"></rect></g>
+<g class="lg lbr"><rect fill="#56331F" height="22" rx="5.5" width="11" x="79" y="88"></rect><rect fill="#CFA77C" height="7" rx="3.5" width="11" x="79" y="103"></rect></g>
+<ellipse cx="60" cy="90" fill="#6E4532" rx="27" ry="16"></ellipse>
+<ellipse cx="60" cy="92" fill="#EBCBA4" rx="12" ry="11"></ellipse>
+<g class="lg lfl"><rect fill="#6E4532" height="22" rx="6" width="12" x="43" y="92"></rect><rect fill="#E2BE96" height="8" rx="4" width="12" x="43" y="106"></rect></g>
+<g class="lg lfr"><rect fill="#6E4532" height="22" rx="6" width="12" x="65" y="92"></rect><rect fill="#E2BE96" height="8" rx="4" width="12" x="65" y="106"></rect></g>
+<g transform="translate(6 2) scale(.9)">
+<path d="M40 80c12 6 28 6 40 0" fill="none" stroke="#EC8FA6" stroke-linecap="round" stroke-width="5"></path>
+<circle cx="60" cy="86" fill="#F6C344" r="3.2" stroke="#D9A21E" stroke-width=".8"></circle>
+<g class="ear el"><path d="M34 34c-12 2-18 14-17 30 1 10 6 17 12 16 6-1 8-10 9-20 1-9 0-20-4-26z" fill="#573422"></path></g>
+<g class="ear er"><path d="M86 34c12 2 18 14 17 30-1 10-6 17-12 16-6-1-8-10-9-20-1-9 0-20 4-26z" fill="#573422"></path></g>
+<ellipse cx="60" cy="50" fill="#6E4532" rx="31" ry="29"></ellipse>
+<ellipse cx="47" cy="34" fill="#EBCBA4" rx="4.2" ry="2.8"></ellipse>
+<ellipse cx="73" cy="34" fill="#EBCBA4" rx="4.2" ry="2.8"></ellipse>
+<ellipse cx="60" cy="64" fill="#EBCBA4" rx="16" ry="12"></ellipse>
+<ellipse cx="38" cy="60" fill="#F4A3B4" opacity=".55" rx="5" ry="3"></ellipse>
+<ellipse cx="82" cy="60" fill="#F4A3B4" opacity=".55" rx="5" ry="3"></ellipse>
+<g transform="translate(47 47)"><g class="eye"><ellipse fill="#22150F" rx="7.2" ry="8"></ellipse><g class="pupil"><circle cx="-1.8" cy="-2.6" fill="#fff" r="2.8"></circle><circle cx="2.2" cy="2.4" fill="#fff" opacity=".85" r="1.1"></circle></g><ellipse class="lid" fill="#6E4532" rx="8.4" ry="9"></ellipse></g></g>
+<g transform="translate(73 47)"><g class="eye"><ellipse fill="#22150F" rx="7.2" ry="8"></ellipse><g class="pupil"><circle cx="-1.8" cy="-2.6" fill="#fff" r="2.8"></circle><circle cx="2.2" cy="2.4" fill="#fff" opacity=".85" r="1.1"></circle></g><ellipse class="lid" fill="#6E4532" rx="8.4" ry="9"></ellipse></g></g>
+<ellipse cx="60" cy="58.5" fill="#3A2420" rx="5.6" ry="4"></ellipse>
+<ellipse cx="58.6" cy="57.3" fill="#fff" opacity=".5" rx="1.6" ry="1"></ellipse>
+<path class="mouth" d="M53 65c2 3 5 3 7 0 2 3 5 3 7 0" fill="none" stroke="#3A2420" stroke-linecap="round" stroke-width="1.6"></path>
+<ellipse class="open" cx="60" cy="68" fill="#3A2420" rx="5" ry="0"></ellipse>
+<path class="tongue" d="M57 66.5h6v3.5a3 3 0 0 1-6 0z" fill="#F07D96"></path>
+</g>
+</svg>
+<svg aria-hidden="true" class="chibi v-back" viewBox="0 0 120 120">
+<ellipse class="sh" cx="60" cy="114" rx="34" ry="4.5"></ellipse>
+<g class="lg lfl"><rect fill="#56331F" height="22" rx="5.5" width="11" x="31" y="86"></rect></g>
+<g class="lg lfr"><rect fill="#56331F" height="22" rx="5.5" width="11" x="78" y="86"></rect></g>
+<g transform="translate(6 -3) scale(.9)">
+<ellipse cx="60" cy="50" fill="#674030" rx="31" ry="29"></ellipse>
+<g class="ear el"><path d="M34 34c-12 2-18 14-17 30 1 10 6 17 12 16 6-1 8-10 9-20 1-9 0-20-4-26z" fill="#573422"></path></g>
+<g class="ear er"><path d="M86 34c12 2 18 14 17 30-1 10-6 17-12 16-6-1-8-10-9-20-1-9 0-20 4-26z" fill="#573422"></path></g>
+<path d="M60 24v22" fill="none" opacity=".35" stroke="#4E2F20" stroke-linecap="round" stroke-width="2"></path>
+<path d="M38 76c14 7 30 7 44 0" fill="none" stroke="#EC8FA6" stroke-linecap="round" stroke-width="5"></path>
+</g>
+<ellipse cx="60" cy="90" fill="#6E4532" rx="28" ry="17"></ellipse>
+<path d="M60 76v12" fill="none" opacity=".4" stroke="#5A3626" stroke-linecap="round" stroke-width="2"></path>
+<g class="lg lbl"><rect fill="#6E4532" height="23" rx="6.5" width="13" x="41" y="91"></rect><ellipse cx="47.5" cy="94" fill="#77493A" rx="8" ry="7"></ellipse><rect fill="#4A2C1C" height="5" rx="2.5" width="13" x="41" y="109"></rect></g>
+<g class="lg lbr"><rect fill="#6E4532" height="23" rx="6.5" width="13" x="66" y="91"></rect><ellipse cx="72.5" cy="94" fill="#77493A" rx="8" ry="7"></ellipse><rect fill="#4A2C1C" height="5" rx="2.5" width="13" x="66" y="109"></rect></g>
+<g class="tail tb"><path d="M60 88c0-10 3-19 9-26" fill="none" stroke="#5E3A28" stroke-linecap="round" stroke-width="6.5"></path></g>
+</svg>
+
 </div>
+</div>
+</div>
+<div class="wrap">
+<div class="pet-play mini"><span class="pp-paw" aria-hidden="true">&#128062;</span><button id="petFeed" type="button">Toss Diudiu a treat <span class="count" id="petCount"></span></button><span aria-hidden="true">·</span><button aria-pressed="false" id="petToggle" type="button">Hide Diudiu</button></div>
+<div class="case-top reveal">
+<div>
+<span class="mono">Content creation · Xiaohongshu pet account</span>
+<h3>A small account, <em>run like a lab</em></h3>
+<p class="pet-sub">&ldquo;He&rdquo; likes to wander. Keep an eye on him.</p>
+</div>
+<p class="sum">Since March 2025, I've run a Rednote account about Diudiu, my mini chocolate dachshund, doing every part of it myself. It hasn't had a breakout yet, and that's what makes it useful: every post is a small test of who's watching, when, and why something earns a save.</p><div class="actions"><a class="btn" href="https://xhslink.cn/o/30zKCCC5hGo" rel="noopener" target="_blank">Visit the account ↗</a></div>
+</div>
+<dl class="meta reveal">
+<div><dt>Platform</dt><dd>Rednote (Xiaohongshu)</dd></div>
+<div><dt>Star</dt><dd>Diudiu, mini chocolate dachshund</dd></div>
+<div><dt>Since</dt><dd>March 2025 · nearly 900 likes &amp; saves</dd></div>
+<div><dt>My part</dt><dd>Everything: concept, shoot, edit, post</dd></div>
+</dl>
+<div class="split solo">
+
+<div class="rn-side">
+<figure class="reveal">
+<div class="frame"><img alt="Two pinned Rednote posts of Diudiu the dachshund: one with 1,123 views and one titled LouisV puppy with 5,236 views." height="766" loading="lazy" src="img/rednote-posts.jpg" width="900"/></div>
+<figcaption>Pinned posts · "Main quest: charm the humans" (1,123 views) and "Finally a LouisV puppy" (5,236 views)</figcaption>
+</figure>
+
 </div>
 </div>
 <details class="story"><summary><span class="mono">Read the full case study</span><i aria-hidden="true">+</i></summary><div class="story-body"><div class="beats" style="grid-template-columns:1fr;margin-top:0">
@@ -1411,7 +1538,7 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 
 <div class="view" id="filmv" data-key="filmv" data-title="Film &amp; Production" data-fx="frames" hidden>
 <header class="chapter ch-frames">
-  <div class="ch-media"><img class="ch-bg" src="img/lock-09.jpg" alt=""></div><div class="sprockets l" aria-hidden="true"></div><div class="sprockets r" aria-hidden="true"></div>
+  <div class="ch-media"><div class="ch-bg onset-reel"><img src="img/onset-1.jpg" alt=""><img src="img/onset-2.jpg" alt=""><img src="img/onset-3.jpg" alt=""><img src="img/onset-4.jpg" alt=""><img src="img/onset-5.jpg" alt=""><img src="img/onset-6.jpg" alt=""><img src="img/onset-1.jpg" alt=""><img src="img/onset-2.jpg" alt=""><img src="img/onset-3.jpg" alt=""><img src="img/onset-4.jpg" alt=""><img src="img/onset-5.jpg" alt=""><img src="img/onset-6.jpg" alt=""></div></div><div class="sprockets l" aria-hidden="true"></div><div class="sprockets r" aria-hidden="true"></div>
   <div class="ch-shade" aria-hidden="true"></div>
   <div class="wrap ch-in">
     <span class="mono ch-no">Chapter <b data-chno>01</b></span>
@@ -1828,19 +1955,23 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 <script>
 (() => {
   const $ = id => document.getElementById(id);
-  const sec = $('rednote'), lane = $('petLane'), pet = $('pet'), body = $('petBody'), bubble = $('petBubble'), feed = $('petFeed'), countEl = $('petCount');
-  const pupils = pet.querySelectorAll('.pupil'), eyes = pet.querySelectorAll('.eye'), earL = pet.querySelector('.el'), earR = pet.querySelector('.er');
+  const sec = $('rednote'), lane = $('petLane'), pet = $('pet'), body = $('petBody'), bubble = $('petBubble'), feed = $('petFeed'), countEl = $('petCount'), toggle = $('petToggle');
+  if (!sec || !pet) return;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const BONE = '<svg viewBox="0 0 40 20" aria-hidden="true"><path d="M9 4a4 4 0 0 0-3.5 6A4 4 0 0 0 9 16c1.5 0 2.6-.8 3.2-2h15.6c.6 1.2 1.7 2 3.2 2a4 4 0 0 0 3.5-6A4 4 0 0 0 31 4c-1.5 0-2.6.8-3.2 2H12.2C11.6 4.8 10.5 4 9 4z" fill="#F2D3A7" stroke="#C99B63" stroke-width="1.4"/></svg>';
   const POOP = '<svg viewBox="0 0 30 24" aria-hidden="true"><ellipse cx="15" cy="20" rx="12" ry="4" fill="#7A4E2E"/><ellipse cx="15" cy="14.5" rx="9" ry="4" fill="#8B5A35"/><ellipse cx="15" cy="9.5" rx="6" ry="3.4" fill="#9A6740"/><path d="M15 6c0-3 2-4 3-5" fill="none" stroke="#9A6740" stroke-width="2.4" stroke-linecap="round"/><circle cx="11.5" cy="14" r="1" fill="#fff" opacity=".35"/></svg>';
-  const W = () => pet.offsetWidth, LW = () => lane.clientWidth;
-  let x = 20, y = 0, target = 20, ty = 0, vx = 0, t = 0, facing = -1, mode = 'pause', until = performance.now() + 1500;
-  let mx = null, my = null, pendingPoop = false, fed = 0, sinceLastPoop = 0, lookOverride = null;
-  const treats = [];
-  const lines = ["Hi, I'm Diudiu", "Woof!", "Main quest: charm all humans", "Snack time?", "Toss me a treat?"];
+  const PAW = '<svg viewBox="0 0 20 20" aria-hidden="true"><ellipse cx="10" cy="13.5" rx="5" ry="4.2"/><circle cx="4.2" cy="8" r="2.1"/><circle cx="8" cy="5" r="2.1"/><circle cx="12" cy="5" r="2.1"/><circle cx="15.8" cy="8" r="2.1"/></svg>';
+  const lines = ["Hi, I'm Diudiu", "Woof!", "Main quest: charm all humans", "Snack time?", "Sniff sniff...", "What are you reading?"];
   const yum = ["Yum!", "More please!", "Best. Treat. Ever.", "Nom nom", "Thank you!"];
+
+  // ---- state (all coordinates are inside the Xiaohongshu section) ----
+  const PW = () => pet.offsetWidth, PH = () => pet.offsetHeight;
+  let x = -200, y = 200, view = 'side', facing = 1, mode = 'offstage', until = 0, t = 0;
+  let path = [], onArrive = null, mx = null, my = null, lookOverride = null;
+  let fed = 0, sinceLastPoop = 0, seen = 0, entered = false;
+  const treats = [];
   try { fed = parseInt(localStorage.getItem('diudiu-fed') || '0', 10) || 0; } catch (e) {}
-  const showCount = () => { countEl.textContent = fed ? '\u00b7 ' + fed : ''; };
+  const showCount = () => { countEl.textContent = fed ? '· ' + fed : ''; };
   showCount();
 
   function say(text, ms = 1800) {
@@ -1850,7 +1981,7 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
   function burst(cls, cx, cy, n) {
     for (let i = 0; i < n; i++) {
       const el = document.createElement('span'); el.className = cls;
-      if (cls === 'heart') el.textContent = '\u2665';
+      if (cls === 'heart') el.textContent = '♥';
       el.style.left = (cx + Math.random() * 24 - 12) + 'px'; el.style.top = cy + 'px';
       el.style.setProperty('--dx', (Math.random() * 60 - 30) + 'px');
       el.style.setProperty('--dy', (Math.random() * 30 + 10) + 'px');
@@ -1858,44 +1989,89 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
       document.body.appendChild(el); setTimeout(() => el.remove(), 1500);
     }
   }
-  const LH = () => lane.clientHeight;
-  const feetY = () => LH() - 4 + y;                                  // his paws, in lane coordinates
-  const mouthX = () => facing < 0 ? x + W() * 0.2 : x + W() * 0.8;   // where his head is
-  const rearX = () => facing < 0 ? x + W() * 0.86 : x + W() * 0.14;  // where his tail is
 
-  function wander(now) {
-    mode = 'walk';
-    const w = LW() - W();
-    let nx; do { nx = Math.random() * w; } while (Math.abs(nx - x) < w * 0.25 && w > 200);
-    target = nx; ty = 0;
-    // every so often he goes exploring up into the Rednote section to surprise you
-    const lr = lane.getBoundingClientRect(), sr = sec.getBoundingClientRect();
-    const top = Math.max(sr.top + 40, 80), bottom = Math.min(lr.top + LH(), innerHeight - 20);
-    if (bottom - top > 200 && Math.random() < 0.55) {
-      const cy = top + 60 + Math.random() * (bottom - top - 60);
-      ty = Math.min(0, cy - lr.top - (LH() - 4));
-      if (y < -10 && Math.random() < 0.4) ty = 0;          // and comes back home now and then
+  // ---- where the words are, so he can walk around them ----
+  const OBST = '.case-top h3, .case-top .mono, .pet-sub, .sum, .actions, .meta > div, .rn-side figure, .pet-play, details.story > summary, details[open] .story-body, .next-wrap';
+  let obs = [], obsAt = 0;
+  function obstacles() {
+    const now = performance.now(); if (now - obsAt < 400) return obs; obsAt = now;
+    const sr = sec.getBoundingClientRect();
+    obs = [...sec.querySelectorAll(OBST)].map(el => el.getBoundingClientRect()).filter(r => r.width && r.height)
+      .map(r => ({ l: r.left - sr.left - 10, t: r.top - sr.top - 8, r: r.right - sr.left + 10, b: r.bottom - sr.top + 8 }));
+    return obs;
+  }
+  function overlap(px, py) {   // how much of the text he would cover standing at (px, py)
+    const w = PW(), h = PH(); let a = 0;
+    for (const o of obstacles()) { const ox = Math.min(px + w, o.r) - Math.max(px, o.l), oy = Math.min(py + h, o.b) - Math.max(py, o.t); if (ox > 0 && oy > 0) a += ox * oy; }
+    return a;
+  }
+  function segCost(a, b) { let c = 0; for (let i = 1; i <= 10; i++) c += overlap(a.x + (b.x - a.x) * i / 10, a.y + (b.y - a.y) * i / 10); return c; }
+  function bounds() { return { maxX: Math.max(0, sec.clientWidth - PW()), maxY: Math.max(0, sec.clientHeight - PH()) }; }
+  function visible() {   // the part of the section on screen right now
+    const sr = sec.getBoundingClientRect(), top = Math.max(44, 110 - sr.top), bot = Math.min(sec.clientHeight, innerHeight - 10 - sr.top);
+    return bot - top > PH() + 20 ? { top, bot: bot - PH() } : null;
+  }
+  function pickSpot(minDist) {
+    const v = visible(), { maxX, maxY } = bounds(); if (!v) return null;
+    let best = null;
+    for (let i = 0; i < 48; i++) {
+      const c = { x: Math.random() * maxX, y: Math.min(maxY, v.top + Math.random() * (v.bot - v.top)) };
+      if (Math.hypot(c.x - x, c.y - y) < minDist) continue;
+      const s = overlap(c.x, c.y) + Math.random() * 40;
+      if (!best || s < best.s) best = { ...c, s };
     }
+    return best;
+  }
+  // straight line, an L either way, or round through the margin: whichever covers the least text
+  function plan(to) {
+    const a = { x, y }, { maxX } = bounds(), wrap = sec.querySelector('.wrap'), sr = sec.getBoundingClientRect(), wr = wrap.getBoundingClientRect();
+    const gL = Math.max(0, wr.left - sr.left - PW() - 4), gR = Math.min(maxX, wr.right - sr.left + 4);
+    const options = [[to], [{ x: to.x, y: a.y }, to], [{ x: a.x, y: to.y }, to]];
+    for (const g of [gL, gR]) options.push([{ x: g, y: a.y }, { x: g, y: to.y }, to]);
+    let best = null;
+    for (const o of options) { let c = 0, p = a; for (const q of o) { c += segCost(p, q); p = q; } c += o.length * 400; if (!best || c < best.c) best = { o, c }; }
+    return best.o.filter((q, i, arr) => i === arr.length - 1 || Math.hypot(q.x - (arr[i - 1] || a).x, q.y - (arr[i - 1] || a).y) > 2);
+  }
+  const clampPt = q => { const { maxX, maxY } = bounds(); return { x: Math.max(0, Math.min(maxX, q.x)), y: Math.max(0, Math.min(maxY, q.y)) }; };
+  function go(to, then) { path = plan(clampPt(to)); onArrive = then || null; mode = 'walk'; }
+
+  function wander() {
+    const s = pickSpot(Math.min(sec.clientWidth * 0.3, 260));
+    if (!s) { mode = 'pause'; until = performance.now() + 1500; return; }
+    go(s, () => { mode = 'pause'; until = performance.now() + 2200 + Math.random() * 3500; if (Math.random() < 0.3) say(lines[1 + Math.floor(Math.random() * (lines.length - 1))]); });
   }
 
+  // he shows up once you've been reading a little while
+  function enter() {
+    const v = visible(); if (!v) return;
+    entered = true; pet.classList.remove('away');
+    const side = Math.random() < 0.5 ? -1 : 1, { maxX } = bounds();
+    x = side < 0 ? -PW() - 10 : maxX + PW() + 10;
+    const s = pickSpot(0) || { x: maxX / 2, y: v.top };
+    y = s.y; facing = -side;
+    go({ x: side < 0 ? Math.min(s.x, maxX * 0.35) : Math.max(s.x, maxX * 0.65), y: s.y }, () => { mode = 'pause'; until = performance.now() + 2600; say(lines[0], 2600); });
+  }
+
+  // ---- treats ----
   function toss() {
-    // fling a bone in an arc from the button to a random visible spot in this section
-    const lr = lane.getBoundingClientRect(), sr = sec.getBoundingClientRect(), br = feed.getBoundingClientRect();
-    const top = Math.max(sr.top, 70), bottom = Math.min(lr.bottom - 10, innerHeight - 20);
-    let cx, cy, tries = 0;
-    do {
-      const minCx = Math.max(lr.left + W() * 0.25, 30), maxCx = Math.min(lr.right - W() * 0.25, innerWidth - 30);
-      cx = minCx + Math.random() * Math.max(10, maxCx - minCx);
-      cy = top + 20 + Math.random() * Math.max(20, bottom - top - 20);
-      tries++;
-    } while (Math.hypot(cx - (lr.left + mouthX()), cy - (lr.top + feetY())) < 180 && tries < 20);
-    const tx = cx - lr.left, ty = cy - lr.top;
+    if (lane.classList.contains('off')) return;
+    if (!entered) enter();
+    const v = visible(); if (!v) return;
+    const sr = sec.getBoundingClientRect(), br = feed.getBoundingClientRect();
+    let spot = null;
+    for (let i = 0; i < 30; i++) {
+      const c = { x: 20 + Math.random() * (sec.clientWidth - 40), y: v.top + PH() * .6 + Math.random() * (v.bot - v.top) };
+      if (Math.hypot(c.x - (x + PW() / 2), c.y - (y + PH())) < 160) continue;
+      const s = overlap(c.x - PW() / 2, c.y - PH() * .8) + Math.random() * 30;
+      if (!spot || s < spot.s) spot = { ...c, s };
+    }
+    if (!spot) return;
     const el = document.createElement('div'); el.className = 'treat'; el.innerHTML = BONE;
-    el.style.left = (tx - 17) + 'px'; el.style.top = (ty - 10) + 'px';
+    el.style.left = (spot.x - 17) + 'px'; el.style.top = (spot.y - 10) + 'px';
     lane.appendChild(el);
-    const sx = br.left + br.width / 2 - cx, sy = br.top + br.height / 2 - cy;
-    const tr = { el, x: tx, y: ty, landed: still };
+    const tr = { el, x: spot.x, y: spot.y, landed: still };
     if (!still) {
+      const sx = br.left + br.width / 2 - (sr.left + spot.x), sy = br.top + br.height / 2 - (sr.top + spot.y);
       el.animate([
         { transform: `translate(${sx}px, ${sy}px) rotate(0deg) scale(.7)`, opacity: .2 },
         { transform: `translate(${sx / 2}px, ${sy / 2 - 160}px) rotate(400deg) scale(1.15)`, opacity: 1, offset: .5 },
@@ -1904,163 +2080,163 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
     }
     treats.push(tr);
     pet.classList.add('excited');
-    if (mode !== 'poop') { mode = 'treat'; say(treats.length > 1 ? 'So many treats!' : 'Ooh, a treat!', 1400); }
+    if (mode !== 'poop' && mode !== 'eat' && mode !== 'belly') { mode = 'treat'; path = []; say(treats.length > 1 ? 'So many treats!' : 'Ooh, a treat!', 1400); }
   }
   feed.addEventListener('click', toss);
-  const toggle = $('petToggle');
-  function setHidden(h) {
-    lane.classList.toggle('off', h);
-    toggle.textContent = h ? 'Show Diudiu' : 'Hide Diudiu';
-    toggle.setAttribute('aria-pressed', String(h));
-    feed.disabled = h;
-    try { localStorage.setItem('diudiu-hidden', h ? '1' : '0'); } catch (e) {}
+  function chaseTreat() {
+    const tr = treats.find(q => q.landed); if (!tr) return false;
+    // stand so his mouth lands on the treat, whichever way he arrives
+    const to = { x: tr.x - PW() / 2, y: tr.y - PH() * 0.78 };
+    const p = plan(to), last = p[p.length - 1], prev = p[p.length - 2] || { x, y };
+    if (Math.abs(last.x - prev.x) > Math.abs(last.y - prev.y)) last.x += (last.x > prev.x ? 1 : -1) * PW() * 0.3, last.y = tr.y - PH() * 0.8;
+    else if (last.y < prev.y) last.y = tr.y - PH() * 0.2;    // coming up from below, his mouth is at the top
+    p[p.length - 1] = clampPt(last); path = p; mode = 'walk';
+    onArrive = () => { treats.splice(treats.indexOf(tr), 1); eat(tr); };
+    return true;
   }
-  toggle.addEventListener('click', () => setHidden(!lane.classList.contains('off')));
-  try { if (localStorage.getItem('diudiu-hidden') === '1') setHidden(true); } catch (e) {}
-
   function eat(tr) {
     mode = 'eat';
     let n = 0;
     const chew = setInterval(() => { pet.classList.toggle('chomp'); if (++n >= 6) { clearInterval(chew); pet.classList.remove('chomp'); } }, 140);
     tr.el.style.transition = 'transform .5s ease, opacity .5s ease';
     tr.el.style.transform = 'scale(.2)'; tr.el.style.opacity = '0';
-    const lr = lane.getBoundingClientRect();
-    burst('crumb', lr.left + tr.x, lr.top + tr.y, 8);
+    const sr = sec.getBoundingClientRect();
+    burst('crumb', sr.left + tr.x, sr.top + tr.y, 8);
     setTimeout(() => {
       tr.el.remove(); fed++; sinceLastPoop++; showCount();
       try { localStorage.setItem('diudiu-fed', String(fed)); } catch (e) {}
       const pr = pet.getBoundingClientRect();
-      burst('heart', mouthX() + lr.left, pr.top + 6, 4);
+      burst('heart', pr.left + pr.width / 2, pr.top + 6, 4);
       say(fed % 10 === 0 ? fed + ' treats! Best human ever' : yum[Math.floor(Math.random() * yum.length)]);
       pet.classList.remove('happy'); void pet.offsetWidth; pet.classList.add('happy');
       if (treats.length) { mode = 'treat'; return; }
       setTimeout(() => pet.classList.remove('excited'), 1200);
-      // what goes in must come out: after a few treats, a little surprise
-      pendingPoop = sinceLastPoop >= 3;
-      mode = 'home';
+      if (sinceLastPoop >= 3) setTimeout(poop, 900);   // what goes in must come out
+      mode = 'wait'; setTimeout(() => { if (mode === 'wait') { mode = 'pause'; until = 0; } }, 1600);
     }, 900);
   }
-
   function poop() {
-    if (mode === 'poop') return;
-    mode = 'poop'; sinceLastPoop = 0;
+    if (mode === 'poop' || mode === 'belly') return;
+    mode = 'poop'; sinceLastPoop = 0; path = [];
+    setView('side');
     pet.classList.remove('walk'); pet.classList.add('squat');
     say('...', 900);
     setTimeout(() => {
-      const el = document.createElement('div'); el.className = 'poop'; el.innerHTML = POOP + '<svg class="stink" viewBox="0 0 18 22"><path d="M5 20c-3-4 3-6 0-10s3-6 0-9"/><path d="M13 20c-3-4 3-6 0-10s3-6 0-9" style="animation-delay:-.6s"/></svg>';
-      el.title = 'Clean up';
-      el.style.left = (rearX() - 13 + (facing < 0 ? 10 : -10)) + 'px'; el.style.bottom = '6px';
+      const el = document.createElement('div'); el.className = 'poop'; el.title = 'Clean up';
+      el.innerHTML = POOP + '<svg class="stink" viewBox="0 0 18 22"><path d="M5 20c-3-4 3-6 0-10s3-6 0-9"/><path d="M13 20c-3-4 3-6 0-10s3-6 0-9" style="animation-delay:-.6s"/></svg>';
+      const rear = facing < 0 ? x + PW() * 0.9 : x + PW() * 0.1;
+      el.style.left = (rear - 13) + 'px'; el.style.top = (y + PH() - 22) + 'px';
       lane.appendChild(el);
       el.addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); if (el.classList.contains('gone')) return; el.classList.add('gone'); const r = el.getBoundingClientRect(); burst('heart', r.left + r.width / 2, r.top, 3); setTimeout(() => el.remove(), 550); say('Thanks, human!'); });
       setTimeout(() => { el.classList.add('gone'); setTimeout(() => el.remove(), 600); }, 14000);
       pet.classList.remove('squat');
-      // the classic dachshund side-eye
-      pet.classList.add('sideeye'); lookOverride = { dx: facing < 0 ? 1 : -1, dy: 0.35 };
+      pet.classList.add('sideeye'); lookOverride = { dx: -1, dy: 0.35 };   // the classic dachshund side-eye, back at the mess
       say('Oops.', 2200);
       setTimeout(() => {
         pet.classList.remove('sideeye'); lookOverride = null;
-        mode = 'walk'; const w = LW() - W();
-        target = facing < 0 ? Math.max(0, x - w * 0.5) : Math.min(w, x + w * 0.5);
+        const { maxX } = bounds();
+        go({ x: facing < 0 ? Math.max(0, x - 220) : Math.min(maxX, x + 220), y }, () => { mode = 'pause'; until = performance.now() + 1500; });
       }, 2200);
     }, 1100);
   }
 
+  // ---- hide / show ----
+  function setHidden(h) {
+    lane.classList.toggle('off', h);
+    toggle.textContent = h ? 'Bring Diudiu back' : 'Hide Diudiu';
+    toggle.setAttribute('aria-pressed', String(h));
+    feed.disabled = h;
+    if (!h && !entered) seen = 9999;
+    try { localStorage.setItem('diudiu-hidden', h ? '1' : '0'); } catch (e) {}
+  }
+  toggle.addEventListener('click', () => setHidden(!lane.classList.contains('off')));
+  try { if (localStorage.getItem('diudiu-hidden') === '1') setHidden(true); } catch (e) {}
+
   addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
   pet.addEventListener('click', e => {
     if (mode !== 'pause' && mode !== 'walk') return;
-    // belly up for rubs
-    mode = 'belly';
+    mode = 'belly'; path = [];
+    setView('side');
     body.style.setProperty('--f', String(-facing));
     pet.classList.add('belly', 'walk');
     say(['Belly rubs?', 'Rub my tummy!', 'Main quest: charm all humans'][Math.floor(Math.random() * 3)], 1800);
     burst('heart', e.clientX, e.clientY - 10, 5);
     setTimeout(() => { pet.classList.remove('belly', 'walk'); mode = 'pause'; until = performance.now() + 1200; }, 2000);
   });
-  new IntersectionObserver(es => { if (es[0].isIntersecting && !say.done) { say.done = true; setTimeout(() => say(lines[0], 2600), 500); } }, { threshold: .5 }).observe(lane);
 
   (function blink() {
     if (!pet.classList.contains('sideeye')) { pet.classList.add('blink'); setTimeout(() => pet.classList.remove('blink'), 130); }
     setTimeout(blink, 2200 + Math.random() * 3800);
   })();
 
+  // ---- four views: side (flipped for left/right), front (walking toward you), back (walking away) ----
+  function setView(v) { if (v !== view) { view = v; pet.dataset.view = v; } }
   function look() {
+    const svg = pet.querySelector('.v-' + view); if (!svg) return;
+    const eyes = svg.querySelectorAll('.eye'), pupils = svg.querySelectorAll('.pupil');
+    const k0 = view === 'side' ? -facing : 1;
     eyes.forEach((eye, i) => {
       let ox = 0, oy = 0;
-      if (lookOverride) { ox = lookOverride.dx * 2.8; oy = lookOverride.dy * 2.8; }
+      if (lookOverride) { ox = 2.8; oy = lookOverride.dy * 2.8; }   // toward his tail, in drawing space
       else if (mx !== null) {
         const er = eye.getBoundingClientRect(), cx = er.left + er.width / 2, cy = er.top + er.height / 2;
-        const dx = (mx - cx) * facing * -1, dy = my - cy, d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 140);
+        const dx = (mx - cx) * k0, dy = my - cy, d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 140);
         ox = (dx / d) * k * 2.6; oy = (dy / d) * k * 2.6;
       }
       pupils[i].style.transform = `translate(${ox}px, ${oy}px)`;
     });
   }
 
-
-  const PAW = '<svg viewBox="0 0 20 20" aria-hidden="true"><ellipse cx="10" cy="13.5" rx="5" ry="4.2"/><circle cx="4.2" cy="8" r="2.1"/><circle cx="8" cy="5" r="2.1"/><circle cx="12" cy="5" r="2.1"/><circle cx="15.8" cy="8" r="2.1"/></svg>';
   let stepDist = 0, stepSide = 0, lastX = null, lastY = null;
-  function footprints() {
+  function footprints(dx, dy) {
     if (still) return;
-    if (lastX === null) { lastX = x; lastY = y; return; }
-    const mdx = x - lastX, mdy = y - lastY;
-    stepDist += Math.hypot(mdx, mdy); lastX = x; lastY = y;
-    if (mdx || mdy) footprints.ang = Math.atan2(mdy, mdx) * 180 / Math.PI + 90;
-    if (stepDist < 22 || mode === 'belly') return;
+    stepDist += Math.hypot(dx, dy);
+    if (stepDist < 22) return;
     stepDist = 0; stepSide ^= 1;
     const el = document.createElement('div'); el.className = 'paw-print'; el.innerHTML = PAW;
-    const front = facing < 0 ? x + W() * 0.4 : x + W() * 0.6;   // front paws
-    const back = facing < 0 ? x + W() * 0.8 : x + W() * 0.2;    // back paws
-    const px = (stepSide ? front : back) - 5, py = feetY() - 6 + (stepSide ? -3 : 2);
-    el.style.left = px + 'px'; el.style.top = py + 'px';
-    el.style.setProperty('--r', (footprints.ang ?? (facing < 0 ? -90 : 90)) + 'deg');
+    let px, py;
+    if (view === 'side') { px = (stepSide ? (facing < 0 ? x + PW() * 0.4 : x + PW() * 0.6) : (facing < 0 ? x + PW() * 0.8 : x + PW() * 0.2)); py = y + PH() - 8 + (stepSide ? -3 : 2); }
+    else { px = x + PW() / 2 + (stepSide ? -9 : 9); py = y + PH() - 6; }
+    el.style.left = (px - 5) + 'px'; el.style.top = (py - 6) + 'px';
+    el.style.setProperty('--r', (Math.atan2(dy, dx) * 180 / Math.PI + 90) + 'deg');
     lane.appendChild(el); setTimeout(() => el.remove(), 1900);
   }
+
   function frame(now) {
-    if (!lane.offsetParent) { requestAnimationFrame(frame); return; }
+    requestAnimationFrame(frame);
+    if (!lane.offsetParent || lane.classList.contains('off')) return;
     t++;
-    const maxX = Math.max(0, LW() - W());
-    if (mode === 'pause' && now > until) { if (Math.random() < 0.3 && !pet.classList.contains('talk')) say(lines[1 + Math.floor(Math.random() * (lines.length - 1))]); wander(now); }
-    let moving = false;
-    const goal = treats.find(tr => tr.landed);
-    if (mode === 'treat' && goal) {
-      // decide once which way he approaches, so he always walks head-first
-      const gx = goal.x, tR = Math.max(0, Math.min(maxX, gx - W() * 0.8)), tL = Math.max(0, Math.min(maxX, gx - W() * 0.2));
-      if (!goal.side) goal.side = x <= tR ? 1 : x >= tL ? -1 : (gx < x + W() / 2 ? -1 : 1);
-      target = goal.side > 0 ? tR : tL;
-      ty = goal.y + 8 - (LH() - 4);
-      const dx = target - x, dy = ty - y, d = Math.hypot(dx, dy), speed = still ? 9999 : 3.2;
-      const forward = Math.abs(dx) < 2 || Math.sign(dx) === goal.side;
-      facing = goal.side;
-      if (d <= speed) { x = target; y = ty; treats.splice(treats.indexOf(goal), 1); eat(goal); }
-      else { x += dx / d * speed; y += dy / d * speed; moving = forward; }
-    } else if (mode === 'home') {
-      const dy = -y, speed = still ? 9999 : 2.6;
-      if (Math.abs(dy) <= speed) {
-        y = 0;
-        if (pendingPoop) { pendingPoop = false; setTimeout(poop, 600); mode = 'wait'; }
-        else { mode = 'pause'; until = now + 1200; }
-      } else { y += Math.sign(dy) * speed; moving = true; }
-    } else if (mode === 'walk') {
-      const dx = target - x, dy = ty - y, d = Math.hypot(dx, dy), speed = still ? 9999 : 1.25;
-      if (d <= speed) { x = target; y = ty; mode = 'pause'; until = now + 1500 + Math.random() * 3000; }
-      else { x += dx / d * speed; y += dy / d * speed; moving = true; if (Math.abs(dx) > 0.5) facing = dx < 0 ? -1 : 1; }
-    }
-    x = Math.max(0, Math.min(maxX, x));
+    if (!entered) { if (visible()) { if (++seen > 150) enter(); } return; }   // ~2.5 s of reading
+    if (mode === 'treat' && !chaseTreat()) { /* wait for it to land */ }
+    if (mode === 'pause' && now > until) { if (treats.some(q => q.landed)) mode = 'treat'; else wander(); }
+    let moving = false, dx = 0, dy = 0;
+    if (mode === 'walk' && path.length) {
+      const q = path[0], ex = q.x - x, ey = q.y - y, d = Math.hypot(ex, ey);
+      const speed = still ? 9999 : (treats.length ? 3 : 1.5);
+      if (d <= speed) { dx = ex; dy = ey; x = q.x; y = q.y; path.shift(); }
+      else { dx = ex / d * speed; dy = ey / d * speed; x += dx; y += dy; }
+      moving = true;
+      // always head-first: the view follows the way he's going
+      if (Math.abs(ex) >= Math.abs(ey) * 0.8) { setView('side'); facing = ex < 0 ? -1 : 1; }
+      else setView(ey < 0 ? 'back' : 'front');
+      if (!path.length) { const cb = onArrive; onArrive = null; mode = 'pause'; until = now + 1200; if (cb) cb(); }
+    } else if (mode === 'walk') { mode = 'pause'; }
     if (mode !== 'belly') pet.classList.toggle('walk', moving);
-    const bob = moving ? Math.abs(Math.sin(t * (mode === 'treat' ? 0.45 : 0.3))) * 3 : 0;
+    if (moving) footprints(dx, dy);
+    const bob = moving ? Math.abs(Math.sin(t * (treats.length ? 0.45 : 0.3))) * 3 : 0;
     const squat = pet.classList.contains('squat') ? 6 : 0;
     const breathe = 1 + Math.sin(now / 520) * 0.01;
     const tilt = mode === 'eat' ? Math.sin(t * 0.5) * 3 : 0;
     pet.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    if (!pet.classList.contains('belly')) body.style.setProperty('--f', String(-facing));
-    // the drawing faces left; flip it when he walks right
-    if (!pet.classList.contains('happy') && !pet.classList.contains('belly')) body.style.transform = `translateY(${squat - bob}px) rotate(${tilt}deg) scale(${-facing}, ${breathe - squat / 120})`;
+    const f = view === 'side' ? -facing : 1;
+    if (!pet.classList.contains('belly')) body.style.setProperty('--f', String(f));
+    if (!pet.classList.contains('happy') && !pet.classList.contains('belly')) body.style.transform = `translateY(${squat - bob}px) rotate(${tilt}deg) scale(${f}, ${breathe - squat / 120})`;
     const flap = moving ? Math.sin(t * 0.3) * 12 : Math.sin(now / 700) * 3;
-    earL.style.transform = `rotate(${flap}deg)`; earR.style.transform = `rotate(${-flap}deg)`;
-    if (moving) footprints(); else { lastX = x; lastY = y; }
+    pet.querySelectorAll('.v-' + view + ' .el').forEach(e => e.style.transform = `rotate(${flap}deg)`);
+    pet.querySelectorAll('.v-' + view + ' .er').forEach(e => e.style.transform = `rotate(${-flap}deg)`);
     look();
-    requestAnimationFrame(frame);
   }
+  pet.dataset.view = view; pet.classList.add('away');
   requestAnimationFrame(frame);
 })();
 </script>
