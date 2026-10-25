@@ -1042,6 +1042,7 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
 .sk-tools .mono { display: block; font-size: .62rem; color: var(--accent); margin-bottom: 6px; }
 .sk-tools p { margin: 0; display: flex; flex-wrap: wrap; gap: 5px; }
 .sk-tools p span { font-size: .78rem; padding: 3px 9px; border-radius: 99px; background: var(--paper); border: 1px solid var(--line); }
+#aboutv .about2 { padding-top: clamp(64px, 8vw, 110px); }
 </style>
 
 <!-- reusable drawings -->
@@ -1185,6 +1186,37 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
   </div>
 </div>
 
+<section class="contents" id="work">
+  <div class="wrap ct-grid">
+    <h2 class="ct-vert">Contents</h2>
+    <ol class="ct-list" id="ctList">
+      <li data-ch="strategy" data-thumb="img/burberry-page-5.jpg"><a class="ct-main" href="#strategy"><span class="ct-no"></span><span class="ct-t">Brand &amp; Audience Strategy</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#kona">Kona Village</a><a href="#burberry">Burberry, Reconnected</a></span></li>
+      <li data-ch="content" data-thumb="img/rn-post-1.jpg" data-pos="50% 22%"><a class="ct-main" href="#content"><span class="ct-no"></span><span class="ct-t">Content Creation</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#rednote">Xiaohongshu pet account</a></span></li>
+      <li data-ch="filmv" data-thumb="img/cm-1.jpg"><a class="ct-main" href="#filmv"><span class="ct-no"></span><span class="ct-t">Film &amp; Production</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#film">Boston Production Inc</a><a href="#lock">The Lock's Still the Same</a><a href="#checkmate">Checkmate, My Dearest</a></span></li>
+      <li data-ch="designv" data-thumb="img/ozi-5.jpg"><a class="ct-main" href="#designv"><span class="ct-no"></span><span class="ct-t">Production Design</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#poorthings">Poor Things</a><a href="#ozi">ØZI studio</a></span></li>
+      <li data-ch="analysisv" data-thumb="img/tmad-01.jpg"><a class="ct-main" href="#analysisv"><span class="ct-no"></span><span class="ct-t">Film &amp; TV Analysis</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#bacurau">Bacurau</a><a href="#tmad">Three Meals a Day</a><a href="#abc">ABC News</a></span></li>
+      <li data-ch="healthv" data-thumb="img/ph-03.jpg"><a class="ct-main" href="#healthv"><span class="ct-no"></span><span class="ct-t">Public Health</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#health">Licensed ≠ Protected</a></span></li>
+      <li data-ch="contact" data-thumb="img/onset-3.jpg"><a class="ct-main" href="#contact"><span class="ct-no"></span><span class="ct-t">Contact</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#contact">That's a wrap</a></span></li>
+    </ol>
+    <div class="ct-side" id="ctSide">
+      <div class="sheet" id="sheet" aria-label="Contact sheet of chapter frames">
+        <div class="sheet-track" id="sheetTrack"></div>
+        <svg class="grease" id="grease" viewBox="0 0 220 180" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M18 92c-6-42 52-74 104-72 52 2 92 30 86 74-5 40-56 66-108 64-50-2-88-26-82-66 3-24 30-46 70-52"/></svg>
+        <span class="grease-note hand" id="greaseNote" aria-hidden="true">select!</span>
+      </div>
+      <div class="tix" aria-label="Education">
+        <div class="tix-one em"><span class="tix-kicker mono">Admit one · B.A.</span><b>Emerson College</b><span class="tix-sub">Film production</span><svg class="tix-ic" viewBox="0 0 32 26" aria-hidden="true"><rect x="3" y="10" width="26" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10 27 3l1.6 5.4L4.6 15.4z" fill="currentColor"/><path d="M7 17h18M7 20.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <div class="tix-one usc"><span class="tix-kicker mono">Admit one · M.S.</span><b>USC Annenberg</b><span class="tix-sub">Digital Social Media</span><svg class="tix-ic" viewBox="0 0 32 26" aria-hidden="true"><rect x="9" y="1.5" width="14" height="23" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 18.5c-3.2-2.2-4.6-3.6-4.6-5.4 0-1.4 1.1-2.3 2.3-2.3.9 0 1.8.5 2.3 1.3.5-.8 1.4-1.3 2.3-1.3 1.2 0 2.3.9 2.3 2.3 0 1.8-1.4 3.2-4.6 5.4z" fill="currentColor"/></svg></div>
+      </div>
+    </div>
+  </div>
+  <p class="wrap ct-soon mono">Photography and Sound Design · coming soon</p>
+</section>
+
+<div class="wrap next-wrap" data-next></div>
+</main>
+
+<div class="view" id="aboutv" data-key="about" data-title="About" data-fx="leader" hidden>
 <section class="about2" id="about">
   <div class="wrap ab-grid">
     <div class="ab-left reveal">
@@ -1241,37 +1273,8 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
     <p class="sk-lang"><span class="mono">Languages</span>English · Mandarin · Cantonese</p>
   </div>
 </section>
-
-
-<section class="contents" id="work">
-  <div class="wrap ct-grid">
-    <h2 class="ct-vert">Contents</h2>
-    <ol class="ct-list" id="ctList">
-      <li data-ch="strategy" data-thumb="img/burberry-page-5.jpg"><a class="ct-main" href="#strategy"><span class="ct-no"></span><span class="ct-t">Brand &amp; Audience Strategy</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#kona">Kona Village</a><a href="#burberry">Burberry, Reconnected</a></span></li>
-      <li data-ch="content" data-thumb="img/rn-post-1.jpg" data-pos="50% 22%"><a class="ct-main" href="#content"><span class="ct-no"></span><span class="ct-t">Content Creation</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#rednote">Xiaohongshu pet account</a></span></li>
-      <li data-ch="filmv" data-thumb="img/cm-1.jpg"><a class="ct-main" href="#filmv"><span class="ct-no"></span><span class="ct-t">Film &amp; Production</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#film">Boston Production Inc</a><a href="#lock">The Lock's Still the Same</a><a href="#checkmate">Checkmate, My Dearest</a></span></li>
-      <li data-ch="designv" data-thumb="img/ozi-5.jpg"><a class="ct-main" href="#designv"><span class="ct-no"></span><span class="ct-t">Production Design</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#poorthings">Poor Things</a><a href="#ozi">ØZI studio</a></span></li>
-      <li data-ch="analysisv" data-thumb="img/tmad-01.jpg"><a class="ct-main" href="#analysisv"><span class="ct-no"></span><span class="ct-t">Film &amp; TV Analysis</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#bacurau">Bacurau</a><a href="#tmad">Three Meals a Day</a><a href="#abc">ABC News</a></span></li>
-      <li data-ch="healthv" data-thumb="img/ph-03.jpg"><a class="ct-main" href="#healthv"><span class="ct-no"></span><span class="ct-t">Public Health</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#health">Licensed ≠ Protected</a></span></li>
-      <li data-ch="contact" data-thumb="img/onset-3.jpg"><a class="ct-main" href="#contact"><span class="ct-no"></span><span class="ct-t">Contact</span><span class="ct-pg"></span></a><span class="ct-sub"><a href="#contact">That's a wrap</a></span></li>
-    </ol>
-    <div class="ct-side" id="ctSide">
-      <div class="sheet" id="sheet" aria-label="Contact sheet of chapter frames">
-        <div class="sheet-track" id="sheetTrack"></div>
-        <svg class="grease" id="grease" viewBox="0 0 220 180" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M18 92c-6-42 52-74 104-72 52 2 92 30 86 74-5 40-56 66-108 64-50-2-88-26-82-66 3-24 30-46 70-52"/></svg>
-        <span class="grease-note hand" id="greaseNote" aria-hidden="true">select!</span>
-      </div>
-      <div class="tix" aria-label="Education">
-        <div class="tix-one em"><span class="tix-kicker mono">Admit one · B.A.</span><b>Emerson College</b><span class="tix-sub">Film production</span><svg class="tix-ic" viewBox="0 0 32 26" aria-hidden="true"><rect x="3" y="10" width="26" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10 27 3l1.6 5.4L4.6 15.4z" fill="currentColor"/><path d="M7 17h18M7 20.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-        <div class="tix-one usc"><span class="tix-kicker mono">Admit one · M.S.</span><b>USC Annenberg</b><span class="tix-sub">Digital Social Media</span><svg class="tix-ic" viewBox="0 0 32 26" aria-hidden="true"><rect x="9" y="1.5" width="14" height="23" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 18.5c-3.2-2.2-4.6-3.6-4.6-5.4 0-1.4 1.1-2.3 2.3-2.3.9 0 1.8.5 2.3 1.3.5-.8 1.4-1.3 2.3-1.3 1.2 0 2.3.9 2.3 2.3 0 1.8-1.4 3.2-4.6 5.4z" fill="currentColor"/></svg></div>
-      </div>
-    </div>
-  </div>
-  <p class="wrap ct-soon mono">Photography and Sound Design · coming soon</p>
-</section>
-
 <div class="wrap next-wrap" data-next></div>
-</main>
+</div>
 
 <div class="view" id="strategy" data-key="strategy" data-title="Brand &amp; Audience Strategy" data-fx="storyboard" hidden>
 <header class="chapter ch-storyboard">
@@ -2479,7 +2482,7 @@ html.motion.ready .home-hero .hh-foot { opacity: 1; transform: none; transition-
       const v = $(id); if (v) v.querySelectorAll('[data-chno]').forEach(b => b.textContent = String(i + 1).padStart(2, '0'));
     });
     // "next scene" follows the cut
-    const chain = ['home', ...c.order, 'contact'];
+    const chain = ['home', 'aboutv', ...c.order, 'contact'];
     document.querySelectorAll('[data-next]').forEach(slot => {
       const v = slot.closest('.view'); const i = chain.indexOf(v.id); const nxt = $(chain[i + 1] || 'home');
       slot.innerHTML = `<a class="next-page" href="#${nxt.id}"><span class="mono">Next scene</span><b>${titleOf(nxt)} <i>→</i></b></a>`;
