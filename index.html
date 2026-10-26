@@ -1322,7 +1322,7 @@ html[data-cut="marketing"] [data-only="directors"], html[data-cut="directors"] [
     </div>
   </div>
 
-  <div class="wrap skills reveal" id="skills">
+  <div class="wrap skills" id="skills">
     <div class="sk-head"><span class="mono">Skills &amp; tools</span><h3>The <em>toolkit</em></h3><p class="hand">set, edit bay, studio and strategy deck</p></div>
     <div class="sk-grid">
       <div class="sk-col"><h4><span>01</span>Film &amp; post</h4><ul>
@@ -2663,6 +2663,7 @@ html[data-cut="marketing"] [data-only="directors"], html[data-cut="directors"] [
     const list = $('ctList'), items = [...list.children];
     const seq = [...c.order, 'contact'];
     document.documentElement.dataset.cut = cut;
+    setTimeout(() => window.__rebuildSheet && window.__rebuildSheet(), 0);
     items.forEach(li => { li.hidden = !seq.includes(li.dataset.ch); });
     seq.forEach((id, i) => {
       const li = items.find(l => l.dataset.ch === id); if (!li) return;
@@ -2710,7 +2711,10 @@ html[data-cut="marketing"] [data-only="directors"], html[data-cut="directors"] [
       grease.classList.remove('draw'); if (!quiet || motion) { void grease.getBoundingClientRect(); setTimeout(() => grease.classList.add('draw'), motion ? 520 : 0); }
     }
     $('ctList').addEventListener('pointerleave', () => { hovering = false; document.querySelectorAll('#ctList li').forEach(x => x.classList.remove('on')); });
-    if (motion) auto = setInterval(() => { if (!hovering && sheet.offsetParent) select((idx + 1) % frames.length); }, 2600);
+    let onSheet = false;
+    sheet.addEventListener('pointerenter', () => { onSheet = true; });
+    sheet.addEventListener('pointerleave', () => { onSheet = false; });
+    if (motion) auto = setInterval(() => { if (!hovering && !onSheet && sheet.offsetParent) select((idx + 1) % frames.length); }, 2600);
     build();
     window.__rebuildSheet = build;
     addEventListener('resize', () => select(idx, true));
